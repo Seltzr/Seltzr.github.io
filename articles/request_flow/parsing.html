@@ -1,0 +1,274 @@
+﻿<!DOCTYPE html>
+
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Parsing </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Parsing ">
+    <meta name="generator" content="docfx 2.52.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.png">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../favicon.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="parsing">
+<h1 id="parsing">Parsing</h1>
+
+<p>Parsing is the second step in the request flow. It occurs after routing and before authentication. Multiple parsers may be attatched to a single route, they will be executed in the order they were added. If one parser fails, the next parser will be used. If all parsers fail, an exception of type <a class="xref" href="../../api/Seltzr.Exceptions.ParsingFailedException.html">ParsingFailedException</a> will be thrown. Body parsers are optional and if none are specified this step is skipped, and the <a class="xref" href="../../api/Seltzr.Context.IApiContext-2.html#Seltzr_Context_IApiContext_2_Parsed">Parsed</a> property of the request's <a class="xref" href="../../api/Seltzr.Context.IApiContext-2.html">IApiContext&lt;TModel, TUser&gt;</a> will be <code>null</code>.</p>
+<h2 id="api-context">Api Context</h2>
+<p><strong>See Also:</strong> &lt;xref:api-context&gt;</p>
+<p>This step will set the <a class="xref" href="../../api/Seltzr.Context.IApiContext-2.html#Seltzr_Context_IApiContext_2_Parsed">Parsed</a> property on the request's <a class="xref" href="../../api/Seltzr.Context.IApiContext-2.html">IApiContext&lt;TModel, TUser&gt;</a> to an array of <a class="xref" href="../../api/Seltzr.Parsers.ParseResult-1.html">ParseResult&lt;TModel&gt;</a> objects. Even if the parser doesn't accept arrays, the property will still be set to an array containing a single element. Every parse result object contains the parsed model and a list of the properties actually present in the request body.</p>
+<h2 id="parsingoptions">ParsingOptions</h2>
+<p>Every body parser accepts a <a class="xref" href="../../api/Seltzr.Options.ParserOptions.html">ParserOptions</a> object, which specifies which properties should be ignored when parsing, defaults for properties, required properties, and whether the parser should accept arrays. Methods for controlling this object are listed below in <a href="#parsing-options">Parsing Options</a>.</p>
+<h2 id="builder-methods">Builder Methods</h2>
+<h3 id="low-level-methods">Low-Level Methods</h3>
+<p>These methods are primarily used when you've implemented your own <a class="xref" href="../../api/Seltzr.Parsers.IBodyParser-1.html">IBodyParser&lt;TModel&gt;</a> and want to attach it to a route.</p>
+<ul>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_AddBodyParser_Seltzr_Parsers_IBodyParser__0__">AddBodyParser(IBodyParser&lt;TModel&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_AddBodyParser__1">AddBodyParser&lt;TParser&gt;()</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_ClearBodyParsers">ClearBodyParsers()</a></li>
+</ul>
+<h3 id="high-level-methods">High-Level Methods</h3>
+<p>These are the methods that you will most commonly use with your routes.</p>
+<h4 id="parsing-1">Parsing</h4>
+<p><strong>Builder Prefix:</strong> <code>Parse</code></p>
+<ul>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_ParseJson">ParseJson()</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_ParseJson_System_Text_Json_JsonSerializerOptions_">ParseJson(JsonSerializerOptions)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_ParseJsonArrays">ParseJsonArrays()</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_ParseJsonArrays_System_Text_Json_JsonSerializerOptions_">ParseJsonArrays(JsonSerializerOptions)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_ParseXml">ParseXml()</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_ParseXmlAndJson_System_Boolean_">ParseXmlAndJson(Boolean)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_ParseXmlAndJsonArrays">ParseXmlAndJsonArrays()</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_ParseXmlArrays">ParseXmlArrays()</a></li>
+</ul>
+<h4 id="parsing-options">Parsing Options</h4>
+<ul>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_AcceptArrays_System_Boolean_">AcceptArrays(Boolean)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Default__1_System_Linq_Expressions_Expression_System_Func__0___0_____0_">Default&lt;TProperty&gt;(Expression&lt;Func&lt;TModel, TProperty&gt;&gt;, TProperty)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Default__1_System_Linq_Expressions_Expression_System_Func__0___0___System_Func___0__">Default&lt;TProperty&gt;(Expression&lt;Func&lt;TModel, TProperty&gt;&gt;, Func&lt;TProperty&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Default__1_System_Reflection_PropertyInfo_System_Func___0__">Default&lt;TProperty&gt;(PropertyInfo, Func&lt;TProperty&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Ignore_System_Linq_Expressions_Expression_System_Func__0_System_Object___">Ignore(Expression&lt;Func&lt;TModel, Object&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Ignore_System_Reflection_PropertyInfo_">Ignore(PropertyInfo)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_IgnoreAll">IgnoreAll()</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_OptionalAllProperties">OptionalAllProperties()</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_OptionalProperty_System_Linq_Expressions_Expression_System_Func__0_System_Object___">OptionalProperty(Expression&lt;Func&lt;TModel, Object&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_OptionalProperty_System_Reflection_PropertyInfo_">OptionalProperty(PropertyInfo)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_RequireAllProperties">RequireAllProperties()</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_RequireProperty_System_Linq_Expressions_Expression_System_Func__0_System_Object___">RequireProperty(Expression&lt;Func&lt;TModel, Object&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_RequireProperty_System_Reflection_PropertyInfo_">RequireProperty(PropertyInfo)</a></li>
+</ul>
+<p><strong>Extension Methods:</strong></p>
+<ul>
+<li><strong><a class="xref" href="../../api/Seltzr.Extensions.SeltzrOrmOptionsBuilderExtensions.html#Seltzr_Extensions_SeltzrOrmOptionsBuilderExtensions_IgnorePrimaryKey__2_Seltzr_Options_Builder_SeltzrOptionsBuilder___0___1__">IgnorePrimaryKey&lt;TModel, TUser&gt;(SeltzrOptionsBuilder&lt;TModel, TUser&gt;)</a></strong></li>
+<li><strong><a class="xref" href="../../api/Seltzr.Extensions.SeltzrOrmOptionsBuilderExtensions.html#Seltzr_Extensions_SeltzrOrmOptionsBuilderExtensions_RequirePrimaryKeyProperties__2_Seltzr_Options_Builder_SeltzrOptionsBuilder___0___1__">RequirePrimaryKeyProperties&lt;TModel, TUser&gt;(SeltzrOptionsBuilder&lt;TModel, TUser&gt;)</a></strong></li>
+<li><strong><a class="xref" href="../../api/Seltzr.Extensions.SeltzrOrmOptionsBuilderExtensions.html#Seltzr_Extensions_SeltzrOrmOptionsBuilderExtensions_OptionalPrimaryKeyProperties__2_Seltzr_Options_Builder_SeltzrOptionsBuilder___0___1__">OptionalPrimaryKeyProperties&lt;TModel, TUser&gt;(SeltzrOptionsBuilder&lt;TModel, TUser&gt;)</a></strong></li>
+</ul>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>Don't confuse <code>Require</code>, <code>Ignore</code>, and <code>Optional</code> with <code>Omit</code> and <code>Include</code>. The former methods work with request bodies, the latter with response bodies.</p>
+</div>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Methods in bold are only available when you're using an ORM-backed Seltzr, e.g <code>Seltzr.EntityFrameworkCore</code></p>
+</div>
+<h2 id="examples">Examples</h2>
+<h3 id="parsing-2">Parsing</h3>
+<h4 id="accept-json-request-bodies-containing-a-single-element">Accept JSON request bodies containing a single element</h4>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'xlmfhkka')">Copy</button></div><pre id="xlmfhkka"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>api</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>    </span><span style='color:#001080;'>api</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>ParseJson</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<p>Subsequent API routes will accept requests in the format:</p>
+<div class="code-header"><span class="language">JSON</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'fewxvhud')">Copy</button></div><pre id="fewxvhud"><code><span style='color:#222222;'>{</span>
+<span style='color:black;'>	</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Property1</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span><span style='color:#222222;'>,</span>
+<span style='color:black;'>	</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Property2</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span>
+<span style='color:#222222;'>}</span>
+<span style='color:black;'></span></code></pre>
+<h4 id="accept-json-request-bodies-containing-a-single-element-1">Accept JSON request bodies containing a single element</h4>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'jkbrjuix')">Copy</button></div><pre id="jkbrjuix"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>api</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>    </span><span style='color:#001080;'>api</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>ParseJsonArrays</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The preceding code is equivalent to:</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'ggozfaqk')">Copy</button></div><pre id="ggozfaqk"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>api</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>   </span><span style='color:#001080;'>api</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>ParseJson</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>AcceptArrays</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+</div>
+<p>Subsequent API routes will accept requests as a single object</p>
+<div class="code-header"><span class="language">JSON</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'szzfzzbh')">Copy</button></div><pre id="szzfzzbh"><code><span style='color:#222222;'>{</span>
+<span style='color:black;'>	</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Property1</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span><span style='color:#222222;'>,</span>
+<span style='color:black;'>	</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Property2</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span>
+<span style='color:#222222;'>}</span>
+<span style='color:black;'></span></code></pre>
+<p>or as an array of objects</p>
+<div class="code-header"><span class="language">JSON</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'vdiwbnhz')">Copy</button></div><pre id="vdiwbnhz"><code><span style='color:#222222;'>[</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>{</span>
+<span style='color:black;'>		</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Property1</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span><span style='color:#222222;'>,</span>
+<span style='color:black;'>		</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Property2</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>}</span><span style='color:#222222;'>,</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>{</span>
+<span style='color:black;'>		</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Property1</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span><span style='color:#222222;'>,</span>
+<span style='color:black;'>		</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Property2</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>}</span>
+<span style='color:#222222;'>]</span>
+<span style='color:black;'></span></code></pre>
+<h4 id="accept-json-or-xml-request-bodies">Accept JSON or XML request bodies</h4>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'rfmaxwel')">Copy</button></div><pre id="rfmaxwel"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>api</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>    </span><span style='color:#001080;'>api</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>ParseXmlAndJson</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The preceding code is equivalent to:</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'wxajunln')">Copy</button></div><pre id="wxajunln"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>api</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>   </span><span style='color:#001080;'>api</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>ParseJson</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>ParseXml</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+</div>
+<div class="NOTE">
+<h5>Note</h5>
+<p>For performance reasons, all of the parsers built-in to Seltzr require the appropriate <code>Content-Type</code> header to be set on the request. If you would like to change this behavior, you must inherit from a body parser and override the <code>CanParse</code> method.</p>
+</div>
+<h3 id="modifying-parsing-options">Modifying Parsing Options</h3>
+<h4 id="set-a-default-value-for-a-property">Set a default value for a property</h4>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'kxnxqwum')">Copy</button></div><pre id="kxnxqwum"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>api</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>	</span><span style='color:#001080;'>api</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>Default</span><span style='color:#222222;'>(</span><span style='color:#001080;'>model</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>model</span><span style='color:#222222;'>.</span><span style='color:#001080;'>Token</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>Guid</span><span style='color:#222222;'>.</span><span style='color:#001080;'>NewGuid</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The <code>Default</code> method has an overload that accepts an <code>object</code> instead of a lambda. Use that overload if you want the default value to be the same for every model.</p>
+</div>
+<p>An HTTP request that provides the following models:</p>
+<div class="code-header"><span class="language">JSON</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'cheqfxcp')">Copy</button></div><pre id="cheqfxcp"><code><span style='color:#222222;'>[</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>{</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Value</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Value1</span><span style='color:#A31515;'>&quot;</span><span style='color:black;'> </span><span style='color:#222222;'>}</span><span style='color:#222222;'>,</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>{</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Value</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Value2</span><span style='color:#A31515;'>&quot;</span><span style='color:black;'> </span><span style='color:#222222;'>}</span><span style='color:#222222;'>,</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>{</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Value</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Value3</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Token</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>608...</span><span style='color:#A31515;'>&quot;</span><span style='color:black;'> </span><span style='color:#222222;'>}</span><span style='color:#222222;'>,</span>
+<span style='color:#222222;'>]</span>
+<span style='color:black;'></span></code></pre>
+<p>Will be parsed into three models, with the default value for <code>Token</code> having been specified for models that didn't provide one:</p>
+<div class="code-header"><span class="language">JSON</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'aangabbv')">Copy</button></div><pre id="aangabbv"><code><span style='color:#222222;'>[</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>{</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Value</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Value1</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Token</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>ad4...</span><span style='color:#A31515;'>&quot;</span><span style='color:black;'> </span><span style='color:#222222;'>}</span><span style='color:#222222;'>,</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>{</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Value</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Value2</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Token</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>0db...</span><span style='color:#A31515;'>&quot;</span><span style='color:black;'> </span><span style='color:#222222;'>}</span><span style='color:#222222;'>,</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>{</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Value</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Value3</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Token</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>608...</span><span style='color:#A31515;'>&quot;</span><span style='color:black;'> </span><span style='color:#222222;'>}</span><span style='color:#222222;'>,</span>
+<span style='color:#222222;'>]</span>
+<span style='color:black;'></span></code></pre>
+<h4 id="setting-a-property-regardless-of-its-presence-on-the-parsed-model">Setting a property regardless of its presence on the parsed model</h4>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'hzqmbyhj')">Copy</button></div><pre id="hzqmbyhj"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>api</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>	</span><span style='color:#001080;'>api</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>Default</span><span style='color:#222222;'>(</span><span style='color:#001080;'>model</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>model</span><span style='color:#222222;'>.</span><span style='color:#001080;'>Token</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>Guid</span><span style='color:#222222;'>.</span><span style='color:#001080;'>NewGuid</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>Ignore</span><span style='color:#222222;'>(</span><span style='color:#001080;'>model</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>model</span><span style='color:#222222;'>.</span><span style='color:#001080;'>Token</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<p>Regardless of whether the <code>Token</code> property is present in a request body, the property will always be set to a new generated <code>Guid</code>.</p>
+<p>An HTTP request that provides the following models:</p>
+<div class="code-header"><span class="language">JSON</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'yxzbpdkc')">Copy</button></div><pre id="yxzbpdkc"><code><span style='color:#222222;'>[</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>{</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Value</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Value1</span><span style='color:#A31515;'>&quot;</span><span style='color:black;'> </span><span style='color:#222222;'>}</span><span style='color:#222222;'>,</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>{</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Value</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Value2</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Token</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>608...</span><span style='color:#A31515;'>&quot;</span><span style='color:black;'> </span><span style='color:#222222;'>}</span><span style='color:#222222;'>,</span>
+<span style='color:#222222;'>]</span>
+<span style='color:black;'></span></code></pre>
+<p>Will be parsed into two models with new <code>Guids</code>:</p>
+<div class="code-header"><span class="language">JSON</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'fknaubnk')">Copy</button></div><pre id="fknaubnk"><code><span style='color:#222222;'>[</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>{</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Value</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Value1</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Token</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>ad4...</span><span style='color:#A31515;'>&quot;</span><span style='color:black;'> </span><span style='color:#222222;'>}</span><span style='color:#222222;'>,</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>{</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Value</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Value2</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Token</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>0db...</span><span style='color:#A31515;'>&quot;</span><span style='color:black;'> </span><span style='color:#222222;'>}</span>
+<span style='color:#222222;'>]</span>
+<span style='color:black;'></span></code></pre>
+<h3 id="section"></h3>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Seltzr/Seltzr/blob/master/docs-src/docfx_project/articles/request_flow/parsing.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

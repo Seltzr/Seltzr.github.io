@@ -78,46 +78,40 @@
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
-    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
     <div class="level1"><span class="xref">CreateOperation&lt;TModel, TContext&gt;</span></div>
   </div>
   <div classs="implements">
     <h5>Implements</h5>
     <div><a class="xref" href="Seltzr.Operations.IOperation-1.html">IOperation</a>&lt;TModel&gt;</div>
-    <div><a class="xref" href="Seltzr.Operations.IOperation-2.html">IOperation</a>&lt;TModel, <span class="xref">System.Object</span>&gt;</div>
+    <div><a class="xref" href="Seltzr.Operations.IOperation-2.html">IOperation</a>&lt;TModel, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>&gt;</div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Seltzr.EntityFramework.Operations.html">Seltzr.EntityFramework.Operations</a></h6>
   <h6><strong>Assembly</strong>: Seltzr.EntityFramework.dll</h6>
   <h5 id="Seltzr_EntityFramework_Operations_CreateOperation_2_syntax">Syntax</h5>
   <div class="codewrapper">
-    <div class="code-header">
-      <span class="language">C#</span>
-    </div>
-    <pre><code><span style='color:#0000FF;'>public</span><span style='color:black;'> </span><span style='color:#0000FF;'>class</span><span style='color:black;'> </span><span style='color:#267F99;'>CreateOperation</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>TModel</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#267F99;'>TContext</span><span style='color:#222222;'>&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#267F99;'>IOperation</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>TModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#267F99;'>IOperation</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>TModel</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#0000FF;'>object</span><span style='color:#222222;'>&gt;</span><span style='color:black;'> </span><span style='color:#0000FF;'>where</span><span style='color:black;'> </span><span style='color:#267F99;'>TModel</span><span style='color:black;'> </span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#0000FF;'>class</span><span style='color:black;'> </span><span style='color:#0000FF;'>where</span><span style='color:black;'> </span><span style='color:#267F99;'>TContext</span><span style='color:black;'> </span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#267F99;'>DbContext</span></code></pre>
+    <div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'zqdgytkm')">Copy</button></div><pre id="zqdgytkm"><code><span style='color:#0000FF;'>public</span><span style='color:black;'> </span><span style='color:#0000FF;'>class</span><span style='color:black;'> </span><span style='color:#267F99;'>CreateOperation</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>TModel</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#267F99;'>TContext</span><span style='color:#222222;'>&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#267F99;'>IOperation</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>TModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#267F99;'>IOperation</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>TModel</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#0000FF;'>object</span><span style='color:#222222;'>&gt;</span><span style='color:black;'> </span><span style='color:#0000FF;'>where</span><span style='color:black;'> </span><span style='color:#267F99;'>TModel</span><span style='color:black;'> </span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#0000FF;'>class</span><span style='color:black;'> </span><span style='color:#0000FF;'>where</span><span style='color:black;'> </span><span style='color:#267F99;'>TContext</span><span style='color:black;'> </span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#267F99;'>DbContext</span></code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">TModel</span></td>
-        <td><p>The type of model to create</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="parametername">TContext</span></td>
-        <td><p>The type of EntityFramework database context to use</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="parameter-list">
+    <div class="parameter">
+  		<div>
+  			<code>TModel</code>
+  		</div>
+  		<p>The type of model to create</p>
+
+  	</div>
+    <div class="parameter">
+  		<div>
+  			<code>TContext</code>
+  		</div>
+  		<p>The type of EntityFramework database context to use</p>
+
+  	</div>
+  </div>
   <h3 id="methods">Methods
   </h3>
+  <div class="element-title">
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/Seltzr/Seltzr/new/master/apiSpec/new?filename=Seltzr_EntityFramework_Operations_CreateOperation_2_OperateAsync_Seltzr_Context_IApiContext__0_System_Object__System_Linq_IQueryable__0__.md&amp;value=---%0Auid%3A%20Seltzr.EntityFramework.Operations.CreateOperation%602.OperateAsync(Seltzr.Context.IApiContext%7B%600%2CSystem.Object%7D%2CSystem.Linq.IQueryable%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -127,56 +121,34 @@
   </span>
   <a id="Seltzr_EntityFramework_Operations_CreateOperation_2_OperateAsync_" data-uid="Seltzr.EntityFramework.Operations.CreateOperation`2.OperateAsync*"></a>
   <h4 id="Seltzr_EntityFramework_Operations_CreateOperation_2_OperateAsync_Seltzr_Context_IApiContext__0_System_Object__System_Linq_IQueryable__0__" data-uid="Seltzr.EntityFramework.Operations.CreateOperation`2.OperateAsync(Seltzr.Context.IApiContext{`0,System.Object},System.Linq.IQueryable{`0})">OperateAsync(IApiContext&lt;TModel, Object&gt;, IQueryable&lt;TModel&gt;)</h4>
+  </div>
   <div class="markdown level1 summary"><p>Creates the models specified in the request body</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <div class="code-header">
-      <span class="language">C#</span>
-    </div>
-    <pre><code><span style='color:#0000FF;'>public</span><span style='color:black;'> </span><span style='color:#267F99;'>Task</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>IEnumerable</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>TModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>&gt;</span><span style='color:black;'> </span><span style='color:#795E26;'>OperateAsync</span><span style='color:#222222;'>(</span><span style='color:#267F99;'>IApiContext</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>TModel</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#0000FF;'>object</span><span style='color:#222222;'>&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>context</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#267F99;'>IQueryable</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>TModel</span><span style='color:#222222;'>&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>dataset</span><span style='color:#222222;'>)</span></code></pre>
+    <div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'bzowyvgr')">Copy</button></div><pre id="bzowyvgr"><code><span style='color:#0000FF;'>public</span><span style='color:black;'> </span><span style='color:#267F99;'>Task</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>IEnumerable</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>TModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>&gt;</span><span style='color:black;'> </span><span style='color:#795E26;'>OperateAsync</span><span style='color:#222222;'>(</span><span style='color:#267F99;'>IApiContext</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>TModel</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#0000FF;'>object</span><span style='color:#222222;'>&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>context</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#267F99;'>IQueryable</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>TModel</span><span style='color:#222222;'>&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>dataset</span><span style='color:#222222;'>)</span></code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Seltzr.Context.IApiContext-2.html">IApiContext</a>&lt;TModel, <span class="xref">System.Object</span>&gt;</td>
-        <td><span class="parametername">context</span></td>
-        <td><p>The current API context</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Linq.IQueryable</span>&lt;TModel&gt;</td>
-        <td><span class="parametername">dataset</span></td>
-        <td><p>The filtered dataset to operate on</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="parameter-list">
+    <div class="parameter">
+  		<div>
+  			<code>context</code><span class="parameter-type"><a class="xref" href="Seltzr.Context.IApiContext-2.html">IApiContext</a>&lt;TModel, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>&gt;</span>
+  		</div>
+  		<p>The current API context</p>
+
+  	</div>
+    <div class="parameter">
+  		<div>
+  			<code>dataset</code><span class="parameter-type"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.linq.iqueryable-1">IQueryable</a>&lt;TModel&gt;</span>
+  		</div>
+  		<p>The filtered dataset to operate on</p>
+
+  	</div>
+  </div>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.Collections.Generic.IEnumerable</span>&lt;TModel&gt;&gt;</td>
-        <td><p>The affected models</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
+  <p><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TModel&gt;&gt;</p>
+  <p>The affected models</p>
+
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="Seltzr.Operations.IOperation-1.html">IOperation&lt;TModel&gt;</a>

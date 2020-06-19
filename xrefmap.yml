@@ -4,6 +4,9 @@ references:
 - uid: api-docs
   name: API Documentation
   href: api/index.html
+- uid: authentication
+  name: Authentication
+  href: articles/request_flow/authentication.html
 - uid: getting-started
   name: Getting Started with Seltzr and Entity Framework Core
   href: articles/getting_started/efcore.html
@@ -226,6 +229,9 @@ references:
   fullName.vb: Microsoft.Extensions.DependencyInjection.SeltzrApplicationBuilderExtensions.AddSeltzr(Of TModel, TUser)(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.String, System.Action(Of Seltzr.Options.Builder.SeltzrOptionsBuilder(Of TModel, TUser)), System.Action(Of Microsoft.AspNetCore.Builder.IEndpointConventionBuilder))
   nameWithType: SeltzrApplicationBuilderExtensions.AddSeltzr<TModel, TUser>(IApplicationBuilder, String, Action<SeltzrOptionsBuilder<TModel, TUser>>, Action<IEndpointConventionBuilder>)
   nameWithType.vb: SeltzrApplicationBuilderExtensions.AddSeltzr(Of TModel, TUser)(IApplicationBuilder, String, Action(Of SeltzrOptionsBuilder(Of TModel, TUser)), Action(Of IEndpointConventionBuilder))
+- uid: parsing
+  name: Parsing
+  href: articles/request_flow/parsing.html
 - uid: request-flow
   name: Request Flow
   href: articles/request_flow/index.html
@@ -2664,6 +2670,22 @@ references:
   fullName.vb: Seltzr.Extensions.SeltzrOrmOptionsBuilderExtensions.OmitPrimaryKey(Of TModel, TUser)(Seltzr.Options.Builder.SeltzrOptionsBuilder(Of TModel, TUser))
   nameWithType: SeltzrOrmOptionsBuilderExtensions.OmitPrimaryKey<TModel, TUser>(SeltzrOptionsBuilder<TModel, TUser>)
   nameWithType.vb: SeltzrOrmOptionsBuilderExtensions.OmitPrimaryKey(Of TModel, TUser)(SeltzrOptionsBuilder(Of TModel, TUser))
+- uid: Seltzr.Extensions.SeltzrOrmOptionsBuilderExtensions.OptionalPrimaryKeyProperties*
+  name: OptionalPrimaryKeyProperties
+  href: api/Seltzr.Extensions.SeltzrOrmOptionsBuilderExtensions.html#Seltzr_Extensions_SeltzrOrmOptionsBuilderExtensions_OptionalPrimaryKeyProperties_
+  commentId: Overload:Seltzr.Extensions.SeltzrOrmOptionsBuilderExtensions.OptionalPrimaryKeyProperties
+  isSpec: "True"
+  fullName: Seltzr.Extensions.SeltzrOrmOptionsBuilderExtensions.OptionalPrimaryKeyProperties
+  nameWithType: SeltzrOrmOptionsBuilderExtensions.OptionalPrimaryKeyProperties
+- uid: Seltzr.Extensions.SeltzrOrmOptionsBuilderExtensions.OptionalPrimaryKeyProperties``2(Seltzr.Options.Builder.SeltzrOptionsBuilder{``0,``1})
+  name: OptionalPrimaryKeyProperties<TModel, TUser>(SeltzrOptionsBuilder<TModel, TUser>)
+  href: api/Seltzr.Extensions.SeltzrOrmOptionsBuilderExtensions.html#Seltzr_Extensions_SeltzrOrmOptionsBuilderExtensions_OptionalPrimaryKeyProperties__2_Seltzr_Options_Builder_SeltzrOptionsBuilder___0___1__
+  commentId: M:Seltzr.Extensions.SeltzrOrmOptionsBuilderExtensions.OptionalPrimaryKeyProperties``2(Seltzr.Options.Builder.SeltzrOptionsBuilder{``0,``1})
+  name.vb: OptionalPrimaryKeyProperties(Of TModel, TUser)(SeltzrOptionsBuilder(Of TModel, TUser))
+  fullName: Seltzr.Extensions.SeltzrOrmOptionsBuilderExtensions.OptionalPrimaryKeyProperties<TModel, TUser>(Seltzr.Options.Builder.SeltzrOptionsBuilder<TModel, TUser>)
+  fullName.vb: Seltzr.Extensions.SeltzrOrmOptionsBuilderExtensions.OptionalPrimaryKeyProperties(Of TModel, TUser)(Seltzr.Options.Builder.SeltzrOptionsBuilder(Of TModel, TUser))
+  nameWithType: SeltzrOrmOptionsBuilderExtensions.OptionalPrimaryKeyProperties<TModel, TUser>(SeltzrOptionsBuilder<TModel, TUser>)
+  nameWithType.vb: SeltzrOrmOptionsBuilderExtensions.OptionalPrimaryKeyProperties(Of TModel, TUser)(SeltzrOptionsBuilder(Of TModel, TUser))
 - uid: Seltzr.Extensions.SeltzrOrmOptionsBuilderExtensions.PatchUpdateBy*
   name: PatchUpdateBy
   href: api/Seltzr.Extensions.SeltzrOrmOptionsBuilderExtensions.html#Seltzr_Extensions_SeltzrOrmOptionsBuilderExtensions_PatchUpdateBy_
@@ -3868,6 +3890,22 @@ references:
   fullName.vb: Seltzr.Extensions.SeltzrOrmOptionsBuilderExtensions.PutUpdateByQuery(Of TModel, TUser)(Seltzr.Options.Builder.SeltzrOptionsBuilder(Of TModel, TUser), System.String, System.Linq.Expressions.Expression(Of System.Func(Of TModel, System.Object))(), System.String(), System.Action(Of Seltzr.Options.Builder.SeltzrOptionsBuilder(Of TModel, TUser)))
   nameWithType: SeltzrOrmOptionsBuilderExtensions.PutUpdateByQuery<TModel, TUser>(SeltzrOptionsBuilder<TModel, TUser>, String, Expression<Func<TModel, Object>>[], String[], Action<SeltzrOptionsBuilder<TModel, TUser>>)
   nameWithType.vb: SeltzrOrmOptionsBuilderExtensions.PutUpdateByQuery(Of TModel, TUser)(SeltzrOptionsBuilder(Of TModel, TUser), String, Expression(Of Func(Of TModel, Object))(), String(), Action(Of SeltzrOptionsBuilder(Of TModel, TUser)))
+- uid: Seltzr.Extensions.SeltzrOrmOptionsBuilderExtensions.RequirePrimaryKeyProperties*
+  name: RequirePrimaryKeyProperties
+  href: api/Seltzr.Extensions.SeltzrOrmOptionsBuilderExtensions.html#Seltzr_Extensions_SeltzrOrmOptionsBuilderExtensions_RequirePrimaryKeyProperties_
+  commentId: Overload:Seltzr.Extensions.SeltzrOrmOptionsBuilderExtensions.RequirePrimaryKeyProperties
+  isSpec: "True"
+  fullName: Seltzr.Extensions.SeltzrOrmOptionsBuilderExtensions.RequirePrimaryKeyProperties
+  nameWithType: SeltzrOrmOptionsBuilderExtensions.RequirePrimaryKeyProperties
+- uid: Seltzr.Extensions.SeltzrOrmOptionsBuilderExtensions.RequirePrimaryKeyProperties``2(Seltzr.Options.Builder.SeltzrOptionsBuilder{``0,``1})
+  name: RequirePrimaryKeyProperties<TModel, TUser>(SeltzrOptionsBuilder<TModel, TUser>)
+  href: api/Seltzr.Extensions.SeltzrOrmOptionsBuilderExtensions.html#Seltzr_Extensions_SeltzrOrmOptionsBuilderExtensions_RequirePrimaryKeyProperties__2_Seltzr_Options_Builder_SeltzrOptionsBuilder___0___1__
+  commentId: M:Seltzr.Extensions.SeltzrOrmOptionsBuilderExtensions.RequirePrimaryKeyProperties``2(Seltzr.Options.Builder.SeltzrOptionsBuilder{``0,``1})
+  name.vb: RequirePrimaryKeyProperties(Of TModel, TUser)(SeltzrOptionsBuilder(Of TModel, TUser))
+  fullName: Seltzr.Extensions.SeltzrOrmOptionsBuilderExtensions.RequirePrimaryKeyProperties<TModel, TUser>(Seltzr.Options.Builder.SeltzrOptionsBuilder<TModel, TUser>)
+  fullName.vb: Seltzr.Extensions.SeltzrOrmOptionsBuilderExtensions.RequirePrimaryKeyProperties(Of TModel, TUser)(Seltzr.Options.Builder.SeltzrOptionsBuilder(Of TModel, TUser))
+  nameWithType: SeltzrOrmOptionsBuilderExtensions.RequirePrimaryKeyProperties<TModel, TUser>(SeltzrOptionsBuilder<TModel, TUser>)
+  nameWithType.vb: SeltzrOrmOptionsBuilderExtensions.RequirePrimaryKeyProperties(Of TModel, TUser)(SeltzrOptionsBuilder(Of TModel, TUser))
 - uid: Seltzr.Filters
   name: Seltzr.Filters
   href: api/Seltzr.Filters.html
@@ -3974,6 +4012,56 @@ references:
   isSpec: "True"
   fullName: Seltzr.Filters.ParameterResolver.ParseParameter
   nameWithType: ParameterResolver.ParseParameter
+- uid: Seltzr.Middleware
+  name: Seltzr.Middleware
+  href: api/Seltzr.Middleware.html
+  commentId: N:Seltzr.Middleware
+  fullName: Seltzr.Middleware
+  nameWithType: Seltzr.Middleware
+- uid: Seltzr.Middleware.SeltzrMiddleware`2
+  name: SeltzrMiddleware<TModel, TUser>
+  href: api/Seltzr.Middleware.SeltzrMiddleware-2.html
+  commentId: T:Seltzr.Middleware.SeltzrMiddleware`2
+  name.vb: SeltzrMiddleware(Of TModel, TUser)
+  fullName: Seltzr.Middleware.SeltzrMiddleware<TModel, TUser>
+  fullName.vb: Seltzr.Middleware.SeltzrMiddleware(Of TModel, TUser)
+  nameWithType: SeltzrMiddleware<TModel, TUser>
+  nameWithType.vb: SeltzrMiddleware(Of TModel, TUser)
+- uid: Seltzr.Middleware.SeltzrMiddleware`2.#ctor(Seltzr.Options.SeltzrOptions{`0,`1})
+  name: SeltzrMiddleware(SeltzrOptions<TModel, TUser>)
+  href: api/Seltzr.Middleware.SeltzrMiddleware-2.html#Seltzr_Middleware_SeltzrMiddleware_2__ctor_Seltzr_Options_SeltzrOptions__0__1__
+  commentId: M:Seltzr.Middleware.SeltzrMiddleware`2.#ctor(Seltzr.Options.SeltzrOptions{`0,`1})
+  name.vb: SeltzrMiddleware(SeltzrOptions(Of TModel, TUser))
+  fullName: Seltzr.Middleware.SeltzrMiddleware<TModel, TUser>.SeltzrMiddleware(Seltzr.Options.SeltzrOptions<TModel, TUser>)
+  fullName.vb: Seltzr.Middleware.SeltzrMiddleware(Of TModel, TUser).SeltzrMiddleware(Seltzr.Options.SeltzrOptions(Of TModel, TUser))
+  nameWithType: SeltzrMiddleware<TModel, TUser>.SeltzrMiddleware(SeltzrOptions<TModel, TUser>)
+  nameWithType.vb: SeltzrMiddleware(Of TModel, TUser).SeltzrMiddleware(SeltzrOptions(Of TModel, TUser))
+- uid: Seltzr.Middleware.SeltzrMiddleware`2.#ctor*
+  name: SeltzrMiddleware
+  href: api/Seltzr.Middleware.SeltzrMiddleware-2.html#Seltzr_Middleware_SeltzrMiddleware_2__ctor_
+  commentId: Overload:Seltzr.Middleware.SeltzrMiddleware`2.#ctor
+  isSpec: "True"
+  fullName: Seltzr.Middleware.SeltzrMiddleware<TModel, TUser>.SeltzrMiddleware
+  fullName.vb: Seltzr.Middleware.SeltzrMiddleware(Of TModel, TUser).SeltzrMiddleware
+  nameWithType: SeltzrMiddleware<TModel, TUser>.SeltzrMiddleware
+  nameWithType.vb: SeltzrMiddleware(Of TModel, TUser).SeltzrMiddleware
+- uid: Seltzr.Middleware.SeltzrMiddleware`2.TryHandleRequest(Microsoft.AspNetCore.Http.HttpContext,System.Boolean)
+  name: TryHandleRequest(HttpContext, Boolean)
+  href: api/Seltzr.Middleware.SeltzrMiddleware-2.html#Seltzr_Middleware_SeltzrMiddleware_2_TryHandleRequest_Microsoft_AspNetCore_Http_HttpContext_System_Boolean_
+  commentId: M:Seltzr.Middleware.SeltzrMiddleware`2.TryHandleRequest(Microsoft.AspNetCore.Http.HttpContext,System.Boolean)
+  fullName: Seltzr.Middleware.SeltzrMiddleware<TModel, TUser>.TryHandleRequest(Microsoft.AspNetCore.Http.HttpContext, System.Boolean)
+  fullName.vb: Seltzr.Middleware.SeltzrMiddleware(Of TModel, TUser).TryHandleRequest(Microsoft.AspNetCore.Http.HttpContext, System.Boolean)
+  nameWithType: SeltzrMiddleware<TModel, TUser>.TryHandleRequest(HttpContext, Boolean)
+  nameWithType.vb: SeltzrMiddleware(Of TModel, TUser).TryHandleRequest(HttpContext, Boolean)
+- uid: Seltzr.Middleware.SeltzrMiddleware`2.TryHandleRequest*
+  name: TryHandleRequest
+  href: api/Seltzr.Middleware.SeltzrMiddleware-2.html#Seltzr_Middleware_SeltzrMiddleware_2_TryHandleRequest_
+  commentId: Overload:Seltzr.Middleware.SeltzrMiddleware`2.TryHandleRequest
+  isSpec: "True"
+  fullName: Seltzr.Middleware.SeltzrMiddleware<TModel, TUser>.TryHandleRequest
+  fullName.vb: Seltzr.Middleware.SeltzrMiddleware(Of TModel, TUser).TryHandleRequest
+  nameWithType: SeltzrMiddleware<TModel, TUser>.TryHandleRequest
+  nameWithType.vb: SeltzrMiddleware(Of TModel, TUser).TryHandleRequest
 - uid: Seltzr.Models
   name: Seltzr.Models
   href: api/Seltzr.Models.html
@@ -5244,15 +5332,6 @@ references:
   fullName.vb: Seltzr.Options.Builder.SeltzrOptionsBuilder(Of TModel, TUser).FilterByRouteEqual(Of T)(System.Linq.Expressions.Expression(Of System.Func(Of TModel, T)), System.String)
   nameWithType: SeltzrOptionsBuilder<TModel, TUser>.FilterByRouteEqual<T>(Expression<Func<TModel, T>>, String)
   nameWithType.vb: SeltzrOptionsBuilder(Of TModel, TUser).FilterByRouteEqual(Of T)(Expression(Of Func(Of TModel, T)), String)
-- uid: Seltzr.Options.Builder.SeltzrOptionsBuilder`2.FilterWhere(System.Func{Seltzr.Context.IApiContext{`0,`1},`0,System.Boolean})
-  name: FilterWhere(Func<IApiContext<TModel, TUser>, TModel, Boolean>)
-  href: api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_FilterWhere_System_Func_Seltzr_Context_IApiContext__0__1___0_System_Boolean__
-  commentId: M:Seltzr.Options.Builder.SeltzrOptionsBuilder`2.FilterWhere(System.Func{Seltzr.Context.IApiContext{`0,`1},`0,System.Boolean})
-  name.vb: FilterWhere(Func(Of IApiContext(Of TModel, TUser), TModel, Boolean))
-  fullName: Seltzr.Options.Builder.SeltzrOptionsBuilder<TModel, TUser>.FilterWhere(System.Func<Seltzr.Context.IApiContext<TModel, TUser>, TModel, System.Boolean>)
-  fullName.vb: Seltzr.Options.Builder.SeltzrOptionsBuilder(Of TModel, TUser).FilterWhere(System.Func(Of Seltzr.Context.IApiContext(Of TModel, TUser), TModel, System.Boolean))
-  nameWithType: SeltzrOptionsBuilder<TModel, TUser>.FilterWhere(Func<IApiContext<TModel, TUser>, TModel, Boolean>)
-  nameWithType.vb: SeltzrOptionsBuilder(Of TModel, TUser).FilterWhere(Func(Of IApiContext(Of TModel, TUser), TModel, Boolean))
 - uid: Seltzr.Options.Builder.SeltzrOptionsBuilder`2.FilterWhere(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})
   name: FilterWhere(Expression<Func<TModel, Boolean>>)
   href: api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_FilterWhere_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___
@@ -5262,6 +5341,15 @@ references:
   fullName.vb: Seltzr.Options.Builder.SeltzrOptionsBuilder(Of TModel, TUser).FilterWhere(System.Linq.Expressions.Expression(Of System.Func(Of TModel, System.Boolean)))
   nameWithType: SeltzrOptionsBuilder<TModel, TUser>.FilterWhere(Expression<Func<TModel, Boolean>>)
   nameWithType.vb: SeltzrOptionsBuilder(Of TModel, TUser).FilterWhere(Expression(Of Func(Of TModel, Boolean)))
+- uid: Seltzr.Options.Builder.SeltzrOptionsBuilder`2.FilterWhere(System.Linq.Expressions.Expression{System.Func{Seltzr.Context.IApiContext{`0,`1},`0,System.Boolean}})
+  name: FilterWhere(Expression<Func<IApiContext<TModel, TUser>, TModel, Boolean>>)
+  href: api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_FilterWhere_System_Linq_Expressions_Expression_System_Func_Seltzr_Context_IApiContext__0__1___0_System_Boolean___
+  commentId: M:Seltzr.Options.Builder.SeltzrOptionsBuilder`2.FilterWhere(System.Linq.Expressions.Expression{System.Func{Seltzr.Context.IApiContext{`0,`1},`0,System.Boolean}})
+  name.vb: FilterWhere(Expression(Of Func(Of IApiContext(Of TModel, TUser), TModel, Boolean)))
+  fullName: Seltzr.Options.Builder.SeltzrOptionsBuilder<TModel, TUser>.FilterWhere(System.Linq.Expressions.Expression<System.Func<Seltzr.Context.IApiContext<TModel, TUser>, TModel, System.Boolean>>)
+  fullName.vb: Seltzr.Options.Builder.SeltzrOptionsBuilder(Of TModel, TUser).FilterWhere(System.Linq.Expressions.Expression(Of System.Func(Of Seltzr.Context.IApiContext(Of TModel, TUser), TModel, System.Boolean)))
+  nameWithType: SeltzrOptionsBuilder<TModel, TUser>.FilterWhere(Expression<Func<IApiContext<TModel, TUser>, TModel, Boolean>>)
+  nameWithType.vb: SeltzrOptionsBuilder(Of TModel, TUser).FilterWhere(Expression(Of Func(Of IApiContext(Of TModel, TUser), TModel, Boolean)))
 - uid: Seltzr.Options.Builder.SeltzrOptionsBuilder`2.FilterWhere*
   name: FilterWhere
   href: api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_FilterWhere_
@@ -5331,6 +5419,78 @@ references:
   fullName.vb: Seltzr.Options.Builder.SeltzrOptionsBuilder(Of TModel, TUser).FlatMap
   nameWithType: SeltzrOptionsBuilder<TModel, TUser>.FlatMap
   nameWithType.vb: SeltzrOptionsBuilder(Of TModel, TUser).FlatMap
+- uid: Seltzr.Options.Builder.SeltzrOptionsBuilder`2.ForEach(System.Action{`0})
+  name: ForEach(Action<TModel>)
+  href: api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_ForEach_System_Action__0__
+  commentId: M:Seltzr.Options.Builder.SeltzrOptionsBuilder`2.ForEach(System.Action{`0})
+  name.vb: ForEach(Action(Of TModel))
+  fullName: Seltzr.Options.Builder.SeltzrOptionsBuilder<TModel, TUser>.ForEach(System.Action<TModel>)
+  fullName.vb: Seltzr.Options.Builder.SeltzrOptionsBuilder(Of TModel, TUser).ForEach(System.Action(Of TModel))
+  nameWithType: SeltzrOptionsBuilder<TModel, TUser>.ForEach(Action<TModel>)
+  nameWithType.vb: SeltzrOptionsBuilder(Of TModel, TUser).ForEach(Action(Of TModel))
+- uid: Seltzr.Options.Builder.SeltzrOptionsBuilder`2.ForEach*
+  name: ForEach
+  href: api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_ForEach_
+  commentId: Overload:Seltzr.Options.Builder.SeltzrOptionsBuilder`2.ForEach
+  isSpec: "True"
+  fullName: Seltzr.Options.Builder.SeltzrOptionsBuilder<TModel, TUser>.ForEach
+  fullName.vb: Seltzr.Options.Builder.SeltzrOptionsBuilder(Of TModel, TUser).ForEach
+  nameWithType: SeltzrOptionsBuilder<TModel, TUser>.ForEach
+  nameWithType.vb: SeltzrOptionsBuilder(Of TModel, TUser).ForEach
+- uid: Seltzr.Options.Builder.SeltzrOptionsBuilder`2.ForEachAsync(System.Func{`0,System.Threading.Tasks.Task})
+  name: ForEachAsync(Func<TModel, Task>)
+  href: api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_ForEachAsync_System_Func__0_System_Threading_Tasks_Task__
+  commentId: M:Seltzr.Options.Builder.SeltzrOptionsBuilder`2.ForEachAsync(System.Func{`0,System.Threading.Tasks.Task})
+  name.vb: ForEachAsync(Func(Of TModel, Task))
+  fullName: Seltzr.Options.Builder.SeltzrOptionsBuilder<TModel, TUser>.ForEachAsync(System.Func<TModel, System.Threading.Tasks.Task>)
+  fullName.vb: Seltzr.Options.Builder.SeltzrOptionsBuilder(Of TModel, TUser).ForEachAsync(System.Func(Of TModel, System.Threading.Tasks.Task))
+  nameWithType: SeltzrOptionsBuilder<TModel, TUser>.ForEachAsync(Func<TModel, Task>)
+  nameWithType.vb: SeltzrOptionsBuilder(Of TModel, TUser).ForEachAsync(Func(Of TModel, Task))
+- uid: Seltzr.Options.Builder.SeltzrOptionsBuilder`2.ForEachAsync*
+  name: ForEachAsync
+  href: api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_ForEachAsync_
+  commentId: Overload:Seltzr.Options.Builder.SeltzrOptionsBuilder`2.ForEachAsync
+  isSpec: "True"
+  fullName: Seltzr.Options.Builder.SeltzrOptionsBuilder<TModel, TUser>.ForEachAsync
+  fullName.vb: Seltzr.Options.Builder.SeltzrOptionsBuilder(Of TModel, TUser).ForEachAsync
+  nameWithType: SeltzrOptionsBuilder<TModel, TUser>.ForEachAsync
+  nameWithType.vb: SeltzrOptionsBuilder(Of TModel, TUser).ForEachAsync
+- uid: Seltzr.Options.Builder.SeltzrOptionsBuilder`2.ForEachInput(System.Action{`0})
+  name: ForEachInput(Action<TModel>)
+  href: api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_ForEachInput_System_Action__0__
+  commentId: M:Seltzr.Options.Builder.SeltzrOptionsBuilder`2.ForEachInput(System.Action{`0})
+  name.vb: ForEachInput(Action(Of TModel))
+  fullName: Seltzr.Options.Builder.SeltzrOptionsBuilder<TModel, TUser>.ForEachInput(System.Action<TModel>)
+  fullName.vb: Seltzr.Options.Builder.SeltzrOptionsBuilder(Of TModel, TUser).ForEachInput(System.Action(Of TModel))
+  nameWithType: SeltzrOptionsBuilder<TModel, TUser>.ForEachInput(Action<TModel>)
+  nameWithType.vb: SeltzrOptionsBuilder(Of TModel, TUser).ForEachInput(Action(Of TModel))
+- uid: Seltzr.Options.Builder.SeltzrOptionsBuilder`2.ForEachInput*
+  name: ForEachInput
+  href: api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_ForEachInput_
+  commentId: Overload:Seltzr.Options.Builder.SeltzrOptionsBuilder`2.ForEachInput
+  isSpec: "True"
+  fullName: Seltzr.Options.Builder.SeltzrOptionsBuilder<TModel, TUser>.ForEachInput
+  fullName.vb: Seltzr.Options.Builder.SeltzrOptionsBuilder(Of TModel, TUser).ForEachInput
+  nameWithType: SeltzrOptionsBuilder<TModel, TUser>.ForEachInput
+  nameWithType.vb: SeltzrOptionsBuilder(Of TModel, TUser).ForEachInput
+- uid: Seltzr.Options.Builder.SeltzrOptionsBuilder`2.ForEachInputAsync(System.Func{`0,System.Threading.Tasks.Task})
+  name: ForEachInputAsync(Func<TModel, Task>)
+  href: api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_ForEachInputAsync_System_Func__0_System_Threading_Tasks_Task__
+  commentId: M:Seltzr.Options.Builder.SeltzrOptionsBuilder`2.ForEachInputAsync(System.Func{`0,System.Threading.Tasks.Task})
+  name.vb: ForEachInputAsync(Func(Of TModel, Task))
+  fullName: Seltzr.Options.Builder.SeltzrOptionsBuilder<TModel, TUser>.ForEachInputAsync(System.Func<TModel, System.Threading.Tasks.Task>)
+  fullName.vb: Seltzr.Options.Builder.SeltzrOptionsBuilder(Of TModel, TUser).ForEachInputAsync(System.Func(Of TModel, System.Threading.Tasks.Task))
+  nameWithType: SeltzrOptionsBuilder<TModel, TUser>.ForEachInputAsync(Func<TModel, Task>)
+  nameWithType.vb: SeltzrOptionsBuilder(Of TModel, TUser).ForEachInputAsync(Func(Of TModel, Task))
+- uid: Seltzr.Options.Builder.SeltzrOptionsBuilder`2.ForEachInputAsync*
+  name: ForEachInputAsync
+  href: api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_ForEachInputAsync_
+  commentId: Overload:Seltzr.Options.Builder.SeltzrOptionsBuilder`2.ForEachInputAsync
+  isSpec: "True"
+  fullName: Seltzr.Options.Builder.SeltzrOptionsBuilder<TModel, TUser>.ForEachInputAsync
+  fullName.vb: Seltzr.Options.Builder.SeltzrOptionsBuilder(Of TModel, TUser).ForEachInputAsync
+  nameWithType: SeltzrOptionsBuilder<TModel, TUser>.ForEachInputAsync
+  nameWithType.vb: SeltzrOptionsBuilder(Of TModel, TUser).ForEachInputAsync
 - uid: Seltzr.Options.Builder.SeltzrOptionsBuilder`2.Ignore(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})
   name: Ignore(Expression<Func<TModel, Object>>)
   href: api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Ignore_System_Linq_Expressions_Expression_System_Func__0_System_Object___
@@ -5564,32 +5724,49 @@ references:
   fullName.vb: Seltzr.Options.Builder.SeltzrOptionsBuilder(Of TModel, TUser).OmitAll
   nameWithType: SeltzrOptionsBuilder<TModel, TUser>.OmitAll
   nameWithType.vb: SeltzrOptionsBuilder(Of TModel, TUser).OmitAll
-- uid: Seltzr.Options.Builder.SeltzrOptionsBuilder`2.Optional(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})
-  name: Optional(Expression<Func<TModel, Object>>)
-  href: api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Optional_System_Linq_Expressions_Expression_System_Func__0_System_Object___
-  commentId: M:Seltzr.Options.Builder.SeltzrOptionsBuilder`2.Optional(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})
-  name.vb: Optional(Expression(Of Func(Of TModel, Object)))
-  fullName: Seltzr.Options.Builder.SeltzrOptionsBuilder<TModel, TUser>.Optional(System.Linq.Expressions.Expression<System.Func<TModel, System.Object>>)
-  fullName.vb: Seltzr.Options.Builder.SeltzrOptionsBuilder(Of TModel, TUser).Optional(System.Linq.Expressions.Expression(Of System.Func(Of TModel, System.Object)))
-  nameWithType: SeltzrOptionsBuilder<TModel, TUser>.Optional(Expression<Func<TModel, Object>>)
-  nameWithType.vb: SeltzrOptionsBuilder(Of TModel, TUser).Optional(Expression(Of Func(Of TModel, Object)))
-- uid: Seltzr.Options.Builder.SeltzrOptionsBuilder`2.Optional(System.Reflection.PropertyInfo)
-  name: Optional(PropertyInfo)
-  href: api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Optional_System_Reflection_PropertyInfo_
-  commentId: M:Seltzr.Options.Builder.SeltzrOptionsBuilder`2.Optional(System.Reflection.PropertyInfo)
-  fullName: Seltzr.Options.Builder.SeltzrOptionsBuilder<TModel, TUser>.Optional(System.Reflection.PropertyInfo)
-  fullName.vb: Seltzr.Options.Builder.SeltzrOptionsBuilder(Of TModel, TUser).Optional(System.Reflection.PropertyInfo)
-  nameWithType: SeltzrOptionsBuilder<TModel, TUser>.Optional(PropertyInfo)
-  nameWithType.vb: SeltzrOptionsBuilder(Of TModel, TUser).Optional(PropertyInfo)
-- uid: Seltzr.Options.Builder.SeltzrOptionsBuilder`2.Optional*
-  name: Optional
-  href: api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Optional_
-  commentId: Overload:Seltzr.Options.Builder.SeltzrOptionsBuilder`2.Optional
+- uid: Seltzr.Options.Builder.SeltzrOptionsBuilder`2.OptionalAllProperties
+  name: OptionalAllProperties()
+  href: api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_OptionalAllProperties
+  commentId: M:Seltzr.Options.Builder.SeltzrOptionsBuilder`2.OptionalAllProperties
+  fullName: Seltzr.Options.Builder.SeltzrOptionsBuilder<TModel, TUser>.OptionalAllProperties()
+  fullName.vb: Seltzr.Options.Builder.SeltzrOptionsBuilder(Of TModel, TUser).OptionalAllProperties()
+  nameWithType: SeltzrOptionsBuilder<TModel, TUser>.OptionalAllProperties()
+  nameWithType.vb: SeltzrOptionsBuilder(Of TModel, TUser).OptionalAllProperties()
+- uid: Seltzr.Options.Builder.SeltzrOptionsBuilder`2.OptionalAllProperties*
+  name: OptionalAllProperties
+  href: api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_OptionalAllProperties_
+  commentId: Overload:Seltzr.Options.Builder.SeltzrOptionsBuilder`2.OptionalAllProperties
   isSpec: "True"
-  fullName: Seltzr.Options.Builder.SeltzrOptionsBuilder<TModel, TUser>.Optional
-  fullName.vb: Seltzr.Options.Builder.SeltzrOptionsBuilder(Of TModel, TUser).Optional
-  nameWithType: SeltzrOptionsBuilder<TModel, TUser>.Optional
-  nameWithType.vb: SeltzrOptionsBuilder(Of TModel, TUser).Optional
+  fullName: Seltzr.Options.Builder.SeltzrOptionsBuilder<TModel, TUser>.OptionalAllProperties
+  fullName.vb: Seltzr.Options.Builder.SeltzrOptionsBuilder(Of TModel, TUser).OptionalAllProperties
+  nameWithType: SeltzrOptionsBuilder<TModel, TUser>.OptionalAllProperties
+  nameWithType.vb: SeltzrOptionsBuilder(Of TModel, TUser).OptionalAllProperties
+- uid: Seltzr.Options.Builder.SeltzrOptionsBuilder`2.OptionalProperty(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})
+  name: OptionalProperty(Expression<Func<TModel, Object>>)
+  href: api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_OptionalProperty_System_Linq_Expressions_Expression_System_Func__0_System_Object___
+  commentId: M:Seltzr.Options.Builder.SeltzrOptionsBuilder`2.OptionalProperty(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})
+  name.vb: OptionalProperty(Expression(Of Func(Of TModel, Object)))
+  fullName: Seltzr.Options.Builder.SeltzrOptionsBuilder<TModel, TUser>.OptionalProperty(System.Linq.Expressions.Expression<System.Func<TModel, System.Object>>)
+  fullName.vb: Seltzr.Options.Builder.SeltzrOptionsBuilder(Of TModel, TUser).OptionalProperty(System.Linq.Expressions.Expression(Of System.Func(Of TModel, System.Object)))
+  nameWithType: SeltzrOptionsBuilder<TModel, TUser>.OptionalProperty(Expression<Func<TModel, Object>>)
+  nameWithType.vb: SeltzrOptionsBuilder(Of TModel, TUser).OptionalProperty(Expression(Of Func(Of TModel, Object)))
+- uid: Seltzr.Options.Builder.SeltzrOptionsBuilder`2.OptionalProperty(System.Reflection.PropertyInfo)
+  name: OptionalProperty(PropertyInfo)
+  href: api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_OptionalProperty_System_Reflection_PropertyInfo_
+  commentId: M:Seltzr.Options.Builder.SeltzrOptionsBuilder`2.OptionalProperty(System.Reflection.PropertyInfo)
+  fullName: Seltzr.Options.Builder.SeltzrOptionsBuilder<TModel, TUser>.OptionalProperty(System.Reflection.PropertyInfo)
+  fullName.vb: Seltzr.Options.Builder.SeltzrOptionsBuilder(Of TModel, TUser).OptionalProperty(System.Reflection.PropertyInfo)
+  nameWithType: SeltzrOptionsBuilder<TModel, TUser>.OptionalProperty(PropertyInfo)
+  nameWithType.vb: SeltzrOptionsBuilder(Of TModel, TUser).OptionalProperty(PropertyInfo)
+- uid: Seltzr.Options.Builder.SeltzrOptionsBuilder`2.OptionalProperty*
+  name: OptionalProperty
+  href: api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_OptionalProperty_
+  commentId: Overload:Seltzr.Options.Builder.SeltzrOptionsBuilder`2.OptionalProperty
+  isSpec: "True"
+  fullName: Seltzr.Options.Builder.SeltzrOptionsBuilder<TModel, TUser>.OptionalProperty
+  fullName.vb: Seltzr.Options.Builder.SeltzrOptionsBuilder(Of TModel, TUser).OptionalProperty
+  nameWithType: SeltzrOptionsBuilder<TModel, TUser>.OptionalProperty
+  nameWithType.vb: SeltzrOptionsBuilder(Of TModel, TUser).OptionalProperty
 - uid: Seltzr.Options.Builder.SeltzrOptionsBuilder`2.OrderBy*
   name: OrderBy
   href: api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_OrderBy_
@@ -7397,102 +7574,6 @@ references:
   fullName.vb: Seltzr.OrmBase.Filters.PrimaryKeyFilter(Of TModel).FilterDataAsync
   nameWithType: PrimaryKeyFilter<TModel>.FilterDataAsync
   nameWithType.vb: PrimaryKeyFilter(Of TModel).FilterDataAsync
-- uid: Seltzr.OrmBase.IOrmDataProvider`2
-  name: IOrmDataProvider<TModel, TUser>
-  href: api/Seltzr.OrmBase.IOrmDataProvider-2.html
-  commentId: T:Seltzr.OrmBase.IOrmDataProvider`2
-  name.vb: IOrmDataProvider(Of TModel, TUser)
-  fullName: Seltzr.OrmBase.IOrmDataProvider<TModel, TUser>
-  fullName.vb: Seltzr.OrmBase.IOrmDataProvider(Of TModel, TUser)
-  nameWithType: IOrmDataProvider<TModel, TUser>
-  nameWithType.vb: IOrmDataProvider(Of TModel, TUser)
-- uid: Seltzr.OrmBase.IOrmDataProvider`2.GetCreateOperation
-  name: GetCreateOperation()
-  href: api/Seltzr.OrmBase.IOrmDataProvider-2.html#Seltzr_OrmBase_IOrmDataProvider_2_GetCreateOperation
-  commentId: M:Seltzr.OrmBase.IOrmDataProvider`2.GetCreateOperation
-  fullName: Seltzr.OrmBase.IOrmDataProvider<TModel, TUser>.GetCreateOperation()
-  fullName.vb: Seltzr.OrmBase.IOrmDataProvider(Of TModel, TUser).GetCreateOperation()
-  nameWithType: IOrmDataProvider<TModel, TUser>.GetCreateOperation()
-  nameWithType.vb: IOrmDataProvider(Of TModel, TUser).GetCreateOperation()
-- uid: Seltzr.OrmBase.IOrmDataProvider`2.GetCreateOperation*
-  name: GetCreateOperation
-  href: api/Seltzr.OrmBase.IOrmDataProvider-2.html#Seltzr_OrmBase_IOrmDataProvider_2_GetCreateOperation_
-  commentId: Overload:Seltzr.OrmBase.IOrmDataProvider`2.GetCreateOperation
-  isSpec: "True"
-  fullName: Seltzr.OrmBase.IOrmDataProvider<TModel, TUser>.GetCreateOperation
-  fullName.vb: Seltzr.OrmBase.IOrmDataProvider(Of TModel, TUser).GetCreateOperation
-  nameWithType: IOrmDataProvider<TModel, TUser>.GetCreateOperation
-  nameWithType.vb: IOrmDataProvider(Of TModel, TUser).GetCreateOperation
-- uid: Seltzr.OrmBase.IOrmDataProvider`2.GetDeleteOperation
-  name: GetDeleteOperation()
-  href: api/Seltzr.OrmBase.IOrmDataProvider-2.html#Seltzr_OrmBase_IOrmDataProvider_2_GetDeleteOperation
-  commentId: M:Seltzr.OrmBase.IOrmDataProvider`2.GetDeleteOperation
-  fullName: Seltzr.OrmBase.IOrmDataProvider<TModel, TUser>.GetDeleteOperation()
-  fullName.vb: Seltzr.OrmBase.IOrmDataProvider(Of TModel, TUser).GetDeleteOperation()
-  nameWithType: IOrmDataProvider<TModel, TUser>.GetDeleteOperation()
-  nameWithType.vb: IOrmDataProvider(Of TModel, TUser).GetDeleteOperation()
-- uid: Seltzr.OrmBase.IOrmDataProvider`2.GetDeleteOperation*
-  name: GetDeleteOperation
-  href: api/Seltzr.OrmBase.IOrmDataProvider-2.html#Seltzr_OrmBase_IOrmDataProvider_2_GetDeleteOperation_
-  commentId: Overload:Seltzr.OrmBase.IOrmDataProvider`2.GetDeleteOperation
-  isSpec: "True"
-  fullName: Seltzr.OrmBase.IOrmDataProvider<TModel, TUser>.GetDeleteOperation
-  fullName.vb: Seltzr.OrmBase.IOrmDataProvider(Of TModel, TUser).GetDeleteOperation
-  nameWithType: IOrmDataProvider<TModel, TUser>.GetDeleteOperation
-  nameWithType.vb: IOrmDataProvider(Of TModel, TUser).GetDeleteOperation
-- uid: Seltzr.OrmBase.IOrmDataProvider`2.GetModels(Seltzr.Context.IApiContext{`0,System.Object})
-  name: GetModels(IApiContext<TModel, Object>)
-  href: api/Seltzr.OrmBase.IOrmDataProvider-2.html#Seltzr_OrmBase_IOrmDataProvider_2_GetModels_Seltzr_Context_IApiContext__0_System_Object__
-  commentId: M:Seltzr.OrmBase.IOrmDataProvider`2.GetModels(Seltzr.Context.IApiContext{`0,System.Object})
-  name.vb: GetModels(IApiContext(Of TModel, Object))
-  fullName: Seltzr.OrmBase.IOrmDataProvider<TModel, TUser>.GetModels(Seltzr.Context.IApiContext<TModel, System.Object>)
-  fullName.vb: Seltzr.OrmBase.IOrmDataProvider(Of TModel, TUser).GetModels(Seltzr.Context.IApiContext(Of TModel, System.Object))
-  nameWithType: IOrmDataProvider<TModel, TUser>.GetModels(IApiContext<TModel, Object>)
-  nameWithType.vb: IOrmDataProvider(Of TModel, TUser).GetModels(IApiContext(Of TModel, Object))
-- uid: Seltzr.OrmBase.IOrmDataProvider`2.GetModels*
-  name: GetModels
-  href: api/Seltzr.OrmBase.IOrmDataProvider-2.html#Seltzr_OrmBase_IOrmDataProvider_2_GetModels_
-  commentId: Overload:Seltzr.OrmBase.IOrmDataProvider`2.GetModels
-  isSpec: "True"
-  fullName: Seltzr.OrmBase.IOrmDataProvider<TModel, TUser>.GetModels
-  fullName.vb: Seltzr.OrmBase.IOrmDataProvider(Of TModel, TUser).GetModels
-  nameWithType: IOrmDataProvider<TModel, TUser>.GetModels
-  nameWithType.vb: IOrmDataProvider(Of TModel, TUser).GetModels
-- uid: Seltzr.OrmBase.IOrmDataProvider`2.GetPrimaryKey
-  name: GetPrimaryKey()
-  href: api/Seltzr.OrmBase.IOrmDataProvider-2.html#Seltzr_OrmBase_IOrmDataProvider_2_GetPrimaryKey
-  commentId: M:Seltzr.OrmBase.IOrmDataProvider`2.GetPrimaryKey
-  fullName: Seltzr.OrmBase.IOrmDataProvider<TModel, TUser>.GetPrimaryKey()
-  fullName.vb: Seltzr.OrmBase.IOrmDataProvider(Of TModel, TUser).GetPrimaryKey()
-  nameWithType: IOrmDataProvider<TModel, TUser>.GetPrimaryKey()
-  nameWithType.vb: IOrmDataProvider(Of TModel, TUser).GetPrimaryKey()
-- uid: Seltzr.OrmBase.IOrmDataProvider`2.GetPrimaryKey*
-  name: GetPrimaryKey
-  href: api/Seltzr.OrmBase.IOrmDataProvider-2.html#Seltzr_OrmBase_IOrmDataProvider_2_GetPrimaryKey_
-  commentId: Overload:Seltzr.OrmBase.IOrmDataProvider`2.GetPrimaryKey
-  isSpec: "True"
-  fullName: Seltzr.OrmBase.IOrmDataProvider<TModel, TUser>.GetPrimaryKey
-  fullName.vb: Seltzr.OrmBase.IOrmDataProvider(Of TModel, TUser).GetPrimaryKey
-  nameWithType: IOrmDataProvider<TModel, TUser>.GetPrimaryKey
-  nameWithType.vb: IOrmDataProvider(Of TModel, TUser).GetPrimaryKey
-- uid: Seltzr.OrmBase.IOrmDataProvider`2.GetUpdateOperation(System.Reflection.PropertyInfo[],Seltzr.ParameterRetrievers.ParameterRetriever[])
-  name: GetUpdateOperation(PropertyInfo[], ParameterRetriever[])
-  href: api/Seltzr.OrmBase.IOrmDataProvider-2.html#Seltzr_OrmBase_IOrmDataProvider_2_GetUpdateOperation_System_Reflection_PropertyInfo___Seltzr_ParameterRetrievers_ParameterRetriever___
-  commentId: M:Seltzr.OrmBase.IOrmDataProvider`2.GetUpdateOperation(System.Reflection.PropertyInfo[],Seltzr.ParameterRetrievers.ParameterRetriever[])
-  name.vb: GetUpdateOperation(PropertyInfo(), ParameterRetriever())
-  fullName: Seltzr.OrmBase.IOrmDataProvider<TModel, TUser>.GetUpdateOperation(System.Reflection.PropertyInfo[], Seltzr.ParameterRetrievers.ParameterRetriever[])
-  fullName.vb: Seltzr.OrmBase.IOrmDataProvider(Of TModel, TUser).GetUpdateOperation(System.Reflection.PropertyInfo(), Seltzr.ParameterRetrievers.ParameterRetriever())
-  nameWithType: IOrmDataProvider<TModel, TUser>.GetUpdateOperation(PropertyInfo[], ParameterRetriever[])
-  nameWithType.vb: IOrmDataProvider(Of TModel, TUser).GetUpdateOperation(PropertyInfo(), ParameterRetriever())
-- uid: Seltzr.OrmBase.IOrmDataProvider`2.GetUpdateOperation*
-  name: GetUpdateOperation
-  href: api/Seltzr.OrmBase.IOrmDataProvider-2.html#Seltzr_OrmBase_IOrmDataProvider_2_GetUpdateOperation_
-  commentId: Overload:Seltzr.OrmBase.IOrmDataProvider`2.GetUpdateOperation
-  isSpec: "True"
-  fullName: Seltzr.OrmBase.IOrmDataProvider<TModel, TUser>.GetUpdateOperation
-  fullName.vb: Seltzr.OrmBase.IOrmDataProvider(Of TModel, TUser).GetUpdateOperation
-  nameWithType: IOrmDataProvider<TModel, TUser>.GetUpdateOperation
-  nameWithType.vb: IOrmDataProvider(Of TModel, TUser).GetUpdateOperation
 - uid: Seltzr.OrmBase.KeyProperty
   name: KeyProperty
   href: api/Seltzr.OrmBase.KeyProperty.html
