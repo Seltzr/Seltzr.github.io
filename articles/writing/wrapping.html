@@ -1,0 +1,209 @@
+﻿<!DOCTYPE html>
+
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Response Wrapping </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Response Wrapping ">
+    <meta name="generator" content="docfx 2.52.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.png">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../favicon.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="response-wrapping">
+<h1 id="response-wrapping">Response Wrapping</h1>
+
+<p>Though serializing bare models and arrays of models works fine for many APIs, Seltzr also supports wrapping responses in another object so that additional information can be included with the response.</p>
+<h2 id="example-usage">Example Usage</h2>
+<p>For example, take the following API and sample response:</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'artvtzgh')">Copy</button></div><pre id="artvtzgh"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>api</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>	</span><span style='color:#001080;'>api</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>CanGet</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<div class="code-header"><span class="language">Request</span></div><pre id="mmwmyjrp" class="request-pre"><code><span style='color:#0000FF;'>GET</span><span style='color:#808080;'> https://localhost:5000/</span>
+<span style='color:#808080;'></span></code></pre>
+<div class="code-header response-header"><span class="language">Response</span></div><pre id="qtvhdejb"><code><span style='color:#222222;'>[</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>{</span><span style='color:black;'> </span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span><span style='color:black;'> </span><span style='color:#222222;'>}</span><span style='color:#222222;'>,</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>{</span><span style='color:black;'> </span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span><span style='color:black;'> </span><span style='color:#222222;'>}</span><span style='color:#222222;'>,</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>{</span><span style='color:black;'> </span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span><span style='color:black;'> </span><span style='color:#222222;'>}</span>
+<span style='color:#222222;'>]</span>
+<span style='color:black;'></span></code></pre>
+<p>This API can be wrapped with the built-in <a class="xref" href="../../api/Seltzr.Responses.BasicResponse-1.html">BasicResponse&lt;TModel&gt;</a> class to include information like version number and result count:</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'edmrjpjx')">Copy</button></div><pre id="edmrjpjx"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>api</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>	</span><span style='color:#001080;'>api</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>WrapResponses</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>WriteResponseCountValue</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>WriteVersionValue</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>0.1.0</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>CanGet</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<div class="code-header"><span class="language">Request</span></div><pre id="mdnnnghc" class="request-pre"><code><span style='color:#0000FF;'>GET</span><span style='color:#808080;'> https://localhost:5000/</span>
+<span style='color:#808080;'></span></code></pre>
+<div class="code-header response-header"><span class="language">Response</span></div><pre id="euhhfnmu"><code><span style='color:#222222;'>{</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>&quot;</span><span style='color:#0451A5;'>Elements</span><span style='color:#222222;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#222222;'>[</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>{</span><span style='color:black;'> </span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span><span style='color:black;'> </span><span style='color:#222222;'>}</span><span style='color:#222222;'>,</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>{</span><span style='color:black;'> </span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span><span style='color:black;'> </span><span style='color:#222222;'>}</span><span style='color:#222222;'>,</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>{</span><span style='color:black;'> </span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span><span style='color:black;'> </span><span style='color:#222222;'>}</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>]</span><span style='color:#222222;'>,</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>&quot;</span><span style='color:#0451A5;'>Count</span><span style='color:#222222;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#098658;'>3</span><span style='color:#222222;'>,</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>&quot;</span><span style='color:#0451A5;'>Version</span><span style='color:#222222;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>0.1.0</span><span style='color:#A31515;'>&quot;</span>
+<span style='color:#222222;'>}</span>
+<span style='color:black;'></span></code></pre>
+<h2 id="the--class">The <a class="xref" href="../../api/Seltzr.Responses.Response-1.html">Response&lt;TModel&gt;</a> Class</h2>
+<p>The <a class="xref" href="../../api/Seltzr.Responses.Response-1.html">Response&lt;TModel&gt;</a> class is the base class for all wrapped responses. It includes utility methods for setting response values like <code>Set</code> and <code>SetString</code>, and a method for populating the response with the dataset. A subclass of <a class="xref" href="../../api/Seltzr.Responses.Response-1.html">Response&lt;TModel&gt;</a> can include many properties, but only the ones that have been <code>Set</code> will be serialized by a Result Writer. Additionally, a subclass should include a property of type <code>TModel</code>, <code>TModel[]</code>, or both, where <code>TModel</code> is the type of the model class used for the API. The <a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_WrapResponse">WrapResponse()</a> method will use the <a class="xref" href="../../api/Seltzr.Responses.BasicResponse-1.html">BasicResponse&lt;TModel&gt;</a> class to wrap responses, but the <a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_WrapResponse__1">WrapResponse&lt;TResponse&gt;()</a> overload can be used to wrap responses in any custom class derived from <a class="xref" href="../../api/Seltzr.Responses.Response-1.html">Response&lt;TModel&gt;</a>.</p>
+<h2 id="setting-response-values">Setting Response Values</h2>
+<p>Any public read-write property in a class derived from <a class="xref" href="../../api/Seltzr.Responses.Response-1.html">Response&lt;TModel&gt;</a> can be marked as a response value by adding an attribute to it. <a class="xref" href="../../api/Seltzr.Responses.Attributes.html">Several</a> are included with Seltzr, but any attribute that can be used on a property works. The <a class="xref" href="../../api/Seltzr.Responses.Attributes.ResponseValueAttribute.html">ResponseValueAttribute</a> can also be used to define custom properties without creating new attribute classes. The <code>TModel</code> properties need not be marked with attributes.</p>
+<h3 id="example">Example</h3>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'zengljcc')">Copy</button></div><pre id="zengljcc"><code><span style='color:#0000FF;'>public</span><span style='color:black;'> </span><span style='color:#0000FF;'>class</span><span style='color:black;'> </span><span style='color:#267F99;'>MyResponse</span><span style='color:black;'> </span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#267F99;'>Response</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>[</span><span style='color:#267F99;'>ApiVersion</span><span style='color:#222222;'>]</span>
+<span style='color:black;'>	</span><span style='color:#0000FF;'>public</span><span style='color:black;'> </span><span style='color:#0000FF;'>string</span><span style='color:#222222;'>?</span><span style='color:black;'> </span><span style='color:#001080;'>ApiVersion</span><span style='color:black;'> </span><span style='color:#222222;'>{</span><span style='color:black;'> </span><span style='color:#0000FF;'>get</span><span style='color:#222222;'>;</span><span style='color:black;'> </span><span style='color:#0000FF;'>set</span><span style='color:#222222;'>;</span><span style='color:black;'> </span><span style='color:#222222;'>}</span>
+<span style='color:black;'>	</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>[</span><span style='color:#267F99;'>ResponseValue</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>CustomData</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>)</span><span style='color:#222222;'>]</span>
+<span style='color:black;'>	</span><span style='color:#0000FF;'>public</span><span style='color:black;'> </span><span style='color:#0000FF;'>int</span><span style='color:#222222;'>?</span><span style='color:black;'> </span><span style='color:#001080;'>CustomData</span><span style='color:black;'> </span><span style='color:#222222;'>{</span><span style='color:black;'> </span><span style='color:#0000FF;'>get</span><span style='color:#222222;'>;</span><span style='color:black;'> </span><span style='color:#0000FF;'>set</span><span style='color:#222222;'>;</span><span style='color:black;'> </span><span style='color:#222222;'>}</span>
+<span style='color:black;'></span>
+<span style='color:black;'>	</span><span style='color:#0000FF;'>public</span><span style='color:black;'> TModel</span><span style='color:#222222;'>[</span><span style='color:#222222;'>]</span><span style='color:black;'>? Elements { get</span><span style='color:#222222;'>;</span><span style='color:black;'> set</span><span style='color:#222222;'>;</span><span style='color:black;'> </span><span style='color:#222222;'>}</span>
+<span style='color:black;'>}</span>
+<span style='color:black;'></span></code></pre>
+<div class="TIP">
+<h5>Tip</h5>
+<p>You can find the source code of the <a class="xref" href="../../api/Seltzr.Responses.BasicResponse-1.html">BasicResponse&lt;TModel&gt;</a> class <a href="https://github.com/Seltzr/Seltzr/blob/master/Seltzr/Responses/BasicResponse.cs">here</a>.</p>
+</div>
+<h3 id="setting-values-with-">Setting Values with <a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html">SeltzrOptionsBuilder&lt;TModel, TUser&gt;</a></h3>
+<p>Many builder methods are available for adding <a class="xref" href="../actions/actions.html">Post-Operation Actions</a> that set response values.</p>
+<ul>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Deprecate_System_String_">Deprecate(String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_WriteResponseCountValue">WriteResponseCountValue()</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_WriteResponseValue_System_String_System_Func_Seltzr_Context_IApiContext__0__1__System_Collections_Generic_IEnumerable__0__System_Object__">WriteResponseValue(String, Func&lt;IApiContext&lt;TModel, TUser&gt;, IEnumerable&lt;TModel&gt;, Object&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_WriteResponseValue_System_String_System_Object_">WriteResponseValue(String, Object)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_WriteResponseValue__1_System_Func_Seltzr_Context_IApiContext__0__1__System_Collections_Generic_IEnumerable__0__System_Object__">WriteResponseValue&lt;TAttribute&gt;(Func&lt;IApiContext&lt;TModel, TUser&gt;, IEnumerable&lt;TModel&gt;, Object&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_WriteResponseValue__1_System_Object_">WriteResponseValue&lt;TAttribute&gt;(Object)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_WriteResponseValueAsync_System_String_System_Func_Seltzr_Context_IApiContext__0__1__System_Collections_Generic_IEnumerable__0__System_Threading_Tasks_Task_System_Object___">WriteResponseValueAsync(String, Func&lt;IApiContext&lt;TModel, TUser&gt;, IEnumerable&lt;TModel&gt;, Task&lt;Object&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_WriteResponseValueAsync__1_System_Func_Seltzr_Context_IApiContext__0__1__System_Collections_Generic_IEnumerable__0__System_Threading_Tasks_Task_System_Object___">WriteResponseValueAsync&lt;TAttribute&gt;(Func&lt;IApiContext&lt;TModel, TUser&gt;, IEnumerable&lt;TModel&gt;, Task&lt;Object&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_WriteVersion_System_String_">WriteVersion(String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_WriteVersionValue_System_String_">WriteVersionValue(String)</a></li>
+</ul>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The <a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_WriteVersion_System_String_">WriteVersion(String)</a> method will also set the <code>X-Api-Version</code> header on responses.</p>
+</div>
+<p>Some of them, like <a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Deprecate_System_String_">Deprecate(String)</a> and <a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_WriteResponseCountValue">WriteResponseCountValue()</a> use <a class="xref" href="../../api/Seltzr.Responses.Attributes.html">built-in attributes</a>, but the <code>WriteResponseValue</code> methods work with any attribute or <a class="xref" href="../../api/Seltzr.Responses.Attributes.ResponseValueAttribute.html">ResponseValueAttribute</a> value. Using the above response, we can set both <code>ApiVersion</code> and <code>CustomData</code> in the configuration method.</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'rfmqmkhq')">Copy</button></div><pre id="rfmqmkhq"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>api</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>	</span><span style='color:#001080;'>api</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>WrapResponses</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyResponse</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>WriteVersionValue</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>1.0</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>WriteResponseValue</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>CustomData</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#098658;'>5</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>CanGet</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<h3 id="setting-values-with--1">Setting Values with <a class="xref" href="../../api/Seltzr.Context.IApiContext-2.html">IApiContext&lt;TModel, TUser&gt;</a></h3>
+<p>The <a class="xref" href="../../api/Seltzr.Responses.Response-1.html">Response&lt;TModel&gt;</a> for the current request is available on the <a class="xref" href="../../api/Seltzr.Context.IApiContext-2.html#Seltzr_Context_IApiContext_2_Response">Response</a> property of the <a class="xref" href="../../api/Seltzr.Context.IApiContext-2.html">IApiContext&lt;TModel, TUser&gt;</a>. If the request is not wrapped, this property will be <code>null</code>. Using the above example, we can set both <code>ApiVersion</code> and <code>CustomData</code> in a filter.</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'vjlxtwsb')">Copy</button></div><pre id="vjlxtwsb"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>api</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>	</span><span style='color:#001080;'>api</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>WrapResponses</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyResponse</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>Filter</span><span style='color:#222222;'>(</span><span style='color:#222222;'>(</span><span style='color:#001080;'>ctx</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#001080;'>d</span><span style='color:#222222;'>)</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>			</span><span style='color:#001080;'>ctx</span><span style='color:#222222;'>.</span><span style='color:#001080;'>Response</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>Set</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>ApiVersionAttribute</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>1.0</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'>			</span><span style='color:#001080;'>ctx</span><span style='color:#222222;'>.</span><span style='color:#001080;'>Response</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>SetString</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>CustomData</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>5</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'>			</span><span style='color:#0000FF;'>return</span><span style='color:black;'> </span><span style='color:#795E26;'>MyFilter</span><span style='color:#222222;'>(</span><span style='color:#001080;'>d</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>}</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>CanGet</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<div class="TIP">
+<h5>Tip</h5>
+<p>The <a class="xref" href="../../api/Seltzr.Responses.Response-1.html#Seltzr_Responses_Response_1_SetString_System_String_System_String_">SetString(String, String)</a> and <a class="xref" href="../../api/Seltzr.Responses.Response-1.html#Seltzr_Responses_Response_1_SetString__1_System_String_">SetString&lt;TAttribute&gt;(String)</a> methods will attempt to parse the given string to the correct type before setting it. In the above example, <code>&quot;5&quot;</code> is parsed to the integer value <code>5</code>.</p>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Seltzr/Seltzr/blob/master/docs-src/docfx_project/articles/writing/wrapping.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

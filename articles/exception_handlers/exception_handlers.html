@@ -1,0 +1,204 @@
+﻿<!DOCTYPE html>
+
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Exception Handlers </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Exception Handlers ">
+    <meta name="generator" content="docfx 2.52.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.png">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../favicon.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="exception-handlers">
+<h1 id="exception-handlers">Exception Handlers</h1>
+
+<p>An unlimited number of Exception Handlers can be added to a route to catch exceptions thrown during request execution. An exception handler can return three values indicating the status of the request:</p>
+<ul>
+<li>A return value of <code>true</code> indicates that the exception should <strong>not halt</strong> request execution, and that the request should continue with the next route registered for the request path.
+<ul>
+<li>If <code>true</code> is returned when there are no routes left, the server will return an empty response.</li>
+</ul>
+</li>
+<li>A return value of <code>false</code> indicates that request execution should halt immediately and not call any other exception handlers.
+<ul>
+<li>In this case, the exception handler <strong>should</strong> write directly to the response body with a message indicating why the request failed. Otherwise no content will be returned.</li>
+</ul>
+</li>
+<li>A return value of <code>null</code> indicates that the exception was not handled here and the next exception handler registered for the route should be called.
+<ul>
+<li>If <code>null</code> is returned for the last registered exception handler, it has the same effect as returning <code>true</code>.</li>
+</ul>
+</li>
+</ul>
+<h2 id="builder-methods">Builder Methods</h2>
+<h3 id="low-level-methods">Low-Level Methods</h3>
+<p>These methods are primarily used when you've implemented your own <a class="xref" href="../../api/Seltzr.ExceptionHandlers.IExceptionHandler.html">IExceptionHandler</a> and want to attach it to a route.</p>
+<ul>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_AddExceptionHandler_Seltzr_ExceptionHandlers_IExceptionHandler_">AddExceptionHandler(IExceptionHandler)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_AddExceptionHandler__1">AddExceptionHandler&lt;THandler&gt;()</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_ClearExceptionHandlers">ClearExceptionHandlers()</a></li>
+</ul>
+<h3 id="high-level-methods">High-Level Methods</h3>
+<p><strong>Builder Prefix:</strong> <code>Catch</code></p>
+<ul>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Catch_System_Action_System_Exception_Microsoft_AspNetCore_Http_HttpContext__">Catch(Action&lt;Exception, HttpContext&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Catch_System_Action_System_Exception__">Catch(Action&lt;Exception&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Catch_System_Func_System_Exception_Microsoft_AspNetCore_Http_HttpContext_System_Nullable_System_Boolean___">Catch(Func&lt;Exception, HttpContext, Nullable&lt;Boolean&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Catch_System_Func_System_Exception_System_Nullable_System_Boolean___">Catch(Func&lt;Exception, Nullable&lt;Boolean&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Catch__1_Seltzr_ExceptionHandlers_IExceptionHandler_">Catch&lt;TException&gt;(IExceptionHandler)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Catch__1_System_Action_System_Exception_Microsoft_AspNetCore_Http_HttpContext__">Catch&lt;TException&gt;(Action&lt;Exception, HttpContext&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Catch__1_System_Action_System_Exception__">Catch&lt;TException&gt;(Action&lt;Exception&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Catch__1_System_Func_System_Exception_Microsoft_AspNetCore_Http_HttpContext_System_Nullable_System_Boolean___">Catch&lt;TException&gt;(Func&lt;Exception, HttpContext, Nullable&lt;Boolean&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Catch__1_System_Func_System_Exception_System_Nullable_System_Boolean___">Catch&lt;TException&gt;(Func&lt;Exception, Nullable&lt;Boolean&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_CatchAsync_System_Func_System_Exception_Microsoft_AspNetCore_Http_HttpContext_System_Boolean_System_Threading_Tasks_Task_System_Nullable_System_Boolean____">CatchAsync(Func&lt;Exception, HttpContext, Boolean, Task&lt;Nullable&lt;Boolean&gt;&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_CatchAsync_System_Func_System_Exception_Microsoft_AspNetCore_Http_HttpContext_System_Threading_Tasks_Task_System_Nullable_System_Boolean____">CatchAsync(Func&lt;Exception, HttpContext, Task&lt;Nullable&lt;Boolean&gt;&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_CatchAsync_System_Func_System_Exception_Microsoft_AspNetCore_Http_HttpContext_System_Threading_Tasks_Task__">CatchAsync(Func&lt;Exception, HttpContext, Task&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_CatchAsync_System_Func_System_Exception_System_Threading_Tasks_Task_System_Nullable_System_Boolean____">CatchAsync(Func&lt;Exception, Task&lt;Nullable&lt;Boolean&gt;&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_CatchAsync_System_Func_System_Exception_System_Threading_Tasks_Task__">CatchAsync(Func&lt;Exception, Task&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_CatchAsync__1_System_Func_System_Exception_Microsoft_AspNetCore_Http_HttpContext_System_Boolean_System_Threading_Tasks_Task_System_Nullable_System_Boolean____">CatchAsync&lt;TException&gt;(Func&lt;Exception, HttpContext, Boolean, Task&lt;Nullable&lt;Boolean&gt;&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_CatchAsync__1_System_Func_System_Exception_Microsoft_AspNetCore_Http_HttpContext_System_Threading_Tasks_Task_System_Nullable_System_Boolean____">CatchAsync&lt;TException&gt;(Func&lt;Exception, HttpContext, Task&lt;Nullable&lt;Boolean&gt;&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_CatchAsync__1_System_Func_System_Exception_Microsoft_AspNetCore_Http_HttpContext_System_Threading_Tasks_Task__">CatchAsync&lt;TException&gt;(Func&lt;Exception, HttpContext, Task&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_CatchAsync__1_System_Func_System_Exception_System_Threading_Tasks_Task_System_Nullable_System_Boolean____">CatchAsync&lt;TException&gt;(Func&lt;Exception, Task&lt;Nullable&lt;Boolean&gt;&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_CatchAsync__1_System_Func_System_Exception_System_Threading_Tasks_Task__">CatchAsync&lt;TException&gt;(Func&lt;Exception, Task&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_CatchExceptions_System_Boolean_">CatchExceptions(Boolean)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_FailOnInvalidAuth">FailOnInvalidAuth()</a></li>
+</ul>
+<h2 id="examples">Examples</h2>
+<h4 id="using-a-default-exception-handler">Using a default exception handler</h4>
+<p>The <a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_CatchExceptions_System_Boolean_">CatchExceptions(Boolean)</a> method adds the <a class="xref" href="../../api/Seltzr.ExceptionHandlers.SimpleExceptionHandler.html">SimpleExceptionHandler</a> to the route, which catches all exceptions, writing a message for most exceptions, but continuing request execution if authentication fails and there are more routes registered for the path. See <a class="xref" href="../authentication/authentication.html">Authentication</a> for more details.</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'hszunzfc')">Copy</button></div><pre id="hszunzfc"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>api</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>    </span><span style='color:#001080;'>api</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>CatchExceptions</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>FilterByQueryEqual</span><span style='color:#222222;'>(</span><span style='color:#001080;'>m</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>m</span><span style='color:#222222;'>.</span><span style='color:#001080;'>Id</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<div class="code-header"><span class="language">Request</span></div><pre id="dswyzors" class="request-pre"><code><span style='color:#0000FF;'>GET</span><span style='color:#808080;'> https://localhost:5000/</span><span style='color:#098658;'>?</span><span style='color:#001080;'>id</span><span style='color:#808080;'>=</span><span style='color:#000000;'>20000000000</span>
+<span style='color:#808080;'></span></code></pre>
+<div class="code-header response-header"><span class="language">Response</span></div><pre id="lwggxhoz"><code><span style='color:black;'>Unable to parse parameter value &quot;20000000000&quot;</span>
+<span style='color:black;'>Reason: Value was either too large or too small for an Int32.</span>
+<span style='color:black;'></span></code></pre>
+<h4 id="catching-all-exceptions">Catching all exceptions</h4>
+<p>The <a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_CatchAsync_System_Func_System_Exception_System_Threading_Tasks_Task_System_Nullable_System_Boolean____">CatchAsync(Func&lt;Exception, Task&lt;Nullable&lt;Boolean&gt;&gt;&gt;)</a> method will add an exception handler that is called for all exceptions</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'tyulgvcv')">Copy</button></div><pre id="tyulgvcv"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>api</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>    </span><span style='color:#001080;'>api</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>CatchAsync</span><span style='color:#222222;'>(</span><span style='color:#0000FF;'>async</span><span style='color:black;'> </span><span style='color:#222222;'>(</span><span style='color:#001080;'>e</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#001080;'>c</span><span style='color:#222222;'>)</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>			</span><span style='color:#0000FF;'>await</span><span style='color:black;'> </span><span style='color:#001080;'>c</span><span style='color:#222222;'>.</span><span style='color:#001080;'>Response</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>WriteAsync</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>An error occurred</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'>			</span><span style='color:#0000FF;'>return</span><span style='color:black;'> </span><span style='color:#0000FF;'>false</span><span style='color:#222222;'>;</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>}</span><span style='color:#222222;'>)</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<h4 id="catching-a-specific-exception">Catching a specific exception</h4>
+<p>The <a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_CatchAsync__1_System_Func_System_Exception_System_Threading_Tasks_Task_System_Nullable_System_Boolean____">CatchAsync&lt;TException&gt;(Func&lt;Exception, Task&lt;Nullable&lt;Boolean&gt;&gt;&gt;)</a> method will add an exception handler that is called for all exceptions</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'dzhzleyi')">Copy</button></div><pre id="dzhzleyi"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>api</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>    </span><span style='color:#001080;'>api</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>CatchAsync</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>ParsingFailedException</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#0000FF;'>async</span><span style='color:black;'> </span><span style='color:#222222;'>(</span><span style='color:#001080;'>e</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#001080;'>c</span><span style='color:#222222;'>)</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>			</span><span style='color:#0000FF;'>await</span><span style='color:black;'> </span><span style='color:#001080;'>c</span><span style='color:#222222;'>.</span><span style='color:#001080;'>Response</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>WriteAsync</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Failed to parse request body</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'>			</span><span style='color:#0000FF;'>return</span><span style='color:black;'> </span><span style='color:#0000FF;'>false</span><span style='color:#222222;'>;</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>}</span><span style='color:#222222;'>)</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<h4 id="logging-an-exception-but-taking-no-action">Logging an exception, but taking no action</h4>
+<p>The <a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Catch_System_Action_System_Exception_Microsoft_AspNetCore_Http_HttpContext__">Catch(Action&lt;Exception, HttpContext&gt;)</a> takes in an exception handler that doesn't return anything.</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'adsndsks')">Copy</button></div><pre id="adsndsks"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>api</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>    </span><span style='color:#001080;'>api</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>Catch</span><span style='color:#222222;'>(</span><span style='color:#222222;'>(</span><span style='color:#001080;'>e</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#001080;'>c</span><span style='color:#222222;'>)</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>			</span><span style='color:#001080;'>c</span><span style='color:#222222;'>.</span><span style='color:#001080;'>RequestServices</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>GetRequiredService</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>ILogger</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>LogError</span><span style='color:#222222;'>(</span><span style='color:#001080;'>e</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>An error occurred</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Seltzr/Seltzr/blob/master/docs-src/docfx_project/articles/exception_handlers/exception_handlers.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

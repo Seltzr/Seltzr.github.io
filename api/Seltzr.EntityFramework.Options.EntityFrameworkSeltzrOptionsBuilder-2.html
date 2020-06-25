@@ -79,8 +79,9 @@
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
-    <div class="level1"><a class="xref" href="Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html">SeltzrOptionsBuilder</a>&lt;TModel, TUser&gt;</div>
-    <div class="level2"><span class="xref">EntityFrameworkSeltzrOptionsBuilder&lt;TModel, TUser&gt;</span></div>
+    <div class="level1"><a class="xref" href="Seltzr.Options.Builder.SeltzrOptionsBuilderBase.html">SeltzrOptionsBuilderBase</a></div>
+    <div class="level2"><a class="xref" href="Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html">SeltzrOptionsBuilder</a>&lt;TModel, TUser&gt;</div>
+    <div class="level3"><span class="xref">EntityFrameworkSeltzrOptionsBuilder&lt;TModel, TUser&gt;</span></div>
   </div>
   <div classs="implements">
     <h5>Implements</h5>
@@ -90,7 +91,7 @@
   <h6><strong>Assembly</strong>: Seltzr.EntityFramework.dll</h6>
   <h5 id="Seltzr_EntityFramework_Options_EntityFrameworkSeltzrOptionsBuilder_2_syntax">Syntax</h5>
   <div class="codewrapper">
-    <div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'jmxxugku')">Copy</button></div><pre id="jmxxugku"><code><span style='color:#0000FF;'>public</span><span style='color:black;'> </span><span style='color:#0000FF;'>class</span><span style='color:black;'> </span><span style='color:#267F99;'>EntityFrameworkSeltzrOptionsBuilder</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>TModel</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#267F99;'>TUser</span><span style='color:#222222;'>&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#267F99;'>SeltzrOptionsBuilder</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>TModel</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#267F99;'>TUser</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#267F99;'>IOrmSeltzrOptionsBuilder</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>TModel</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#267F99;'>TUser</span><span style='color:#222222;'>&gt;</span><span style='color:black;'> </span><span style='color:#0000FF;'>where</span><span style='color:black;'> </span><span style='color:#267F99;'>TModel</span><span style='color:black;'> </span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#0000FF;'>class</span><span style='color:black;'> </span><span style='color:#0000FF;'>where</span><span style='color:black;'> </span><span style='color:#267F99;'>TUser</span><span style='color:black;'> </span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#0000FF;'>class</span></code></pre>
+    <div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'oxabxtds')">Copy</button></div><pre id="oxabxtds"><code><span style='color:#0000FF;'>public</span><span style='color:black;'> </span><span style='color:#0000FF;'>class</span><span style='color:black;'> </span><span style='color:#267F99;'>EntityFrameworkSeltzrOptionsBuilder</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>TModel</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#267F99;'>TUser</span><span style='color:#222222;'>&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#267F99;'>SeltzrOptionsBuilder</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>TModel</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#267F99;'>TUser</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#267F99;'>IOrmSeltzrOptionsBuilder</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>TModel</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#267F99;'>TUser</span><span style='color:#222222;'>&gt;</span><span style='color:black;'> </span><span style='color:#0000FF;'>where</span><span style='color:black;'> </span><span style='color:#267F99;'>TModel</span><span style='color:black;'> </span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#0000FF;'>class</span><span style='color:black;'> </span><span style='color:#0000FF;'>where</span><span style='color:black;'> </span><span style='color:#267F99;'>TUser</span><span style='color:black;'> </span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#0000FF;'>class</span></code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <div class="parameter-list">
@@ -117,16 +118,18 @@
     <a href="https://github.com/Seltzr/Seltzr/new/master/apiSpec/new?filename=Seltzr_EntityFramework_Options_EntityFrameworkSeltzrOptionsBuilder_2_CreateChild_Seltzr_Options_SeltzrOptions__0__1__.md&amp;value=---%0Auid%3A%20Seltzr.EntityFramework.Options.EntityFrameworkSeltzrOptionsBuilder%602.CreateChild(Seltzr.Options.SeltzrOptions%7B%600%2C%601%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Seltzr/Seltzr/blob/master/Seltzr.EntityFramework/Options/EntityFrameworkSeltzrOptionsBuilder.cs/#L83">View Source</a>
+    <a href="https://github.com/Seltzr/Seltzr/blob/master/Seltzr.EntityFramework/Options/EntityFrameworkSeltzrOptionsBuilder.cs/#L107">View Source</a>
   </span>
   <a id="Seltzr_EntityFramework_Options_EntityFrameworkSeltzrOptionsBuilder_2_CreateChild_" data-uid="Seltzr.EntityFramework.Options.EntityFrameworkSeltzrOptionsBuilder`2.CreateChild*"></a>
   <h4 id="Seltzr_EntityFramework_Options_EntityFrameworkSeltzrOptionsBuilder_2_CreateChild_Seltzr_Options_SeltzrOptions__0__1__" data-uid="Seltzr.EntityFramework.Options.EntityFrameworkSeltzrOptionsBuilder`2.CreateChild(Seltzr.Options.SeltzrOptions{`0,`1})">CreateChild(SeltzrOptions&lt;TModel, TUser&gt;)</h4>
   </div>
-  <div class="markdown level1 summary"><p>Creates a child instance of the <a class="xref" href="Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html">SeltzrOptionsBuilder&lt;TModel, TUser&gt;</a> type sharing the given base options. When overriden in a derived class, this method can be used to ensure that the entire tree of <a class="xref" href="Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html">SeltzrOptionsBuilder&lt;TModel, TUser&gt;</a> objects share the same derived type</p>
+  <div class="markdown level1 summary"><p>Creates a child instance of the <a class="xref" href="Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html">SeltzrOptionsBuilder&lt;TModel, TUser&gt;</a> type sharing the given base
+options. When overriden in a derived class, this method can be used to ensure that the entire tree of
+<a class="xref" href="Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html">SeltzrOptionsBuilder&lt;TModel, TUser&gt;</a> objects share the same derived type</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <div class="codewrapper">
-    <div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'tmkltfwn')">Copy</button></div><pre id="tmkltfwn"><code><span style='color:#0000FF;'>public</span><span style='color:black;'> </span><span style='color:#0000FF;'>override</span><span style='color:black;'> </span><span style='color:#267F99;'>SeltzrOptionsBuilder</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>TModel</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#267F99;'>TUser</span><span style='color:#222222;'>&gt;</span><span style='color:black;'> </span><span style='color:#795E26;'>CreateChild</span><span style='color:#222222;'>(</span><span style='color:#267F99;'>SeltzrOptions</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>TModel</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#267F99;'>TUser</span><span style='color:#222222;'>&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>baseOptions</span><span style='color:#222222;'>)</span></code></pre>
+    <div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'blprvmjv')">Copy</button></div><pre id="blprvmjv"><code><span style='color:#0000FF;'>public</span><span style='color:black;'> </span><span style='color:#0000FF;'>override</span><span style='color:black;'> </span><span style='color:#267F99;'>SeltzrOptionsBuilder</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>TModel</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#267F99;'>TUser</span><span style='color:#222222;'>&gt;</span><span style='color:black;'> </span><span style='color:#795E26;'>CreateChild</span><span style='color:#222222;'>(</span><span style='color:#267F99;'>SeltzrOptions</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>TModel</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#267F99;'>TUser</span><span style='color:#222222;'>&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>baseOptions</span><span style='color:#222222;'>)</span></code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <div class="parameter-list">
@@ -150,7 +153,7 @@
     <a href="https://github.com/Seltzr/Seltzr/new/master/apiSpec/new?filename=Seltzr_EntityFramework_Options_EntityFrameworkSeltzrOptionsBuilder_2_GetCreateOperation.md&amp;value=---%0Auid%3A%20Seltzr.EntityFramework.Options.EntityFrameworkSeltzrOptionsBuilder%602.GetCreateOperation%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Seltzr/Seltzr/blob/master/Seltzr.EntityFramework/Options/EntityFrameworkSeltzrOptionsBuilder.cs/#L114">View Source</a>
+    <a href="https://github.com/Seltzr/Seltzr/blob/master/Seltzr.EntityFramework/Options/EntityFrameworkSeltzrOptionsBuilder.cs/#L118">View Source</a>
   </span>
   <a id="Seltzr_EntityFramework_Options_EntityFrameworkSeltzrOptionsBuilder_2_GetCreateOperation_" data-uid="Seltzr.EntityFramework.Options.EntityFrameworkSeltzrOptionsBuilder`2.GetCreateOperation*"></a>
   <h4 id="Seltzr_EntityFramework_Options_EntityFrameworkSeltzrOptionsBuilder_2_GetCreateOperation" data-uid="Seltzr.EntityFramework.Options.EntityFrameworkSeltzrOptionsBuilder`2.GetCreateOperation">GetCreateOperation()</h4>
@@ -159,11 +162,11 @@
 </div>
   <div class="markdown level1 conceptual"></div>
   <div class="codewrapper">
-    <div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'eokzsjae')">Copy</button></div><pre id="eokzsjae"><code><span style='color:#0000FF;'>public</span><span style='color:black;'> </span><span style='color:#267F99;'>IOperation</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>TModel</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#267F99;'>TUser</span><span style='color:#222222;'>&gt;</span><span style='color:black;'> </span><span style='color:#795E26;'>GetCreateOperation</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span></code></pre>
+    <div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'ujariism')">Copy</button></div><pre id="ujariism"><code><span style='color:#0000FF;'>public</span><span style='color:black;'> </span><span style='color:#0000FF;'>virtual</span><span style='color:black;'> </span><span style='color:#267F99;'>IOperation</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>TModel</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#267F99;'>TUser</span><span style='color:#222222;'>&gt;</span><span style='color:black;'> </span><span style='color:#795E26;'>GetCreateOperation</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span></code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <p><a class="xref" href="Seltzr.Operations.IOperation-2.html">IOperation</a>&lt;TModel, TUser&gt;</p>
-  <p>A new create operation for <see cref="!:TModel"></see></p>
+  <p>A new create operation for <code data-dev-comment-type="typeparamref" class="typeparamref">TModel</code></p>
 
   <div class="element-title">
   <span class="small pull-right mobile-hide">
@@ -171,7 +174,7 @@
     <a href="https://github.com/Seltzr/Seltzr/new/master/apiSpec/new?filename=Seltzr_EntityFramework_Options_EntityFrameworkSeltzrOptionsBuilder_2_GetDeleteOperation.md&amp;value=---%0Auid%3A%20Seltzr.EntityFramework.Options.EntityFrameworkSeltzrOptionsBuilder%602.GetDeleteOperation%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Seltzr/Seltzr/blob/master/Seltzr.EntityFramework/Options/EntityFrameworkSeltzrOptionsBuilder.cs/#L134">View Source</a>
+    <a href="https://github.com/Seltzr/Seltzr/blob/master/Seltzr.EntityFramework/Options/EntityFrameworkSeltzrOptionsBuilder.cs/#L124">View Source</a>
   </span>
   <a id="Seltzr_EntityFramework_Options_EntityFrameworkSeltzrOptionsBuilder_2_GetDeleteOperation_" data-uid="Seltzr.EntityFramework.Options.EntityFrameworkSeltzrOptionsBuilder`2.GetDeleteOperation*"></a>
   <h4 id="Seltzr_EntityFramework_Options_EntityFrameworkSeltzrOptionsBuilder_2_GetDeleteOperation" data-uid="Seltzr.EntityFramework.Options.EntityFrameworkSeltzrOptionsBuilder`2.GetDeleteOperation">GetDeleteOperation()</h4>
@@ -180,11 +183,11 @@
 </div>
   <div class="markdown level1 conceptual"></div>
   <div class="codewrapper">
-    <div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'abmqxfzk')">Copy</button></div><pre id="abmqxfzk"><code><span style='color:#0000FF;'>public</span><span style='color:black;'> </span><span style='color:#267F99;'>IOperation</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>TModel</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#267F99;'>TUser</span><span style='color:#222222;'>&gt;</span><span style='color:black;'> </span><span style='color:#795E26;'>GetDeleteOperation</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span></code></pre>
+    <div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'rcxsbpjj')">Copy</button></div><pre id="rcxsbpjj"><code><span style='color:#0000FF;'>public</span><span style='color:black;'> </span><span style='color:#0000FF;'>virtual</span><span style='color:black;'> </span><span style='color:#267F99;'>IOperation</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>TModel</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#267F99;'>TUser</span><span style='color:#222222;'>&gt;</span><span style='color:black;'> </span><span style='color:#795E26;'>GetDeleteOperation</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span></code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <p><a class="xref" href="Seltzr.Operations.IOperation-2.html">IOperation</a>&lt;TModel, TUser&gt;</p>
-  <p>A new delete operation for <see cref="!:TModel"></see></p>
+  <p>A new delete operation for <code data-dev-comment-type="typeparamref" class="typeparamref">TModel</code></p>
 
   <div class="element-title">
   <span class="small pull-right mobile-hide">
@@ -192,20 +195,20 @@
     <a href="https://github.com/Seltzr/Seltzr/new/master/apiSpec/new?filename=Seltzr_EntityFramework_Options_EntityFrameworkSeltzrOptionsBuilder_2_GetPrimaryKey.md&amp;value=---%0Auid%3A%20Seltzr.EntityFramework.Options.EntityFrameworkSeltzrOptionsBuilder%602.GetPrimaryKey%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Seltzr/Seltzr/blob/master/Seltzr.EntityFramework/Options/EntityFrameworkSeltzrOptionsBuilder.cs/#L91">View Source</a>
+    <a href="https://github.com/Seltzr/Seltzr/blob/master/Seltzr.EntityFramework/Options/EntityFrameworkSeltzrOptionsBuilder.cs/#L130">View Source</a>
   </span>
   <a id="Seltzr_EntityFramework_Options_EntityFrameworkSeltzrOptionsBuilder_2_GetPrimaryKey_" data-uid="Seltzr.EntityFramework.Options.EntityFrameworkSeltzrOptionsBuilder`2.GetPrimaryKey*"></a>
   <h4 id="Seltzr_EntityFramework_Options_EntityFrameworkSeltzrOptionsBuilder_2_GetPrimaryKey" data-uid="Seltzr.EntityFramework.Options.EntityFrameworkSeltzrOptionsBuilder`2.GetPrimaryKey">GetPrimaryKey()</h4>
   </div>
-  <div class="markdown level1 summary"><p>Gets the properties that make up the primary key of <see cref="!:TModel"></see></p>
+  <div class="markdown level1 summary"><p>Gets the properties that make up the primary key of <code data-dev-comment-type="typeparamref" class="typeparamref">TModel</code></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <div class="codewrapper">
-    <div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'faybbrge')">Copy</button></div><pre id="faybbrge"><code><span style='color:#0000FF;'>public</span><span style='color:black;'> </span><span style='color:#267F99;'>List</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>KeyProperty</span><span style='color:#222222;'>&gt;</span><span style='color:black;'> </span><span style='color:#795E26;'>GetPrimaryKey</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span></code></pre>
+    <div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'rihvgvgp')">Copy</button></div><pre id="rihvgvgp"><code><span style='color:#0000FF;'>public</span><span style='color:black;'> </span><span style='color:#0000FF;'>virtual</span><span style='color:black;'> </span><span style='color:#267F99;'>List</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>KeyProperty</span><span style='color:#222222;'>&gt;</span><span style='color:black;'> </span><span style='color:#795E26;'>GetPrimaryKey</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span></code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <p><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Seltzr.OrmBase.KeyProperty.html">KeyProperty</a>&gt;</p>
-  <p>The properties that make up the primary key of <see cref="!:TModel"></see></p>
+  <p>The properties that make up the primary key of <code data-dev-comment-type="typeparamref" class="typeparamref">TModel</code></p>
 
   <div class="element-title">
   <span class="small pull-right mobile-hide">
@@ -213,7 +216,7 @@
     <a href="https://github.com/Seltzr/Seltzr/new/master/apiSpec/new?filename=Seltzr_EntityFramework_Options_EntityFrameworkSeltzrOptionsBuilder_2_GetUpdateOperation_System_Reflection_PropertyInfo___Seltzr_ParameterRetrievers_ParameterRetriever___.md&amp;value=---%0Auid%3A%20Seltzr.EntityFramework.Options.EntityFrameworkSeltzrOptionsBuilder%602.GetUpdateOperation(System.Reflection.PropertyInfo%5B%5D%2CSeltzr.ParameterRetrievers.ParameterRetriever%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Seltzr/Seltzr/blob/master/Seltzr.EntityFramework/Options/EntityFrameworkSeltzrOptionsBuilder.cs/#L122">View Source</a>
+    <a href="https://github.com/Seltzr/Seltzr/blob/master/Seltzr.EntityFramework/Options/EntityFrameworkSeltzrOptionsBuilder.cs/#L163">View Source</a>
   </span>
   <a id="Seltzr_EntityFramework_Options_EntityFrameworkSeltzrOptionsBuilder_2_GetUpdateOperation_" data-uid="Seltzr.EntityFramework.Options.EntityFrameworkSeltzrOptionsBuilder`2.GetUpdateOperation*"></a>
   <h4 id="Seltzr_EntityFramework_Options_EntityFrameworkSeltzrOptionsBuilder_2_GetUpdateOperation_System_Reflection_PropertyInfo___Seltzr_ParameterRetrievers_ParameterRetriever___" data-uid="Seltzr.EntityFramework.Options.EntityFrameworkSeltzrOptionsBuilder`2.GetUpdateOperation(System.Reflection.PropertyInfo[],Seltzr.ParameterRetrievers.ParameterRetriever[])">GetUpdateOperation(PropertyInfo[], ParameterRetriever[])</h4>
@@ -222,7 +225,7 @@
 </div>
   <div class="markdown level1 conceptual"></div>
   <div class="codewrapper">
-    <div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'cffxlqkd')">Copy</button></div><pre id="cffxlqkd"><code><span style='color:#0000FF;'>public</span><span style='color:black;'> </span><span style='color:#267F99;'>IOperation</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>TModel</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#267F99;'>TUser</span><span style='color:#222222;'>&gt;</span><span style='color:black;'> </span><span style='color:#795E26;'>GetUpdateOperation</span><span style='color:#222222;'>(</span><span style='color:#267F99;'>PropertyInfo</span><span style='color:#222222;'>[</span><span style='color:#222222;'>]</span><span style='color:black;'> </span><span style='color:#001080;'>properties</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#267F99;'>ParameterRetriever</span><span style='color:#222222;'>[</span><span style='color:#222222;'>]</span><span style='color:black;'> </span><span style='color:#001080;'>retrievers</span><span style='color:#222222;'>)</span></code></pre>
+    <div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'gtomsvkq')">Copy</button></div><pre id="gtomsvkq"><code><span style='color:#0000FF;'>public</span><span style='color:black;'> </span><span style='color:#0000FF;'>virtual</span><span style='color:black;'> </span><span style='color:#267F99;'>IOperation</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>TModel</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#267F99;'>TUser</span><span style='color:#222222;'>&gt;</span><span style='color:black;'> </span><span style='color:#795E26;'>GetUpdateOperation</span><span style='color:#222222;'>(</span><span style='color:#267F99;'>PropertyInfo</span><span style='color:#222222;'>[</span><span style='color:#222222;'>]</span><span style='color:black;'> </span><span style='color:#001080;'>properties</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#267F99;'>ParameterRetriever</span><span style='color:#222222;'>[</span><span style='color:#222222;'>]</span><span style='color:black;'> </span><span style='color:#001080;'>retrievers</span><span style='color:#222222;'>)</span></code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <div class="parameter-list">
@@ -230,20 +233,22 @@
   		<div>
   			<code>properties</code><span class="parameter-type"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.reflection.propertyinfo">PropertyInfo</a>[]</span>
   		</div>
-  		<p>The properties to use to compare existing models with parsed models to determine which models to update</p>
+  		<p>The properties to use to compare existing models with parsed models to determine which models
+to update</p>
 
   	</div>
     <div class="parameter">
   		<div>
   			<code>retrievers</code><span class="parameter-type"><a class="xref" href="Seltzr.ParameterRetrievers.ParameterRetriever.html">ParameterRetriever</a>[]</span>
   		</div>
-  		<p>A list of parameter retrievers to use to get values for the properties. If null, the parsed body will be used instead</p>
+  		<p>A list of parameter retrievers to use to get values for the properties. If null, the parsed
+body will be used instead</p>
 
   	</div>
   </div>
   <h5 class="returns">Returns</h5>
   <p><a class="xref" href="Seltzr.Operations.IOperation-2.html">IOperation</a>&lt;TModel, TUser&gt;</p>
-  <p>A new update operation for <see cref="!:TModel"></see></p>
+  <p>A new update operation for <code data-dev-comment-type="typeparamref" class="typeparamref">TModel</code></p>
 
   <h3 id="implements">Implements</h3>
   <div>
@@ -706,6 +711,12 @@
   <div>
       <a class="xref" href="Seltzr.Extensions.SeltzrOrmOptionsBuilderExtensions.html#Seltzr_Extensions_SeltzrOrmOptionsBuilderExtensions_PutUpdateByQuery__2_Seltzr_Options_Builder_SeltzrOptionsBuilder___0___1__System_String_System_Linq_Expressions_Expression_System_Func___0_System_Object_____">SeltzrOrmOptionsBuilderExtensions.PutUpdateByQuery&lt;TModel, TUser&gt;(SeltzrOptionsBuilder&lt;TModel, TUser&gt;, String, Expression&lt;Func&lt;TModel, Object&gt;&gt;[])</a>
   </div>
+  <div>
+      <a class="xref" href="Seltzr.Extensions.EFCoreSeltzrOptionsBuilderExtensions.html#Seltzr_Extensions_EFCoreSeltzrOptionsBuilderExtensions_EagerLoad__2_Seltzr_Options_Builder_SeltzrOptionsBuilder___0___1__System_Linq_Expressions_Expression_System_Func___0_System_Object_____">EFCoreSeltzrOptionsBuilderExtensions.EagerLoad&lt;TModel, TUser&gt;(SeltzrOptionsBuilder&lt;TModel, TUser&gt;, Expression&lt;Func&lt;TModel, Object&gt;&gt;[])</a>
+  </div>
+  <div>
+      <a class="xref" href="Seltzr.Extensions.EntityFrameworkSeltzrOptionsBuilderExtensions.html#Seltzr_Extensions_EntityFrameworkSeltzrOptionsBuilderExtensions_EagerLoad__2_Seltzr_Options_Builder_SeltzrOptionsBuilder___0___1__System_Linq_Expressions_Expression_System_Func___0_System_Object_____">EntityFrameworkSeltzrOptionsBuilderExtensions.EagerLoad&lt;TModel, TUser&gt;(SeltzrOptionsBuilder&lt;TModel, TUser&gt;, Expression&lt;Func&lt;TModel, Object&gt;&gt;[])</a>
+  </div>
 </article>
           </div>
           
@@ -717,7 +728,7 @@
                     <a href="https://github.com/Seltzr/Seltzr/new/master/apiSpec/new?filename=Seltzr_EntityFramework_Options_EntityFrameworkSeltzrOptionsBuilder_2.md&amp;value=---%0Auid%3A%20Seltzr.EntityFramework.Options.EntityFrameworkSeltzrOptionsBuilder%602%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/Seltzr/Seltzr/blob/master/Seltzr.EntityFramework/Options/EntityFrameworkSeltzrOptionsBuilder.cs/#L33" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Seltzr/Seltzr/blob/master/Seltzr.EntityFramework/Options/EntityFrameworkSeltzrOptionsBuilder.cs/#L32" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

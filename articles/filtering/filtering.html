@@ -1,0 +1,236 @@
+﻿<!DOCTYPE html>
+
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Filtering </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Filtering ">
+    <meta name="generator" content="docfx 2.52.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.png">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../favicon.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="filtering">
+<h1 id="filtering">Filtering</h1>
+
+<p>Filtering is the fifth step in the request flow. It occurs after model providing and before condition checks. An unlimited number of Filters may be added to a route. They will be run in the order they were added. Each Filter takes in the dataset and <a class="xref" href="../../api/Seltzr.Context.IApiContext-2.html">IApiContext&lt;TModel, TUser&gt;</a> and returns a modified dataset, either directly filtered or otherwise transformed. This new dataset will be used in place of the existing one until provided to the <a class="xref" href="../operations/operations.html">Operation</a>. If there is no operation, the filtered dataset is returned by the API.</p>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>When using Seltzr with an ORM like Entity Framework, avoid <a href="https://docs.microsoft.com/en-us/ef/core/querying/client-eval#unsupported-client-evaluation">client-side evaluation</a> in Filters. Client-side evaluation often results in pulling more information from the database than is necessary for the request, and can result in poor performance. If you must use client-side evaluation, see <a href="#explicit-client-side-evaluation">below</a> for an example that explicitly enables it.</p>
+</div>
+<h2 id="builder-methods">Builder Methods</h2>
+<h3 id="low-level-methods">Low-Level Methods</h3>
+<p>These methods are primarily used when you've implemented your own <a class="xref" href="../../api/Seltzr.Filters.IFilter-2.html">IFilter&lt;TModel, TUser&gt;</a> and want to attach it to a route.</p>
+<ul>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_AddFilter_Seltzr_Filters_IFilter__0__1__">AddFilter(IFilter&lt;TModel, TUser&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_AddFilter__1">AddFilter&lt;TFilter&gt;()</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_ClearFilters">ClearFilters()</a></li>
+</ul>
+<h3 id="high-level-methods">High-Level Methods</h3>
+<p><strong>Builder Prefix:</strong> <code>Filter</code></p>
+<ul>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Filter_System_Func_Seltzr_Context_IApiContext__0__1__System_Linq_IQueryable__0__System_Linq_IQueryable__0___">Filter(Func&lt;IApiContext&lt;TModel, TUser&gt;, IQueryable&lt;TModel&gt;, IQueryable&lt;TModel&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Filter_System_Func_System_Linq_IQueryable__0__System_Linq_IQueryable__0___">Filter(Func&lt;IQueryable&lt;TModel&gt;, IQueryable&lt;TModel&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_FilterAsync_System_Func_Seltzr_Context_IApiContext__0__1__System_Linq_IQueryable__0__System_Threading_Tasks_Task_System_Linq_IQueryable__0____">FilterAsync(Func&lt;IApiContext&lt;TModel, TUser&gt;, IQueryable&lt;TModel&gt;, Task&lt;IQueryable&lt;TModel&gt;&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_FilterAsync_System_Func_System_Linq_IQueryable__0__System_Threading_Tasks_Task_System_Linq_IQueryable__0____">FilterAsync(Func&lt;IQueryable&lt;TModel&gt;, Task&lt;IQueryable&lt;TModel&gt;&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_FilterByParameter__1_System_Linq_Expressions_Expression_System_Func__0___0___Seltzr_ParameterRetrievers_ParameterRetriever_System_Linq_Expressions_Expression_System_Func___0___0_System_Boolean___">FilterByParameter&lt;T&gt;(Expression&lt;Func&lt;TModel, T&gt;&gt;, ParameterRetriever, Expression&lt;Func&lt;T, T, Boolean&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_FilterByParameterEqual__1_System_Linq_Expressions_Expression_System_Func__0___0___Seltzr_ParameterRetrievers_ParameterRetriever_">FilterByParameterEqual&lt;T&gt;(Expression&lt;Func&lt;TModel, T&gt;&gt;, ParameterRetriever)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_FilterByParameterEqualOpt__1_System_Linq_Expressions_Expression_System_Func__0___0___Seltzr_ParameterRetrievers_ParameterRetriever_">FilterByParameterEqualOpt&lt;T&gt;(Expression&lt;Func&lt;TModel, T&gt;&gt;, ParameterRetriever)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_FilterByParameterOpt__1_System_Linq_Expressions_Expression_System_Func__0___0___Seltzr_ParameterRetrievers_ParameterRetriever_System_Linq_Expressions_Expression_System_Func___0___0_System_Boolean___">FilterByParameterOpt&lt;T&gt;(Expression&lt;Func&lt;TModel, T&gt;&gt;, ParameterRetriever, Expression&lt;Func&lt;T, T, Boolean&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_FilterByQuery__1_System_Linq_Expressions_Expression_System_Func__0___0___System_Linq_Expressions_Expression_System_Func___0___0_System_Boolean___">FilterByQuery&lt;T&gt;(Expression&lt;Func&lt;TModel, T&gt;&gt;, Expression&lt;Func&lt;T, T, Boolean&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_FilterByQuery__1_System_Linq_Expressions_Expression_System_Func__0___0___System_String_System_Linq_Expressions_Expression_System_Func___0___0_System_Boolean___">FilterByQuery&lt;T&gt;(Expression&lt;Func&lt;TModel, T&gt;&gt;, String, Expression&lt;Func&lt;T, T, Boolean&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_FilterByQueryEqual__1_System_Linq_Expressions_Expression_System_Func__0___0___">FilterByQueryEqual&lt;T&gt;(Expression&lt;Func&lt;TModel, T&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_FilterByQueryEqual__1_System_Linq_Expressions_Expression_System_Func__0___0___System_String_">FilterByQueryEqual&lt;T&gt;(Expression&lt;Func&lt;TModel, T&gt;&gt;, String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_FilterByQueryEqualOpt__1_System_Linq_Expressions_Expression_System_Func__0___0___">FilterByQueryEqualOpt&lt;T&gt;(Expression&lt;Func&lt;TModel, T&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_FilterByQueryEqualOpt__1_System_Linq_Expressions_Expression_System_Func__0___0___System_String_">FilterByQueryEqualOpt&lt;T&gt;(Expression&lt;Func&lt;TModel, T&gt;&gt;, String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_FilterByQueryOpt__1_System_Linq_Expressions_Expression_System_Func__0___0___System_Linq_Expressions_Expression_System_Func___0___0_System_Boolean___">FilterByQueryOpt&lt;T&gt;(Expression&lt;Func&lt;TModel, T&gt;&gt;, Expression&lt;Func&lt;T, T, Boolean&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_FilterByQueryOpt__1_System_Linq_Expressions_Expression_System_Func__0___0___System_String_System_Linq_Expressions_Expression_System_Func___0___0_System_Boolean___">FilterByQueryOpt&lt;T&gt;(Expression&lt;Func&lt;TModel, T&gt;&gt;, String, Expression&lt;Func&lt;T, T, Boolean&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_FilterByRoute__1_System_Linq_Expressions_Expression_System_Func__0___0___System_Linq_Expressions_Expression_System_Func___0___0_System_Boolean___">FilterByRoute&lt;T&gt;(Expression&lt;Func&lt;TModel, T&gt;&gt;, Expression&lt;Func&lt;T, T, Boolean&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_FilterByRoute__1_System_Linq_Expressions_Expression_System_Func__0___0___System_String_System_Linq_Expressions_Expression_System_Func___0___0_System_Boolean___">FilterByRoute&lt;T&gt;(Expression&lt;Func&lt;TModel, T&gt;&gt;, String, Expression&lt;Func&lt;T, T, Boolean&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_FilterByRouteEqual__1_System_Linq_Expressions_Expression_System_Func__0___0___">FilterByRouteEqual&lt;T&gt;(Expression&lt;Func&lt;TModel, T&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_FilterByRouteEqual__1_System_Linq_Expressions_Expression_System_Func__0___0___System_String_">FilterByRouteEqual&lt;T&gt;(Expression&lt;Func&lt;TModel, T&gt;&gt;, String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_FilterByRouteEqualOpt__1_System_Linq_Expressions_Expression_System_Func__0___0___">FilterByRouteEqualOpt&lt;T&gt;(Expression&lt;Func&lt;TModel, T&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_FilterByRouteEqualOpt__1_System_Linq_Expressions_Expression_System_Func__0___0___System_String_">FilterByRouteEqualOpt&lt;T&gt;(Expression&lt;Func&lt;TModel, T&gt;&gt;, String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_FilterByRouteOpt__1_System_Linq_Expressions_Expression_System_Func__0___0___System_Linq_Expressions_Expression_System_Func___0___0_System_Boolean___">FilterByRouteOpt&lt;T&gt;(Expression&lt;Func&lt;TModel, T&gt;&gt;, Expression&lt;Func&lt;T, T, Boolean&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_FilterByRouteOpt__1_System_Linq_Expressions_Expression_System_Func__0___0___System_String_System_Linq_Expressions_Expression_System_Func___0___0_System_Boolean___">FilterByRouteOpt&lt;T&gt;(Expression&lt;Func&lt;TModel, T&gt;&gt;, String, Expression&lt;Func&lt;T, T, Boolean&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_FilterWhere_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___">FilterWhere(Expression&lt;Func&lt;TModel, Boolean&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_FilterWhere_System_Linq_Expressions_Expression_System_Func_Seltzr_Context_IApiContext__0__1___0_System_Boolean___">FilterWhere(Expression&lt;Func&lt;IApiContext&lt;TModel, TUser&gt;, TModel, Boolean&gt;&gt;)</a></li>
+<li><em><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_First">First()</a></em></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Limit_System_Int32_">Limit(Int32)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_LimitOne">LimitOne()</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_LimitQuery_System_String_">LimitQuery(String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_LimitQuery_System_String_System_Int32_">LimitQuery(String, Int32)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_OrderBy__1_System_Linq_Expressions_Expression_System_Func__0___0___">OrderBy&lt;TKey&gt;(Expression&lt;Func&lt;TModel, TKey&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_OrderBy__1_System_Linq_Expressions_Expression_System_Func__0___0___System_Collections_Generic_IComparer___0__">OrderBy&lt;TKey&gt;(Expression&lt;Func&lt;TModel, TKey&gt;&gt;, IComparer&lt;TKey&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_OrderByDescending__1_System_Linq_Expressions_Expression_System_Func__0___0___">OrderByDescending&lt;TKey&gt;(Expression&lt;Func&lt;TModel, TKey&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_OrderByDescending__1_System_Linq_Expressions_Expression_System_Func__0___0___System_Collections_Generic_IComparer___0__">OrderByDescending&lt;TKey&gt;(Expression&lt;Func&lt;TModel, TKey&gt;&gt;, IComparer&lt;TKey&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Paginate">Paginate()</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Paginate_System_String_System_Int32_">Paginate(String, Int32)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Paginate_System_String_System_String_">Paginate(String, String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Paginate_System_String_System_String_System_Int32_">Paginate(String, String, Int32)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Skip_System_Int32_">Skip(Int32)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_SkipQuery_System_String_System_Int32_">SkipQuery(String, Int32)</a></li>
+</ul>
+<p><strong>Extension Methods:</strong></p>
+<ul>
+<li><strong><a class="xref" href="../../api/Seltzr.Extensions.SeltzrOrmOptionsBuilderExtensions.html#Seltzr_Extensions_SeltzrOrmOptionsBuilderExtensions_FilterByPrimaryKey__2_Seltzr_Options_Builder_SeltzrOptionsBuilder___0___1__Seltzr_ParameterRetrievers_ParameterRetriever___">FilterByPrimaryKey&lt;TModel, TUser&gt;(SeltzrOptionsBuilder&lt;TModel, TUser&gt;, ParameterRetriever[])</a></strong></li>
+<li><strong><a class="xref" href="../../api/Seltzr.Extensions.SeltzrOrmOptionsBuilderExtensions.html#Seltzr_Extensions_SeltzrOrmOptionsBuilderExtensions_FilterByPrimaryKeyQuery__2_Seltzr_Options_Builder_SeltzrOptionsBuilder___0___1__">FilterByPrimaryKeyQuery&lt;TModel, TUser&gt;(SeltzrOptionsBuilder&lt;TModel, TUser&gt;)</a></strong></li>
+<li><strong><a class="xref" href="../../api/Seltzr.Extensions.SeltzrOrmOptionsBuilderExtensions.html#Seltzr_Extensions_SeltzrOrmOptionsBuilderExtensions_FilterByPrimaryKeyQuery__2_Seltzr_Options_Builder_SeltzrOptionsBuilder___0___1__System_String___">FilterByPrimaryKeyQuery&lt;TModel, TUser&gt;(SeltzrOptionsBuilder&lt;TModel, TUser&gt;, String[])</a></strong></li>
+<li><strong><a class="xref" href="../../api/Seltzr.Extensions.SeltzrOrmOptionsBuilderExtensions.html#Seltzr_Extensions_SeltzrOrmOptionsBuilderExtensions_FilterByPrimaryKeyRoute__2_Seltzr_Options_Builder_SeltzrOptionsBuilder___0___1__">FilterByPrimaryKeyRoute&lt;TModel, TUser&gt;(SeltzrOptionsBuilder&lt;TModel, TUser&gt;)</a></strong></li>
+<li><strong><a class="xref" href="../../api/Seltzr.Extensions.SeltzrOrmOptionsBuilderExtensions.html#Seltzr_Extensions_SeltzrOrmOptionsBuilderExtensions_FilterByPrimaryKeyRoute__2_Seltzr_Options_Builder_SeltzrOptionsBuilder___0___1__System_String___">FilterByPrimaryKeyRoute&lt;TModel, TUser&gt;(SeltzrOptionsBuilder&lt;TModel, TUser&gt;, String[])</a></strong></li>
+</ul>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Methods in <em>italics</em> also enforce <a class="xref" href="../conditions/conditions.html">Conditions</a> alongside the Filter they add</p>
+</div>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Methods in <strong>bold</strong> are only available with an ORM-backed version of Seltzr, e.g <code>Seltzr.EntityFrameworkCore</code></p>
+</div>
+<h2 id="examples">Examples</h2>
+<h4 id="filtering-using-route-values-and-query-parameters">Filtering using Route Values and Query Parameters</h4>
+<p>See <a class="xref" href="filterBy.html">FilterBy Builder Methods</a> for examples on filtering using request parameters.</p>
+<h4 id="explicit-client-side-evaluation">Explicit Client-Side Evaluation</h4>
+<p>Although client-side evaluation is generally discouraged, it is sometimes necessary for complex logic which can't be translated to a database query. To explicitly enable client-side evaluation, call <a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_FetchModels">FetchModels()</a> before filtering.</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'zqmaobtf')">Copy</button></div><pre id="zqmaobtf"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>BlogPost</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>/blogs/{blogId}/posts/recent</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#001080;'>posts</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>	</span><span style='color:#001080;'>posts</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>Filter</span><span style='color:#222222;'>(</span><span style='color:#001080;'>p</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>p</span><span style='color:#222222;'>.</span><span style='color:#001080;'>DateCreated</span><span style='color:black;'> </span><span style='color:#000000;'>&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>DateTime</span><span style='color:#222222;'>.</span><span style='color:#001080;'>Now</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>AddDays</span><span style='color:#222222;'>(</span><span style='color:#000000;'>-</span><span style='color:#098658;'>30</span><span style='color:#222222;'>)</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>FetchModels</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>FilterByQueryOpt</span><span style='color:#222222;'>(</span><span style='color:#001080;'>p</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>p</span><span style='color:#222222;'>.</span><span style='color:#001080;'>Author</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>token</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#222222;'>(</span><span style='color:#001080;'>a</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#001080;'>t</span><span style='color:#222222;'>)</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#795E26;'>GetToken</span><span style='color:#222222;'>(</span><span style='color:#001080;'>a</span><span style='color:#222222;'>)</span><span style='color:black;'> </span><span style='color:#000000;'>==</span><span style='color:black;'> </span><span style='color:#001080;'>t</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>CanGet</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<div class="TIP">
+<h5>Tip</h5>
+<p>Call <a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_FetchModels">FetchModels()</a> as late as possible when filtering to keep most of the evaluation on the server.</p>
+</div>
+<h4 id="using-linq-analog-methods-to-filter-the-dataset">Using LINQ analog methods to filter the dataset</h4>
+<p>Often you'll need to filter the dataset using queries traditionally available with <a href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/">LINQ</a> methods. Seltzr includes several analogous methods for filtering, including <code>FilterWhere</code>, <code>Skip</code>, <code>Limit</code>, and <code>OrderBy</code>.</p>
+<p>The following example uses some of those methods to return a sorted list of the first 10 users whose name starts with the letter &quot;B&quot;:</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'fhpchdlc')">Copy</button></div><pre id="fhpchdlc"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>User</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>/users</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#001080;'>posts</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>	</span><span style='color:#001080;'>posts</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>FilterWhere</span><span style='color:#222222;'>(</span><span style='color:#001080;'>u</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>u</span><span style='color:#222222;'>.</span><span style='color:#001080;'>Name</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>StartsWith</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>B</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>)</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>OrderBy</span><span style='color:#222222;'>(</span><span style='color:#001080;'>u</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>u</span><span style='color:#222222;'>.</span><span style='color:#001080;'>Name</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>Limit</span><span style='color:#222222;'>(</span><span style='color:#098658;'>10</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>CanGet</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Since filter methods are run in the order they were added, calling <code>OrderBy</code> after <code>Limit</code> would alphabetically sort the first 10 users returned by the database, not the 10 alphabetically-first users.</p>
+</div>
+<p>The <a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html">SeltzrOptionsBuilder&lt;TModel, TUser&gt;</a> class also has a <code>LimitQuery</code> method which can be used to limit the number of returned models to a number specified by a query parameter.</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'sobflbkp')">Copy</button></div><pre id="sobflbkp"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>User</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>/users</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#001080;'>posts</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>	</span><span style='color:#001080;'>posts</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>LimitQuery</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>count</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#098658;'>50</span><span style='color:#222222;'>)</span><span style='color:black;'> </span><span style='color:#008000;'>//</span><span style='color:#008000;'> max count is 50</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>CanGet</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<h4 id="using-the-filter-method-for-complex-logic">Using the <code>Filter</code> method for complex logic</h4>
+<p>If the other builder methods don't suit your needs, the <code>Filter</code> and <code>FilterAsync</code> methods can be used for complex filtering logic. These methods take lambdas which can be passed either just the dataset, or both the <a class="xref" href="../../api/Seltzr.Context.IApiContext-2.html">IApiContext&lt;TModel, TUser&gt;</a> and the dataset. The following example uses the context to get a service which filters the dataset.</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'amfvhroo')">Copy</button></div><pre id="amfvhroo"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>User</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>/users</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#001080;'>posts</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>	</span><span style='color:#001080;'>posts</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>Filter</span><span style='color:#222222;'>(</span><span style='color:#222222;'>(</span><span style='color:#001080;'>ctx</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#001080;'>data</span><span style='color:#222222;'>)</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>			</span><span style='color:#267F99;'>IFilteringService</span><span style='color:black;'> </span><span style='color:#001080;'>Service</span><span style='color:black;'> </span><span style='color:#000000;'>=</span><span style='color:black;'> </span><span style='color:#001080;'>ctx</span><span style='color:#222222;'>.</span><span style='color:#001080;'>Services</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>GetRequiredService</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>IFilteringService</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'>			</span><span style='color:#0000FF;'>return</span><span style='color:black;'> </span><span style='color:#001080;'>Service</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>Filter</span><span style='color:#222222;'>(</span><span style='color:#001080;'>data</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>}</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>CanGet</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<h4 id="pagination">Pagination</h4>
+<p>For examples on how to use the <code>Paginate</code> methods, see <a class="xref" href="pagination.html">Pagination</a></p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Seltzr/Seltzr/blob/master/docs-src/docfx_project/articles/filtering/filtering.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

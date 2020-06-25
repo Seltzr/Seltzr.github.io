@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Authenticating with ASP.NET Core Identity </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Authenticating with ASP.NET Core Identity ">
+    <meta name="generator" content="docfx 2.52.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.png">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../favicon.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="aspAuth">
+<h1 id="authenticating-with-aspnet-core-identity">Authenticating with ASP.NET Core Identity</h1>
+
+<p>Seltzr supports authenticating with ASP.NET Core's default identity provider using the <a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_AuthAspNetIdentity">AuthAspNetIdentity()</a>, <a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_AuthAspNetIdentity_System_String_System_String___">AuthAspNetIdentity(String, String[])</a>, and <a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_AuthAspNetIdentityRole_System_String___">AuthAspNetIdentityRole(String[])</a> methods.</p>
+<h2 id="examples">Examples</h2>
+<p>The following examples assume that <code>IdentityUser</code> is the class name of the user object used by ASP.NET Core</p>
+<h3 id="authenticating-with-any-signed-in-user">Authenticating with any signed in user</h3>
+<p>Any user who is currently authenticated to the web server may access the API.</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'govmcbfv')">Copy</button></div><pre id="govmcbfv"><code><span style='color:#001080;'>options</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#267F99;'>IdentityUser</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>options</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>	</span><span style='color:#001080;'>options</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>AuthAspNetIdentity</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>SetupGet</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>/get</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#001080;'>authed</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>authed</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>WriteString</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Authenticated Content</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>)</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span>
+<span style='color:black;'></span></code></pre>
+<h3 id="authenticating-users-by-role">Authenticating users by role</h3>
+<p>This example will only allow users with the role <code>api</code> to access the API. Note that the name of this method is AuthAspNetIdentity<strong>Role</strong>. The method takes a <code>params</code> argument, so multiple roles may be specified.</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'figucruh')">Copy</button></div><pre id="figucruh"><code><span style='color:#001080;'>options</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#267F99;'>IdentityUser</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>options</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>	</span><span style='color:#001080;'>options</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>AuthAspNetIdentityRole</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>api</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>SetupGet</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>/get</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#001080;'>authed</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>authed</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>WriteString</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Authenticated Content</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>)</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span>
+<span style='color:black;'></span></code></pre>
+<h3 id="authenticating-users-by-policy-and-role">Authenticating users by policy and role</h3>
+<p>This example will only allow users who fulfill the policy <code>policy</code> and the roles <code>role1</code> and <code>role2</code> to access the API. Roles may be omitted to just check policy.</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'ptzamhrz')">Copy</button></div><pre id="ptzamhrz"><code><span style='color:#001080;'>options</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#267F99;'>IdentityUser</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>options</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>	</span><span style='color:#001080;'>options</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>AuthAspNetIdentity</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>policy</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>role1</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>role2</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>SetupGet</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>/get</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#001080;'>authed</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>authed</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>WriteString</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Authenticated Content</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>)</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<h3 id="redirecting-to-the-login-page-if-authentication-fails">Redirecting to the login page if authentication fails</h3>
+<p>By default, if authentication fails, the <a class="xref" href="../../api/Seltzr.ExceptionHandlers.SimpleExceptionHandler.html">SimpleExceptionHandler</a> will return a <code>401 Unauthorized</code> response. However, this example will redirect users to a sign-in page if authentication fails.</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'kyozgrad')">Copy</button></div><pre id="kyozgrad"><code><span style='color:#001080;'>options</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#267F99;'>IdentityUser</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>options</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>	</span><span style='color:#001080;'>options</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>AuthAspNetIdentity</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>Catch</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>AuthFailedException</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#222222;'>(</span><span style='color:#001080;'>e</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#001080;'>c</span><span style='color:#222222;'>)</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>			</span><span style='color:#001080;'>c</span><span style='color:#222222;'>.</span><span style='color:#001080;'>Response</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>Redirect</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>/auth/login</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'>			</span><span style='color:#0000FF;'>return</span><span style='color:black;'> </span><span style='color:#0000FF;'>false</span><span style='color:#222222;'>;</span><span style='color:black;'> </span><span style='color:#008000;'>//</span><span style='color:#008000;'> halt further request execution</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>}</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>CatchExceptions</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span>
+<span style='color:black;'></span></code></pre>
+<h3 id="restricting-routes-by-role">Restricting routes by role</h3>
+<p>This example allows authenticated users to access all routes except for those on the <code>/admin</code> pattern, which requires a role of <code>&quot;admin&quot;</code> to access.</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'raisbfbb')">Copy</button></div><pre id="raisbfbb"><code><span style='color:#001080;'>options</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#267F99;'>IdentityUser</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>options</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>	</span><span style='color:#001080;'>options</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>AuthAspNetIdentity</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:black;'> </span><span style='color:#008000;'>//</span><span style='color:#008000;'> permit all authenticated users</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>SetupGet</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>/get</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#001080;'>authed</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>authed</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>WriteString</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Authenticated Content</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>)</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>MapRoute</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>/admin</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#001080;'>admin</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>			</span><span style='color:#001080;'>admin</span>
+<span style='color:black;'>				</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>ClearAuthProviders</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>				</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>AuthAspNetIdentityRole</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>admin</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>)</span><span style='color:black;'> </span><span style='color:#008000;'>//</span><span style='color:#008000;'> just administrators may access /admin</span>
+<span style='color:black;'>				</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>SetupGet</span><span style='color:#222222;'>(</span><span style='color:#001080;'>authed</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>authed</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>WriteString</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Admin Content</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>)</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>The <code>/admin</code> route must call <code>ClearAuthProviders()</code> or the call to <code>MapRoute</code> must occur before the call to the general <code>AuthAspNetIdentity()</code>. Otherwise, because options cascade, the <code>/admin</code> route would have both the general Auth Provider and role specific Auth Provider, and any authenticated user could access the <code>/admin</code> routes. For example:</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'rqfkmglq')">Copy</button></div><pre id="rqfkmglq"><code><span style='color:#008000;'>//</span><span style='color:#008000;'> DON&#39;T do this!</span>
+<span style='color:#001080;'>options</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#267F99;'>IdentityUser</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>options</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>  </span><span style='color:#001080;'>options</span>
+<span style='color:black;'>  	</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>AuthAspNetIdentity</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:black;'> </span>
+<span style='color:black;'>  	</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>MapRoute</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>/admin</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#001080;'>admin</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>  		</span><span style='color:#001080;'>admin</span>
+<span style='color:black;'>  			</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>AuthAspNetIdentityRole</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>admin</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>  			</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>SetupGet</span><span style='color:#222222;'>(</span><span style='color:#001080;'>authed</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>authed</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>WriteString</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Uh-oh! Any user can access this!</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>)</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'>  	</span><span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Seltzr/Seltzr/blob/master/docs-src/docfx_project/articles/authentication/aspAuth.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

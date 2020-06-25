@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html>
+
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Authentication </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Authentication ">
+    <meta name="generator" content="docfx 2.52.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.png">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../favicon.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="authentication">
+<h1 id="authentication">Authentication</h1>
+
+<p>Authentication is the third step in the request flow. It occurs after parsing and before model retrieval. Multiple Authentication Providers can be attached to a single route and will be executed in order until authentication succeeds. If no Auth Provider succeeds, an exception of type <a class="xref" href="../../api/Seltzr.Exceptions.AuthFailedException.html">AuthFailedException</a> will be thrown. Authentication Providers are optional and if none are specified this step is skipped, and the <a class="xref" href="../../api/Seltzr.Context.IApiContext-2.html#Seltzr_Context_IApiContext_2_User">User</a> property of the request's <a class="xref" href="../../api/Seltzr.Context.IApiContext-2.html">IApiContext&lt;TModel, TUser&gt;</a> will be <code>null</code>.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>This execution method means that if <strong>any</strong> Auth Provider succeeds, the request will be considered authenticated.</p>
+</div>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The <a class="xref" href="../../api/Seltzr.ExceptionHandlers.SimpleExceptionHandler.html">SimpleExceptionHandler</a> exception handler added by the <a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_CatchExceptions_System_Boolean_">CatchExceptions(Boolean)</a> method will fall through to the next route specified for that route pattern if authentication fails. Additionally, routes with the same pattern are executed in order of the number of Auth Providers they have. This way, an anonymous user can be presented with an alternate API route for the same route pattern. See <a href="#hosting-anonymous-and-authenticated-content-on-the-same-route">below</a> for an example.</p>
+</div>
+<h2 id="api-context">Api Context</h2>
+<p><strong>See Also:</strong> <a class="xref" href="../../api/Seltzr.Context.IApiContext-2.html">IApiContext&lt;TModel, TUser&gt;</a></p>
+<p>This step will set the <a class="xref" href="../../api/Seltzr.Context.IApiContext-2.html#Seltzr_Context_IApiContext_2_User">User</a> property on the request's <a class="xref" href="../../api/Seltzr.Context.IApiContext-2.html">IApiContext&lt;TModel, TUser&gt;</a> with an object containing additional user information. This can be set to any instance of the <code>TUser</code> type parameter for the API. However, Auth Providers may also return <code>null</code> even if authentication succeeds, indicating that there is no additional user information.</p>
+<h2 id="nouser"><a class="xref" href="../../api/Seltzr.Auth.NoUser.html">NoUser</a></h2>
+<p>If no <code>TUser</code> type parameter is provided to the <code>app.UseSeltzr</code> method when creating the API, the user context type is set to <a class="xref" href="../../api/Seltzr.Auth.NoUser.html">NoUser</a>. This is a token class with no properties, but makes additional extension methods available for authentication methods that don't return a user context. See <a href="#authenticating-with-nouser">below</a> for an example.</p>
+<h2 id="builder-methods">Builder Methods</h2>
+<h3 id="low-level-methods">Low-Level Methods</h3>
+<p>These methods are primarily used when you've implemented your own <a class="xref" href="../../api/Seltzr.Auth.IAuthProvider-2.html">IAuthProvider&lt;TModel, TUser&gt;</a> and want to attach it to a route.</p>
+<ul>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_AddAuthProvider_Seltzr_Auth_IAuthProvider__0__1__">AddAuthProvider(IAuthProvider&lt;TModel, TUser&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_AddAuthProvider__1">AddAuthProvider&lt;TProvider&gt;()</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_ClearAuthProviders">ClearAuthProviders()</a></li>
+</ul>
+<h3 id="high-level-methods">High-Level Methods</h3>
+<p><strong>Builder Prefix:</strong> <code>Auth</code></p>
+<ul>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Auth_System_Func_Seltzr_Context_IApiContext__0__1___1__">Auth(Func&lt;IApiContext&lt;TModel, TUser&gt;, TUser&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_AuthAspNetIdentity">AuthAspNetIdentity()</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_AuthAspNetIdentity_System_String_System_String___">AuthAspNetIdentity(String, String[])</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_AuthAspNetIdentityRole_System_String___">AuthAspNetIdentityRole(String[])</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_AuthAsync_System_Func_Seltzr_Context_IApiContext__0__1__System_Threading_Tasks_Task__1___">AuthAsync(Func&lt;IApiContext&lt;TModel, TUser&gt;, Task&lt;TUser&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_AuthBasic_System_Func_System_String_System_String__1__">AuthBasic(Func&lt;String, String, TUser&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_AuthBasicAsync_System_Func_System_String_System_String_System_Threading_Tasks_Task__1___">AuthBasicAsync(Func&lt;String, String, Task&lt;TUser&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_AuthHeader_System_String_System_Func_System_String__1__">AuthHeader(String, Func&lt;String, TUser&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_AuthHeaderAsync_System_String_System_Func_System_String_System_Threading_Tasks_Task__1___">AuthHeaderAsync(String, Func&lt;String, Task&lt;TUser&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_AuthQuery_System_String_System_Func_System_String__1__">AuthQuery(String, Func&lt;String, TUser&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_AuthQueryAsync_System_String_System_Func_System_String_System_Threading_Tasks_Task__1___">AuthQueryAsync(String, Func&lt;String, Task&lt;TUser&gt;&gt;)</a></li>
+</ul>
+<p><strong>Extension Methods:</strong></p>
+<ul>
+<li><a class="xref" href="../../api/Seltzr.Extensions.SeltzrOptionsBuilderExtensions.html#Seltzr_Extensions_SeltzrOptionsBuilderExtensions_Auth__1_Seltzr_Options_Builder_SeltzrOptionsBuilder___0_Seltzr_Auth_NoUser__System_Func_Seltzr_Context_IApiContext___0_Seltzr_Auth_NoUser__System_Boolean__">Auth&lt;TModel&gt;(SeltzrOptionsBuilder&lt;TModel, NoUser&gt;, Func&lt;IApiContext&lt;TModel, NoUser&gt;, Boolean&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Extensions.SeltzrOptionsBuilderExtensions.html#Seltzr_Extensions_SeltzrOptionsBuilderExtensions_AuthAsync__1_Seltzr_Options_Builder_SeltzrOptionsBuilder___0_Seltzr_Auth_NoUser__System_Func_Seltzr_Context_IApiContext___0_Seltzr_Auth_NoUser__System_Threading_Tasks_Task_System_Boolean___">AuthAsync&lt;TModel&gt;(SeltzrOptionsBuilder&lt;TModel, NoUser&gt;, Func&lt;IApiContext&lt;TModel, NoUser&gt;, Task&lt;Boolean&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Extensions.SeltzrOptionsBuilderExtensions.html#Seltzr_Extensions_SeltzrOptionsBuilderExtensions_AuthBasic__1_Seltzr_Options_Builder_SeltzrOptionsBuilder___0_Seltzr_Auth_NoUser__System_Func_System_String_System_String_System_Boolean__">AuthBasic&lt;TModel&gt;(SeltzrOptionsBuilder&lt;TModel, NoUser&gt;, Func&lt;String, String, Boolean&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Extensions.SeltzrOptionsBuilderExtensions.html#Seltzr_Extensions_SeltzrOptionsBuilderExtensions_AuthBasic__1_Seltzr_Options_Builder_SeltzrOptionsBuilder___0_Seltzr_Auth_NoUser__System_String_System_String_">AuthBasic&lt;TModel&gt;(SeltzrOptionsBuilder&lt;TModel, NoUser&gt;, String, String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Extensions.SeltzrOptionsBuilderExtensions.html#Seltzr_Extensions_SeltzrOptionsBuilderExtensions_AuthBasicAsync__1_Seltzr_Options_Builder_SeltzrOptionsBuilder___0_Seltzr_Auth_NoUser__System_Func_System_String_System_String_System_Threading_Tasks_Task_System_Boolean___">AuthBasicAsync&lt;TModel&gt;(SeltzrOptionsBuilder&lt;TModel, NoUser&gt;, Func&lt;String, String, Task&lt;Boolean&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Extensions.SeltzrOptionsBuilderExtensions.html#Seltzr_Extensions_SeltzrOptionsBuilderExtensions_AuthHeader__1_Seltzr_Options_Builder_SeltzrOptionsBuilder___0_Seltzr_Auth_NoUser__System_String_System_Func_System_String_System_Boolean__">AuthHeader&lt;TModel&gt;(SeltzrOptionsBuilder&lt;TModel, NoUser&gt;, String, Func&lt;String, Boolean&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Extensions.SeltzrOptionsBuilderExtensions.html#Seltzr_Extensions_SeltzrOptionsBuilderExtensions_AuthHeader__1_Seltzr_Options_Builder_SeltzrOptionsBuilder___0_Seltzr_Auth_NoUser__System_String_System_String_">AuthHeader&lt;TModel&gt;(SeltzrOptionsBuilder&lt;TModel, NoUser&gt;, String, String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Extensions.SeltzrOptionsBuilderExtensions.html#Seltzr_Extensions_SeltzrOptionsBuilderExtensions_AuthHeaderAsync__1_Seltzr_Options_Builder_SeltzrOptionsBuilder___0_Seltzr_Auth_NoUser__System_String_System_Func_System_String_System_Threading_Tasks_Task_System_Boolean___">AuthHeaderAsync&lt;TModel&gt;(SeltzrOptionsBuilder&lt;TModel, NoUser&gt;, String, Func&lt;String, Task&lt;Boolean&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Extensions.SeltzrOptionsBuilderExtensions.html#Seltzr_Extensions_SeltzrOptionsBuilderExtensions_AuthQuery__1_Seltzr_Options_Builder_SeltzrOptionsBuilder___0_Seltzr_Auth_NoUser__System_String_System_Func_System_String_System_Boolean__">AuthQuery&lt;TModel&gt;(SeltzrOptionsBuilder&lt;TModel, NoUser&gt;, String, Func&lt;String, Boolean&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Extensions.SeltzrOptionsBuilderExtensions.html#Seltzr_Extensions_SeltzrOptionsBuilderExtensions_AuthQuery__1_Seltzr_Options_Builder_SeltzrOptionsBuilder___0_Seltzr_Auth_NoUser__System_String_System_String_">AuthQuery&lt;TModel&gt;(SeltzrOptionsBuilder&lt;TModel, NoUser&gt;, String, String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Extensions.SeltzrOptionsBuilderExtensions.html#Seltzr_Extensions_SeltzrOptionsBuilderExtensions_AuthQueryAsync__1_Seltzr_Options_Builder_SeltzrOptionsBuilder___0_Seltzr_Auth_NoUser__System_String_System_Func_System_String_System_Threading_Tasks_Task_System_Boolean___">AuthQueryAsync&lt;TModel&gt;(SeltzrOptionsBuilder&lt;TModel, NoUser&gt;, String, Func&lt;String, Task&lt;Boolean&gt;&gt;)</a></li>
+</ul>
+<h2 id="examples">Examples</h2>
+<h4 id="using-aspnet-core-identity-authentication">Using ASP.NET Core Identity Authentication</h4>
+<p>See <a class="xref" href="aspAuth.html">Authenticating with ASP.NET Core Identity</a>.</p>
+<h4 id="hosting-anonymous-and-authenticated-content-on-the-same-route">Hosting Anonymous and Authenticated Content on the Same Route</h4>
+<p>There are two ways of hosting both unauthenticated and authenticated routes with the same pattern.</p>
+<ul>
+<li>The first uses <a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_SetupAnonymousGet_System_Action_Seltzr_Options_Builder_SeltzrOptionsBuilder__0__1___">SetupAnonymousGet(Action&lt;SeltzrOptionsBuilder&lt;TModel, TUser&gt;&gt;)</a> to clear all Auth Providers before setting up the route:</li>
+</ul>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'pyrngiuj')">Copy</button></div><pre id="pyrngiuj"><code><span style='color:#001080;'>options</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#267F99;'>MyUser</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>options</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>	</span><span style='color:#001080;'>options</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>AuthAspNetIdentity</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>SetupGet</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>/get</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#001080;'>authed</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>authed</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>WriteString</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Authenticated Content</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>)</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>SetupAnoymousGet</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>/get</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#001080;'>anon</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>anon</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>WriteString</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Anonymous Content</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>)</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<ul>
+<li>The second defines the anonymous route before adding the Auth Provider:</li>
+</ul>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'oqlqdvek')">Copy</button></div><pre id="oqlqdvek"><code><span style='color:#001080;'>options</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#267F99;'>MyUser</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>options</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>	</span><span style='color:#001080;'>options</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>SetupGet</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>/get</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#001080;'>anon</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>anon</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>WriteString</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Anonymous Content</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>)</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>AuthAspNetIdentity</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>SetupGet</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>/get</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#001080;'>authed</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>authed</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>WriteString</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Authenticated Content</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>)</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<div class="NOTE">
+<h5>Note</h5>
+<p>There are no <code>SetupAnonymous</code> methods for the <code>POST</code>, <code>PUT</code>, <code>PATCH</code>, and <code>DELETE</code> methods, so you must use the second option, or call <a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_ClearAuthProviders">ClearAuthProviders()</a> when setting up the route.</p>
+</div>
+<h4 id="authenticating-with-nouser">Authenticating with <code>NoUser</code></h4>
+<p>The following example uses an extension method, <a class="xref" href="../../api/Seltzr.Extensions.SeltzrOptionsBuilderExtensions.html#Seltzr_Extensions_SeltzrOptionsBuilderExtensions_AuthBasic__1_Seltzr_Options_Builder_SeltzrOptionsBuilder___0_Seltzr_Auth_NoUser__System_String_System_String_">AuthBasic&lt;TModel&gt;(SeltzrOptionsBuilder&lt;TModel, NoUser&gt;, String, String)</a>, which is only available when the API's user context is set to <a href="#nouser">NoUser</a></p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'thdhkppb')">Copy</button></div><pre id="thdhkppb"><code><span style='color:#001080;'>options</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>options</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>	</span><span style='color:#001080;'>options</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>AuthBasic</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Username</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Password1</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>SetupGet</span><span style='color:#222222;'>(</span><span style='color:#001080;'>authed</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>authed</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>WriteString</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Authenticated Content</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>)</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Seltzr/Seltzr/blob/master/docs-src/docfx_project/articles/authentication/authentication.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

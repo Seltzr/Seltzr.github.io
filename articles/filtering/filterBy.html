@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>FilterBy Builder Methods </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="FilterBy Builder Methods ">
+    <meta name="generator" content="docfx 2.52.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.png">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../favicon.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="filter-by">
+<h1 id="filterby-builder-methods"><code>FilterBy</code> Builder Methods</h1>
+
+<p>Seltzr includes several <code>FilterBy</code> methods to simplify the process of comparing request parameters to properties on the model. Every method is tagged with either <code>Query</code>, meaning that a query parameter value will be used for the comparison, or <code>Route</code>, meaning that a route value will be used for the comparison.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>There is also a more generic <code>FilterByParameter</code> method which takes in any <a class="xref" href="../../api/Seltzr.ParameterRetrievers.ParameterRetriever.html">ParameterRetriever</a> so that this functionality can be extended to other parameters, like headers.</p>
+</div>
+<h2 id="usage">Usage</h2>
+<p>The following examples show typical usage of the <code>FilterBy</code> methods.</p>
+<p>This example demonstrates how to create a <code>GET</code> request that returns only the blog posts belonging to a particular blog.</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'tjywduyy')">Copy</button></div><pre id="tjywduyy"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>BlogPost</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>/blogs/{blogId}/posts</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#001080;'>posts</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>	</span><span style='color:#001080;'>posts</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>FilterByRouteEqual</span><span style='color:#222222;'>(</span><span style='color:#001080;'>p</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>p</span><span style='color:#222222;'>.</span><span style='color:#001080;'>BlogId</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>CanGet</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<p>The <code>FilterBy</code> methods, as shown above, can infer the name of the route value to compare to the models' property by camelCasing the property name. Here, <code>blogId</code> is the inferred name of the route value for the <code>BlogId</code> property. However, the name can also be specified explicitly:</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'bhmwqiry')">Copy</button></div><pre id="bhmwqiry"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>BlogPost</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>/blogs/{blogId}/posts</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#001080;'>posts</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>	</span><span style='color:#001080;'>posts</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>FilterByQueryEqual</span><span style='color:#222222;'>(</span><span style='color:#001080;'>p</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>p</span><span style='color:#222222;'>.</span><span style='color:#001080;'>AuthorName</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>author</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>CanGet</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<p>For more complex logic, use the <code>FilterByQuery</code> and <code>FilterByRoute</code> methods without <strong>Equal</strong>. These methods take in an additional lambda parameter that takes in the property value and the parsed parameter value and returns a boolean. This example will only return blog posts that were created after the specified <code>after</code> date.</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'nipermhd')">Copy</button></div><pre id="nipermhd"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>BlogPost</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>/blog/posts</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#001080;'>posts</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>	</span><span style='color:#001080;'>posts</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>FilterByQuery</span><span style='color:#222222;'>(</span><span style='color:#001080;'>p</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>p</span><span style='color:#222222;'>.</span><span style='color:#001080;'>DateCreated</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>after</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#222222;'>(</span><span style='color:#001080;'>prop</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#001080;'>param</span><span style='color:#222222;'>)</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>prop</span><span style='color:black;'> </span><span style='color:#000000;'>&gt;=</span><span style='color:black;'> </span><span style='color:#001080;'>param</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>CanGet</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<p>The above examples will throw an error if the parameter is not present. Most <code>FilterBy</code> methods can have <code>Opt</code> appended to the end of the method name. These methods will not apply the filter if the request parameter is null or not present.</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'qaabikks')">Copy</button></div><pre id="qaabikks"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>BlogPost</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>/blog/posts</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#001080;'>posts</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>	</span><span style='color:#001080;'>posts</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>FilterByQueryEqualOpt</span><span style='color:#222222;'>(</span><span style='color:#001080;'>p</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>p</span><span style='color:#222222;'>.</span><span style='color:#001080;'>Id</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>CanGet</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<div class="NOTE">
+<h5>Note</h5>
+<p>To set additional restrictions on the values of request parameters, see <a class="xref" href="../conditions/conditions.html#using-conditions-with-filters">Conditions</a></p>
+</div>
+<div class="WARNING">
+<h5>Warning</h5>
+<p><code>FilterBy</code> methods can only compare properties of the following types: <code>int</code>, <code>long</code>, <code>float</code>, <code>double</code>, <code>Guid</code>, <code>decimal</code>, <code>DateTime</code>, <code>bool</code>, and <code>string</code>. If a property with another type is used, a runtime exception will be thrown when attempting to filter.</p>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Seltzr/Seltzr/blob/master/docs-src/docfx_project/articles/filtering/filterBy.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

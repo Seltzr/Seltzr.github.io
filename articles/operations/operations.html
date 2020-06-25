@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Operations </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Operations ">
+    <meta name="generator" content="docfx 2.52.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.png">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../favicon.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="operations">
+<h1 id="operations">Operations</h1>
+
+<p>The Operation is the eighth step of the request flow, in between pre- and post-operation Actions. The operation represents the primary function of the route, whether to create, update, delete, or have some other side-effect on the data source. It is passed in the <a class="xref" href="../../api/Seltzr.Context.ApiContext-2.html">ApiContext&lt;TModel, TUser&gt;</a> and the dataset to operate on. When creating or updating, this dataset is often ignored in favor of the parsed models available in the <a class="xref" href="../../api/Seltzr.Context.ApiContext-2.html">ApiContext&lt;TModel, TUser&gt;</a>. However, in other cases, like when deleting, this dataset determines which models to operate on. Regardless of the source of the models, an Operation always returns an <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable&lt;T&gt;</a> containing the models it affected. This dataset is then passed to the post-operation Actions and Result Writer.</p>
+<p>The Operation request flow step is optional. If no Operation is provided, the dataset remains unaffected and the route will serialize and return the dataset. This is typically how <code>GET</code> requests are set up.</p>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>Base Seltzr includes no Operations. Instead, use packages like <code>Seltzr.EntityFramework</code>, <code>Seltzr.EntityFrameworkCore</code>, and <code>Seltzr.LinqToDB</code> which include customized Operations for working with the ORM.</p>
+</div>
+<h1 id="builder-methods">Builder Methods</h1>
+<h2 id="low-level-methods">Low-Level Methods</h2>
+<p>These methods are primarily used when you've implemented your own <a class="xref" href="../../api/Seltzr.Operations.IOperation-2.html">IOperation&lt;TModel, TUser&gt;</a> and want to attach it to a route.</p>
+<ul>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_UseOperation_Seltzr_Operations_IOperation__0__1__">UseOperation(IOperation&lt;TModel, TUser&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_UseOperation__1">UseOperation&lt;TOperation&gt;()</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_ClearOperation">ClearOperation()</a></li>
+</ul>
+<h2 id="high-level-methods">High-Level Methods</h2>
+<p>There are no high-level builder methods for adding common Operations. Instead you'll typically set an Operation when creating a new route. See <a class="xref" href="../routing/routing.html#examples">Routing</a> for examples.</p>
+<h2 id="examples">Examples</h2>
+<h4 id="using-a-custom-operation-on-a-route">Using a custom Operation on a route</h4>
+<p>This example uses a custom Operation that updates an existing model or creates a new one.</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'rmlyeppj')">Copy</button></div><pre id="rmlyeppj"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>addorupdate</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#001080;'>api</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>	</span><span style='color:#001080;'>api</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseOperation</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>CreateOrUpdate</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>CanPost</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Seltzr/Seltzr/blob/master/docs-src/docfx_project/articles/operations/operations.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

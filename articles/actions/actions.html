@@ -1,0 +1,200 @@
+﻿<!DOCTYPE html>
+
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Actions </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Actions ">
+    <meta name="generator" content="docfx 2.52.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.png">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../favicon.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="actions">
+<h1 id="actions">Actions</h1>
+
+<p>You can add Actions to a route that run before and after the <a class="xref" href="../operations/operations.html">Operation</a>. Actions are provided the current <a class="xref" href="../../api/Seltzr.Context.IApiContext-2.html">IApiContext&lt;TModel, TUser&gt;</a> and dataset and don't return anything. Pre-operation Actions are the seventh step of the request flow, after condition checks, and are typically used to modify the parsed request body before it's sent to the Operation. Post-operation Actions are the ninth step of the request flow, before result writing, and are typically used to modify the API response before it's sent.</p>
+<h2 id="builder-methods">Builder Methods</h2>
+<h3 id="low-level-methods">Low-Level Methods</h3>
+<p>These methods are primarily used when you've implemented your own <a class="xref" href="../../api/Seltzr.Actions.IPostOpAction-2.html">IPostOpAction&lt;TModel, TUser&gt;</a> or <a class="xref" href="../../api/Seltzr.Actions.IPreOpAction-2.html">IPreOpAction&lt;TModel, TUser&gt;</a> and want to attach it to a route.</p>
+<ul>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_AddPostOpAction_Seltzr_Actions_IPostOpAction__0__1__">AddPostOpAction(IPostOpAction&lt;TModel, TUser&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_AddPostOpAction__1">AddPostOpAction&lt;TAction&gt;()</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_AddPreOpAction_Seltzr_Actions_IPreOpAction__0__1__">AddPreOpAction(IPreOpAction&lt;TModel, TUser&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_AddPreOpAction__1">AddPreOpAction&lt;TAction&gt;()</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_ClearPostOpActions">ClearPostOpActions()</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_ClearPreOpActions">ClearPreOpActions()</a></li>
+</ul>
+<h3 id="high-level-methods">High-Level Methods</h3>
+<p><strong>Builder Prefix:</strong> <code>Before</code>, <code>After</code></p>
+<ul>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_After_System_Action_Seltzr_Context_IApiContext__0__1__System_Collections_Generic_IEnumerable__0___">After(Action&lt;IApiContext&lt;TModel, TUser&gt;, IEnumerable&lt;TModel&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_AfterAsync_System_Func_Seltzr_Context_IApiContext__0__1__System_Collections_Generic_IEnumerable__0__System_Threading_Tasks_Task__">AfterAsync(Func&lt;IApiContext&lt;TModel, TUser&gt;, IEnumerable&lt;TModel&gt;, Task&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Before_System_Action_Seltzr_Context_IApiContext__0__1__System_Linq_IQueryable__0___">Before(Action&lt;IApiContext&lt;TModel, TUser&gt;, IQueryable&lt;TModel&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_BeforeAsync_System_Func_Seltzr_Context_IApiContext__0__1__System_Linq_IQueryable__0__System_Threading_Tasks_Task__">BeforeAsync(Func&lt;IApiContext&lt;TModel, TUser&gt;, IQueryable&lt;TModel&gt;, Task&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Deprecate_System_String_">Deprecate(String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_ForEach_System_Action__0__">ForEach(Action&lt;TModel&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_ForEachAsync_System_Func__0_System_Threading_Tasks_Task__">ForEachAsync(Func&lt;TModel, Task&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_ForEachInput_System_Action__0__">ForEachInput(Action&lt;TModel&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_ForEachInputAsync_System_Func__0_System_Threading_Tasks_Task__">ForEachInputAsync(Func&lt;TModel, Task&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_SetHeader_System_String_System_Func_Seltzr_Context_IApiContext__0__1__System_Collections_Generic_IEnumerable__0__System_String__">SetHeader(String, Func&lt;IApiContext&lt;TModel, TUser&gt;, IEnumerable&lt;TModel&gt;, String&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_SetHeader_System_String_System_String_">SetHeader(String, String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_SetHeaderAsync_System_String_System_Func_Seltzr_Context_IApiContext__0__1__System_Collections_Generic_IEnumerable__0__System_Threading_Tasks_Task_System_String___">SetHeaderAsync(String, Func&lt;IApiContext&lt;TModel, TUser&gt;, IEnumerable&lt;TModel&gt;, Task&lt;String&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_SetValue_System_Linq_Expressions_Expression_System_Func__0_System_Object___Seltzr_ParameterRetrievers_ParameterRetriever_">SetValue(Expression&lt;Func&lt;TModel, Object&gt;&gt;, ParameterRetriever)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_SetValue_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_Func_Seltzr_Context_IApiContext__0__1__System_Object__">SetValue(Expression&lt;Func&lt;TModel, Object&gt;&gt;, Func&lt;IApiContext&lt;TModel, TUser&gt;, Object&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_SetValue_System_Reflection_PropertyInfo_Seltzr_ParameterRetrievers_ParameterRetriever_">SetValue(PropertyInfo, ParameterRetriever)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_SetValue_System_Reflection_PropertyInfo_System_Func_Seltzr_Context_IApiContext__0__1__System_Object__">SetValue(PropertyInfo, Func&lt;IApiContext&lt;TModel, TUser&gt;, Object&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_SetValueAsync_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_Func_Seltzr_Context_IApiContext__0__1__System_Threading_Tasks_Task_System_Object___">SetValueAsync(Expression&lt;Func&lt;TModel, Object&gt;&gt;, Func&lt;IApiContext&lt;TModel, TUser&gt;, Task&lt;Object&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_SetValueAsync_System_Reflection_PropertyInfo_System_Func_Seltzr_Context_IApiContext__0__1__System_Threading_Tasks_Task_System_Object___">SetValueAsync(PropertyInfo, Func&lt;IApiContext&lt;TModel, TUser&gt;, Task&lt;Object&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_SetValueQuery_System_Linq_Expressions_Expression_System_Func__0_System_Object___">SetValueQuery(Expression&lt;Func&lt;TModel, Object&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_SetValueQuery_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_">SetValueQuery(Expression&lt;Func&lt;TModel, Object&gt;&gt;, String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_SetValueQuery_System_Reflection_PropertyInfo_">SetValueQuery(PropertyInfo)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_SetValueQuery_System_Reflection_PropertyInfo_System_String_">SetValueQuery(PropertyInfo, String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_SetValueRoute_System_Linq_Expressions_Expression_System_Func__0_System_Object___">SetValueRoute(Expression&lt;Func&lt;TModel, Object&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_SetValueRoute_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_">SetValueRoute(Expression&lt;Func&lt;TModel, Object&gt;&gt;, String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_SetValueRoute_System_Reflection_PropertyInfo_">SetValueRoute(PropertyInfo)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_SetValueRoute_System_Reflection_PropertyInfo_System_String_">SetValueRoute(PropertyInfo, String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_WriteResponseCountValue">WriteResponseCountValue()</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_WriteResponseValue_System_String_System_Func_Seltzr_Context_IApiContext__0__1__System_Collections_Generic_IEnumerable__0__System_Object__">WriteResponseValue(String, Func&lt;IApiContext&lt;TModel, TUser&gt;, IEnumerable&lt;TModel&gt;, Object&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_WriteResponseValue_System_String_System_Object_">WriteResponseValue(String, Object)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_WriteResponseValue__1_System_Func_Seltzr_Context_IApiContext__0__1__System_Collections_Generic_IEnumerable__0__System_Object__">WriteResponseValue&lt;TAttribute&gt;(Func&lt;IApiContext&lt;TModel, TUser&gt;, IEnumerable&lt;TModel&gt;, Object&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_WriteResponseValue__1_System_Object_">WriteResponseValue&lt;TAttribute&gt;(Object)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_WriteResponseValueAsync_System_String_System_Func_Seltzr_Context_IApiContext__0__1__System_Collections_Generic_IEnumerable__0__System_Threading_Tasks_Task_System_Object___">WriteResponseValueAsync(String, Func&lt;IApiContext&lt;TModel, TUser&gt;, IEnumerable&lt;TModel&gt;, Task&lt;Object&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_WriteResponseValueAsync__1_System_Func_Seltzr_Context_IApiContext__0__1__System_Collections_Generic_IEnumerable__0__System_Threading_Tasks_Task_System_Object___">WriteResponseValueAsync&lt;TAttribute&gt;(Func&lt;IApiContext&lt;TModel, TUser&gt;, IEnumerable&lt;TModel&gt;, Task&lt;Object&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_WriteVersion_System_String_">WriteVersion(String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_WriteVersionHeader_System_String_">WriteVersionHeader(String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_WriteVersionValue_System_String_">WriteVersionValue(String)</a></li>
+</ul>
+<h2 id="examples">Examples</h2>
+<h4 id="setting-a-value-on-a-parsed-model-before-the-operation">Setting a value on a parsed model before the operation</h4>
+<p>The <code>SetValue</code> methods can be used to set properties' values on parsed models before the operation.</p>
+<p>This example will always set the <code>Value</code> of the model to <code>4</code></p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'oihyfpuo')">Copy</button></div><pre id="oihyfpuo"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>api</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>    </span><span style='color:#001080;'>api</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>SetValue</span><span style='color:#222222;'>(</span><span style='color:#001080;'>m</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>m</span><span style='color:#222222;'>.</span><span style='color:#001080;'>Value</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#222222;'>(</span><span style='color:#001080;'>c</span><span style='color:#222222;'>)</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#098658;'>4</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<p>The <a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_SetValue_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_Func_Seltzr_Context_IApiContext__0__1__System_Object__">SetValue(Expression&lt;Func&lt;TModel, Object&gt;&gt;, Func&lt;IApiContext&lt;TModel, TUser&gt;, Object&gt;)</a> method uses a <code>Func</code> parameter to get the desired value of the property, which is passed the current API context.</p>
+<p>This example uses a service to get the desired value for the <code>Value</code> property.</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'usmkbpqe')">Copy</button></div><pre id="usmkbpqe"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>api</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>    </span><span style='color:#001080;'>api</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>SetValue</span><span style='color:#222222;'>(</span><span style='color:#001080;'>m</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>m</span><span style='color:#222222;'>.</span><span style='color:#001080;'>Value</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#222222;'>(</span><span style='color:#001080;'>c</span><span style='color:#222222;'>)</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>c</span><span style='color:#222222;'>.</span><span style='color:#001080;'>Services</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>GetRequiredService</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>IValueManager</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>GetNextValue</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<p>The <code>SetValueQuery</code> and <code>SetValueRoute</code> methods can also be used to set properties using request parameters.</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'vqkxntsi')">Copy</button></div><pre id="vqkxntsi"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>{val}</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#001080;'>api</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>    </span><span style='color:#001080;'>api</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>SetValueQuery</span><span style='color:#222222;'>(</span><span style='color:#001080;'>m</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>m</span><span style='color:#222222;'>.</span><span style='color:#001080;'>ChildId</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span><span style='color:black;'> </span><span style='color:#008000;'>//</span><span style='color:#008000;'> query parameter name is inferred to be &quot;childId&quot;</span>
+<span style='color:black;'>    </span><span style='color:#001080;'>api</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>SetValueRoute</span><span style='color:#222222;'>(</span><span style='color:#001080;'>m</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>m</span><span style='color:#222222;'>.</span><span style='color:#001080;'>Value</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>val</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<h4 id="modifying-values-of-parsed-models-before-the-operation">Modifying values of parsed models before the operation</h4>
+<p>The <a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_ForEachInput_System_Action__0__">ForEachInput(Action&lt;TModel&gt;)</a> and <a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_ForEachInputAsync_System_Func__0_System_Threading_Tasks_Task__">ForEachInputAsync(Func&lt;TModel, Task&gt;)</a> methods can be used to modify existing values on parsed models before the operation.</p>
+<p>This example trims the <code>Name</code> field of a model before it's created or updated.</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'gqqkcxwf')">Copy</button></div><pre id="gqqkcxwf"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>api</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>    </span><span style='color:#001080;'>api</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>ForEachInput</span><span style='color:#222222;'>(</span><span style='color:#001080;'>m</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>m</span><span style='color:#222222;'>.</span><span style='color:#001080;'>Name</span><span style='color:black;'> </span><span style='color:#000000;'>=</span><span style='color:black;'> </span><span style='color:#001080;'>m</span><span style='color:#222222;'>.</span><span style='color:#001080;'>Name</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>Trim</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<h4 id="logging-events-with-actions">Logging events with Actions</h4>
+<p>The <code>After</code> and <code>Before</code> methods can be used for logging events.</p>
+<p>This example injects an <a class="xref" href="https://docs.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1">ILogger&lt;TCategoryName&gt;</a> to log after the operation.</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'qzqawhzf')">Copy</button></div><pre id="qzqawhzf"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>api</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>    </span><span style='color:#001080;'>api</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>After</span><span style='color:#222222;'>(</span><span style='color:#222222;'>(</span><span style='color:#001080;'>c</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#001080;'>d</span><span style='color:#222222;'>)</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>		</span><span style='color:#001080;'>c</span><span style='color:#222222;'>.</span><span style='color:#001080;'>Services</span><span style='color:#222222;'>.</span><span style='color:#001080;'>GetRequiredService</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>ILogger</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>CreateOperation</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>LogInformation</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Created {count} models</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#001080;'>d</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>Count</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<h4 id="setting-response-values">Setting response values</h4>
+<p>See <a class="xref" href="../writing/wrapping.html">Response Wrapping</a> for details on using the <code>WriteValue</code> methods.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Seltzr/Seltzr/blob/master/docs-src/docfx_project/articles/actions/actions.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

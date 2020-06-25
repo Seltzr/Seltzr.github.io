@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html>
+
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Conditions </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Conditions ">
+    <meta name="generator" content="docfx 2.52.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.png">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../favicon.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="conditions">
+<h1 id="conditions">Conditions</h1>
+
+<p>Checking conditions is the sixth step in the request flow. It occurs after filtering and before pre-operation actions. An unlimited number of Conditions may be added to a route. They are run in order against the filtered dataset and the current <a class="xref" href="../../api/Seltzr.Context.IApiContext-2.html">IApiContext&lt;TModel, TUser&gt;</a>. Conditions return a boolean value indicating whether or not the condition has passed, and can also throw an exception upon failure. If a condition does not pass, an exception of type <a class="xref" href="../../api/Seltzr.Exceptions.ConditionFailedException.html">ConditionFailedException</a> is thrown and the route stops further execution.</p>
+<h2 id="builder-methods">Builder Methods</h2>
+<h3 id="low-level-methods">Low-Level Methods</h3>
+<p>These methods are primarily used when you've implemented your own <a class="xref" href="../../api/Seltzr.Conditions.ICondition-2.html">ICondition&lt;TModel, TUser&gt;</a> and want to attach it to a route.</p>
+<ul>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_AddCondition_Seltzr_Conditions_ICondition__0__1__">AddCondition(ICondition&lt;TModel, TUser&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_AddCondition__1">AddCondition&lt;TCondition&gt;()</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_ClearConditions">ClearConditions()</a></li>
+</ul>
+<h3 id="high-level-methods">High-Level Methods</h3>
+<p><strong>Builder Prefix:</strong> <code>Require</code></p>
+<p>These are the methods you'll typically use to set conditions on a route.</p>
+<ul>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Require_System_Func_Seltzr_Context_IApiContext__0__1__System_Linq_IQueryable__0__System_Boolean__System_String_">Require(Func&lt;IApiContext&lt;TModel, TUser&gt;, IQueryable&lt;TModel&gt;, Boolean&gt;, String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Require_System_Func_System_Linq_IQueryable__0__System_Boolean__System_String_">Require(Func&lt;IQueryable&lt;TModel&gt;, Boolean&gt;, String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_RequireAll_System_Func__0_System_Boolean__System_String_">RequireAll(Func&lt;TModel, Boolean&gt;, String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_RequireAllInput_System_Func__0_System_Boolean__System_String_">RequireAllInput(Func&lt;TModel, Boolean&gt;, String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_RequireAsync_System_Func_Seltzr_Context_IApiContext__0__1__System_Linq_IQueryable__0__System_Threading_Tasks_Task_System_Boolean___System_String_">RequireAsync(Func&lt;IApiContext&lt;TModel, TUser&gt;, IQueryable&lt;TModel&gt;, Task&lt;Boolean&gt;&gt;, String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_RequireAsync_System_Func_System_Linq_IQueryable__0__System_Threading_Tasks_Task_System_Boolean___System_String_">RequireAsync(Func&lt;IQueryable&lt;TModel&gt;, Task&lt;Boolean&gt;&gt;, String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_RequireAtLeast_System_Int32_System_String_">RequireAtLeast(Int32, String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_RequireExactly_System_Int32_System_String_">RequireExactly(Int32, String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_RequireExactlyOne_System_String_">RequireExactlyOne(String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_RequireExactlyOneInput_System_String_">RequireExactlyOneInput(String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_RequireInput_System_Func__0___System_Boolean__System_String_">RequireInput(Func&lt;TModel[], Boolean&gt;, String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_RequireInputAsync_System_Func__0___System_Threading_Tasks_Task_System_Boolean___System_String_">RequireInputAsync(Func&lt;TModel[], Task&lt;Boolean&gt;&gt;, String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_RequireInputHasAtLeast_System_Int32_System_String_">RequireInputHasAtLeast(Int32, String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_RequireInputHasExactly_System_Int32_System_String_">RequireInputHasExactly(Int32, String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_RequireNonEmpty_System_String_">RequireNonEmpty(String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_RequireNonEmptyInput_System_String_">RequireNonEmptyInput(String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_RequireParameter__1_Seltzr_ParameterRetrievers_ParameterRetriever_System_Func___0_System_Boolean__System_String_">RequireParameter&lt;T&gt;(ParameterRetriever, Func&lt;T, Boolean&gt;, String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_RequireParameterOpt__1_Seltzr_ParameterRetrievers_ParameterRetriever_System_Func___0_System_Boolean__System_String_">RequireParameterOpt&lt;T&gt;(ParameterRetriever, Func&lt;T, Boolean&gt;, String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_RequireQuery__1_System_String_System_Func___0_System_Boolean__System_String_">RequireQuery&lt;T&gt;(String, Func&lt;T, Boolean&gt;, String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_RequireQueryOpt__1_System_String_System_Func___0_System_Boolean__System_String_">RequireQueryOpt&lt;T&gt;(String, Func&lt;T, Boolean&gt;, String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_RequireRoute__1_System_String_System_Func___0_System_Boolean__System_String_">RequireRoute&lt;T&gt;(String, Func&lt;T, Boolean&gt;, String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_RequireRouteOpt__1_System_String_System_Func___0_System_Boolean__System_String_">RequireRouteOpt&lt;T&gt;(String, Func&lt;T, Boolean&gt;, String)</a></li>
+</ul>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>Even though the <code>RequireProperty</code> methods share a similar name and purpose with the condition methods, they actually set <a class="xref" href="../parsing/parsing.html#parsingoptions">ParsingOptions</a> on the <a class="xref" href="../../api/Seltzr.Parsers.IBodyParser-1.html">IBodyParser&lt;TModel&gt;</a> and do <em>not</em> enforce conditions.</p>
+</div>
+<h2 id="examples">Examples</h2>
+<h4 id="requiring-a-condition-on-every-element-in-the-dataset">Requiring a condition on every element in the dataset</h4>
+<p>The <a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_RequireAll_System_Func__0_System_Boolean__System_String_">RequireAll(Func&lt;TModel, Boolean&gt;, String)</a> method can be used to setup one Condition that checks every single element in the dataset.</p>
+<p>The following example ensures that every element in the filtered dataset was created recently.</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'lnajqacr')">Copy</button></div><pre id="lnajqacr"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>BlogPost</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>api</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>    </span><span style='color:#001080;'>api</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>RequireAll</span><span style='color:#222222;'>(</span><span style='color:#001080;'>m</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>m</span><span style='color:#222222;'>.</span><span style='color:#001080;'>DateCreated</span><span style='color:black;'> </span><span style='color:#000000;'>&lt;</span><span style='color:black;'> </span><span style='color:#001080;'>DateTime</span><span style='color:#222222;'>.</span><span style='color:#001080;'>Now</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>AddDays</span><span style='color:#222222;'>(</span><span style='color:#000000;'>-</span><span style='color:#098658;'>30</span><span style='color:#222222;'>)</span><span style='color:#222222;'>)</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<p>The <a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_RequireAllInput_System_Func__0_System_Boolean__System_String_">RequireAllInput(Func&lt;TModel, Boolean&gt;, String)</a> works in the same way with the parsed request body.</p>
+<p>The following example ensures that the <code>PublishDate</code> of every element in the parsed body is in the future.</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'dksvneun')">Copy</button></div><pre id="dksvneun"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>BlogPost</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>api</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>    </span><span style='color:#001080;'>api</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>RequireAll</span><span style='color:#222222;'>(</span><span style='color:#001080;'>m</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>m</span><span style='color:#222222;'>.</span><span style='color:#001080;'>PublishDate</span><span style='color:black;'> </span><span style='color:#000000;'>&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>DateTime</span><span style='color:#222222;'>.</span><span style='color:#001080;'>Now</span><span style='color:#222222;'>)</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Even if your body parser doesn't accept arrays, the <a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_RequireAllInput_System_Func__0_System_Boolean__System_String_">RequireAllInput(Func&lt;TModel, Boolean&gt;, String)</a> method will still work fine.</p>
+</div>
+<h4 id="using-conditions-with-filters">Using Conditions with Filters</h4>
+<p>Conditions can be especially powerful when used in conjunction with parameter Filters.</p>
+<p>The following example shows how to set up a Filter on a query parameter and restricting its bounds to certain range.</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'lannqmkh')">Copy</button></div><pre id="lannqmkh"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>api</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>    </span><span style='color:#001080;'>api</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>FilterByQueryEqual</span><span style='color:#222222;'>(</span><span style='color:#001080;'>m</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>m</span><span style='color:#222222;'>.</span><span style='color:#001080;'>Value</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>RequireQuery</span><span style='color:#222222;'>&lt;</span><span style='color:#0000FF;'>int</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>value</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#001080;'>v</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>v</span><span style='color:black;'> </span><span style='color:#000000;'>&gt;</span><span style='color:black;'> </span><span style='color:#098658;'>10</span><span style='color:black;'> </span><span style='color:#000000;'>&amp;&amp;</span><span style='color:black;'> </span><span style='color:#001080;'>v</span><span style='color:black;'> </span><span style='color:#000000;'>&lt;</span><span style='color:black;'> </span><span style='color:#098658;'>50</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<div class="TIP">
+<h5>Tip</h5>
+<p>These methods accept a type parameter to parse the parameter before it's passed to the lambda method. To avoid parsing the parameter, use the <code>string</code> type.</p>
+</div>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Like the <code>FilterBy</code> methods, <code>Require</code> methods that work with request parameters have <code>Opt</code> alternatives that only apply the condition when the request parameter is present</p>
+</div>
+<h4 id="setting-a-custom-error-message-on-a-condition">Setting a custom error message on a Condition</h4>
+<p>All Condition builder methods have a <code>failureMessage</code> parameter that defaults to <code>null</code>, which will use a default error message. To customize the exception message and, therefore, the error message shown when using the <a class="xref" href="../../api/Seltzr.ExceptionHandlers.SimpleExceptionHandler.html">SimpleExceptionHandler</a>, provide a value for the <code>failureMessage</code> parameter.</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'ctkucdwc')">Copy</button></div><pre id="ctkucdwc"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>api</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>    </span><span style='color:#001080;'>api</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>RequireAllInput</span><span style='color:#222222;'>(</span><span style='color:#001080;'>m</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>m</span><span style='color:#222222;'>.</span><span style='color:#001080;'>Value</span><span style='color:black;'> </span><span style='color:#000000;'>&lt;</span><span style='color:black;'> </span><span style='color:#098658;'>50</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Value must be less than 50 for all provided models</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<h4 id="using-the-require-method-for-more-complex-logic">Using the <code>Require</code> method for more complex logic</h4>
+<p>The <code>Require</code> and <code>RequireAsync</code> methods both take in a function, which either accepts the dataset or both the dataset and <a class="xref" href="../../api/Seltzr.Context.IApiContext-2.html">IApiContext&lt;TModel, TUser&gt;</a>, and returns a boolean value indicating whether or not the condition was met.</p>
+<p>This example verifies that the <code>Value</code> property of models with <code>ValueType</code> set to <code>&quot;Integer&quot;</code> doesn't have a decimal component.</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'jvouyrzl')">Copy</button></div><pre id="jvouyrzl"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>api</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>    </span><span style='color:#001080;'>api</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>Require</span><span style='color:#222222;'>(</span><span style='color:#001080;'>d</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>d</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>Where</span><span style='color:#222222;'>(</span><span style='color:#001080;'>m</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>m</span><span style='color:#222222;'>.</span><span style='color:#001080;'>ValueType</span><span style='color:black;'> </span><span style='color:#000000;'>==</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>Integer</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>)</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>All</span><span style='color:#222222;'>(</span><span style='color:#001080;'>m</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>(</span><span style='color:#001080;'>m</span><span style='color:#222222;'>.</span><span style='color:#001080;'>Value</span><span style='color:black;'> </span><span style='color:#000000;'>-</span><span style='color:black;'> </span><span style='color:#222222;'>(</span><span style='color:#0000FF;'>int</span><span style='color:#222222;'>)</span><span style='color:#001080;'>m</span><span style='color:#222222;'>.</span><span style='color:#001080;'>Value</span><span style='color:#222222;'>)</span><span style='color:black;'> </span><span style='color:#000000;'>&lt;</span><span style='color:black;'> </span><span style='color:#098658;'>0.00001</span><span style='color:#222222;'>)</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Seltzr/Seltzr/blob/master/docs-src/docfx_project/articles/conditions/conditions.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

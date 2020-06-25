@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Pagination </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Pagination ">
+    <meta name="generator" content="docfx 2.52.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.png">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../favicon.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="pagination">
+<h1 id="pagination">Pagination</h1>
+
+<p>The <a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html">SeltzrOptionsBuilder&lt;TModel, TUser&gt;</a> class includes a number of <code>Paginate</code> methods which can be used to easily add pagination to an API route.</p>
+<div class="TIP">
+<h5>Tip</h5>
+<p>The <code>Paginate</code> methods will automatically set the response values marked with <a class="xref" href="../../api/Seltzr.Responses.Attributes.CurrentPageAttribute.html">CurrentPageAttribute</a> and <a class="xref" href="../../api/Seltzr.Responses.Attributes.TotalPagesAttribute.html">TotalPagesAttribute</a> if the response is wrapped. <a class="xref" href="../writing/wrapping.html">Wrapping Responses</a> is a good idea with pagination so that API consumers can navigate between pages more easily. The examples on this page will all implicitly use wrapped responses.</p>
+</div>
+<h2 id="usage">Usage</h2>
+<p>The following examples show typical usage of the <code>Paginate</code> methods.</p>
+<ul>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Paginate">Paginate()</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Paginate_System_String_System_Int32_">Paginate(String, Int32)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Paginate_System_String_System_String_">Paginate(String, String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Paginate_System_String_System_String_System_Int32_">Paginate(String, String, Int32)</a></li>
+</ul>
+<p>Without any parameters, the <a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Paginate">Paginate()</a> method will return all models with no parameters, or, if the <code>count</code> query parameter is specified, <code>count</code> number of models. Which models to show is determined by the <code>page</code> query parameter, which starts at <code>1</code>.</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'mxhhvpjr')">Copy</button></div><pre id="mxhhvpjr"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>api</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>	</span><span style='color:#001080;'>api</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>Paginate</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>CanGet</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<p>The following example requests show the behavior of this method:</p>
+<div class="code-header"><span class="language">Request</span></div><pre id="ivfgrjwk" class="request-pre"><code><span style='color:#0000FF;'>GET</span><span style='color:#808080;'> https://localhost:5001/</span>
+<span style='color:#808080;'></span></code></pre>
+<div class="code-header response-header"><span class="language">Response</span></div><pre id="tedcnftp"><code><span style='color:#222222;'>{</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>&quot;</span><span style='color:#0451A5;'>Elements</span><span style='color:#222222;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#222222;'>[</span>
+<span style='color:black;'>		</span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>]</span><span style='color:#222222;'>,</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>&quot;</span><span style='color:#0451A5;'>Count</span><span style='color:#222222;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#098658;'>250</span>
+<span style='color:#222222;'>}</span>
+<span style='color:black;'></span></code></pre>
+<div class="code-header"><span class="language">Request</span></div><pre id="rjvdkhsk" class="request-pre"><code><span style='color:#0000FF;'>GET</span><span style='color:#808080;'> https://localhost:5001/</span><span style='color:#098658;'>?</span><span style='color:#001080;'>page</span><span style='color:#808080;'>=</span><span style='color:#000000;'>2</span><span style='color:#098658;'>&amp;</span><span style='color:#001080;'>count</span><span style='color:#808080;'>=</span><span style='color:#000000;'>50</span>
+<span style='color:#808080;'></span></code></pre>
+<div class="code-header response-header"><span class="language">Response</span></div><pre id="vskjohut"><code><span style='color:#222222;'>{</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>&quot;</span><span style='color:#0451A5;'>Elements</span><span style='color:#222222;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#222222;'>[</span>
+<span style='color:black;'>		</span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>]</span><span style='color:#222222;'>,</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>&quot;</span><span style='color:#0451A5;'>CurrentPage</span><span style='color:#222222;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#098658;'>2</span><span style='color:#222222;'>,</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>&quot;</span><span style='color:#0451A5;'>TotalPages</span><span style='color:#222222;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#098658;'>5</span><span style='color:#222222;'>,</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>&quot;</span><span style='color:#0451A5;'>Count</span><span style='color:#222222;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#098658;'>50</span>
+<span style='color:#222222;'>}</span>
+<span style='color:black;'></span></code></pre>
+<p>Additionally, the overload method <a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Paginate_System_String_System_String_">Paginate(String, String)</a> takes in custom parameter names.</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'rqmfealx')">Copy</button></div><pre id="rqmfealx"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>api</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>	</span><span style='color:#001080;'>api</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>Paginate</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>pageNumber</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>max</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>CanGet</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<p>To set a maximum page size limit, use the <a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Paginate_System_String_System_String_System_Int32_">Paginate(String, String, Int32)</a> overload.</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'ufdlpqpi')">Copy</button></div><pre id="ufdlpqpi"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>api</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>	</span><span style='color:#001080;'>api</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>Paginate</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>page</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>count</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#098658;'>50</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>CanGet</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<div class="code-header"><span class="language">Request</span></div><pre id="lqtixwcf" class="request-pre"><code><span style='color:#0000FF;'>GET</span><span style='color:#808080;'> https://localhost:5001/</span><span style='color:#098658;'>?</span><span style='color:#001080;'>count</span><span style='color:#808080;'>=</span><span style='color:#000000;'>60</span>
+<span style='color:#808080;'></span></code></pre>
+<div class="code-header response-header"><span class="language">Response</span></div><pre id="lcffyrws"><code><span style='color:#222222;'>{</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>&quot;</span><span style='color:#0451A5;'>Elements</span><span style='color:#222222;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#222222;'>[</span>
+<span style='color:black;'>		</span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>]</span><span style='color:#222222;'>,</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>&quot;</span><span style='color:#0451A5;'>CurrentPage</span><span style='color:#222222;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#098658;'>1</span><span style='color:#222222;'>,</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>&quot;</span><span style='color:#0451A5;'>TotalPages</span><span style='color:#222222;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#098658;'>5</span><span style='color:#222222;'>,</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>&quot;</span><span style='color:#0451A5;'>Count</span><span style='color:#222222;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#098658;'>50</span>
+<span style='color:#222222;'>}</span>
+<span style='color:black;'></span></code></pre>
+<p>To prevent custom page sizes, use the <a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Paginate_System_String_System_Int32_">Paginate(String, Int32)</a> overload.</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'ueihyojw')">Copy</button></div><pre id="ueihyojw"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>api</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>	</span><span style='color:#001080;'>api</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>Paginate</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>page</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#098658;'>50</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>CanGet</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<p>The count parameter is now ignored:</p>
+<div class="code-header"><span class="language">Request</span></div><pre id="sdgmsuuh" class="request-pre"><code><span style='color:#0000FF;'>GET</span><span style='color:#808080;'> https://localhost:5001/</span><span style='color:#098658;'>?</span><span style='color:#001080;'>count</span><span style='color:#808080;'>=</span><span style='color:#000000;'>25</span>
+<span style='color:#808080;'></span></code></pre>
+<div class="code-header response-header"><span class="language">Response</span></div><pre id="ouhrivpi"><code><span style='color:#222222;'>{</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>&quot;</span><span style='color:#0451A5;'>Elements</span><span style='color:#222222;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#222222;'>[</span>
+<span style='color:black;'>		</span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>]</span><span style='color:#222222;'>,</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>&quot;</span><span style='color:#0451A5;'>CurrentPage</span><span style='color:#222222;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#098658;'>1</span><span style='color:#222222;'>,</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>&quot;</span><span style='color:#0451A5;'>TotalPages</span><span style='color:#222222;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#098658;'>5</span><span style='color:#222222;'>,</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>&quot;</span><span style='color:#0451A5;'>Count</span><span style='color:#222222;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#098658;'>50</span>
+<span style='color:#222222;'>}</span>
+<span style='color:black;'></span></code></pre>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Seltzr/Seltzr/blob/master/docs-src/docfx_project/articles/filtering/pagination.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,282 @@
+﻿<!DOCTYPE html>
+
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Result Writers </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Result Writers ">
+    <meta name="generator" content="docfx 2.52.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.png">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../favicon.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="result-writers">
+<h1 id="result-writers">Result Writers</h1>
+
+<p>Writing the result is the last step of the request flow. It occurs after post-operation Actions. The Result Writer is responsible for serializing the affected models and optional <a class="xref" href="wrapping.html">wrapped response body</a>. Only one result writer may be attached to a route. A Result Writer is required for a route to be accessible. If serialization fails, an exception of type <a class="xref" href="../../api/Seltzr.Exceptions.WritingFailedException.html">WritingFailedException</a> is thrown.</p>
+<h2 id="formattingoptions">FormattingOptions</h2>
+<p>Every result writer accepts a <a class="xref" href="../../api/Seltzr.Options.FormattingOptions.html">FormattingOptions</a> object, which specifies the properties on the model that should be serialized and whether to [strip the array if the dataset only contains one element](#returning-a-single-element instead-of-an-array). Methods for controlling this object are listed below in <a href="#formatting-options">Formatting Options</a>.</p>
+<h2 id="builder-methods">Builder Methods</h2>
+<h3 id="low-level-methods">Low-Level Methods</h3>
+<p>These methods are primarily used when you've implemented your own <a class="xref" href="../../api/Seltzr.Results.IResultWriter-2.html">IResultWriter&lt;TModel, TUser&gt;</a> and want to attach it to a route.</p>
+<ul>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_UseResultWriter_Seltzr_Results_IResultWriter__0__1__">UseResultWriter(IResultWriter&lt;TModel, TUser&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_UseResultWriter__1">UseResultWriter&lt;TWriter&gt;()</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_ClearResultWriter">ClearResultWriter()</a></li>
+</ul>
+<h3 id="high-level-methods">High-Level Methods</h3>
+<h4 id="result-writers-1">Result Writers</h4>
+<p><strong>Builder Prefix:</strong> <code>Write</code></p>
+<ul>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_WriteJson">WriteJson()</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_WriteJson_System_Text_Json_JsonSerializerOptions_">WriteJson(JsonSerializerOptions)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_WriteJsonOrXml_System_Text_Json_JsonSerializerOptions_">WriteJsonOrXml(JsonSerializerOptions)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_WriteNumberAffected_System_String_">WriteNumberAffected(String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_WriteString_System_String_">WriteString(String)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_WriteXml">WriteXml()</a></li>
+</ul>
+<h4 id="formatting-options">Formatting Options</h4>
+<ul>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Include_System_Linq_Expressions_Expression_System_Func__0_System_Object___">Include(Expression&lt;Func&lt;TModel, Object&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Include_System_Reflection_PropertyInfo_">Include(PropertyInfo)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_IncludeAll">IncludeAll()</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Omit_System_Linq_Expressions_Expression_System_Func__0_System_Object___">Omit(Expression&lt;Func&lt;TModel, Object&gt;&gt;)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_Omit_System_Reflection_PropertyInfo_">Omit(PropertyInfo)</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_OmitAll">OmitAll()</a></li>
+<li><a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_StripArrayIfSingleResult_System_Boolean_">StripArrayIfSingleResult(Boolean)</a></li>
+</ul>
+<p><strong>Extension Methods:</strong></p>
+<ul>
+<li><strong><a class="xref" href="../../api/Seltzr.Extensions.SeltzrOrmOptionsBuilderExtensions.html#Seltzr_Extensions_SeltzrOrmOptionsBuilderExtensions_IncludePrimaryKey__2_Seltzr_Options_Builder_SeltzrOptionsBuilder___0___1__">IncludePrimaryKey&lt;TModel, TUser&gt;(SeltzrOptionsBuilder&lt;TModel, TUser&gt;)</a></strong></li>
+<li><strong><a class="xref" href="../../api/Seltzr.Extensions.SeltzrOrmOptionsBuilderExtensions.html#Seltzr_Extensions_SeltzrOrmOptionsBuilderExtensions_OmitPrimaryKey__2_Seltzr_Options_Builder_SeltzrOptionsBuilder___0___1__">OmitPrimaryKey&lt;TModel, TUser&gt;(SeltzrOptionsBuilder&lt;TModel, TUser&gt;)</a></strong></li>
+</ul>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>Don't confuse <code>Omit</code> and <code>Include</code> with <code>Require</code>, <code>Ignore</code>, and <code>Optional</code>. The former methods work with response bodies, the latter with request bodies.</p>
+</div>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Methods in <strong>bold</strong> are only available with an ORM-backed version of Seltzr, e.g <code>Seltzr.EntityFrameworkCore</code></p>
+</div>
+<h2 id="examples">Examples</h2>
+<h3 id="result-writing">Result Writing</h3>
+<h4 id="writing-json-or-xml-depending-on-the-request">Writing JSON or XML depending on the request</h4>
+<p>The <a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_WriteJsonOrXml_System_Text_Json_JsonSerializerOptions_">WriteJsonOrXml(JsonSerializerOptions)</a> method will determine the result writer to use using the following criteria in order:</p>
+<ol>
+<li>The <code>Accept</code> header was specified and <code>application/json</code> or <code>application/xml</code> is accepted.</li>
+<li>The <code>format</code> query parameter is specified and set to <code>json</code> or <code>xml</code> (case insensitive).</li>
+<li>The <code>Content-Type</code> header was specified and set to <code>application/json</code> or <code>application/xml</code>.</li>
+<li>JSON is used as the default result writer</li>
+</ol>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'gcrqqzst')">Copy</button></div><pre id="gcrqqzst"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>api</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>    </span><span style='color:#001080;'>api</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>WriteJsonOrXml</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<div class="code-header"><span class="language">Request</span></div><pre id="npiiffmz" class="request-pre"><code><span style='color:#0000FF;'>POST</span><span style='color:#808080;'> https://localhost:5000/</span>
+<span style='color:#001080;'>Content-Type:</span><span style='color:#808080;'> application/xml</span>
+<span style='color:#808080;'></span>
+<span style='color:#808080;'>...</span>
+<span style='color:#808080;'></span></code></pre>
+<div class="code-header response-header"><span class="language">Response</span></div><pre id="xuibokyl"><code><span style='color:#800000;'>&lt;</span><span style='color:#800000;'>ArrayOfMyModel</span><span style='color:#800000;'>&gt;</span>
+<span style='color:black;'>	...</span>
+<span style='color:#800000;'>&lt;/</span><span style='color:#800000;'>ArrayOfMyModel</span><span style='color:#800000;'>&gt;</span>
+<span style='color:black;'></span></code></pre>
+<h4 id="writing-the-number-of-affected-models">Writing the number of affected models</h4>
+<p>The <a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_WriteNumberAffected_System_String_">WriteNumberAffected(String)</a> method can be used with a template string to write out the number of affected models.</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'rznsmkmf')">Copy</button></div><pre id="rznsmkmf"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>api</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>    </span><span style='color:#001080;'>api</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>WriteNumberAffected</span><span style='color:#222222;'>(</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>{0} Model(s) Updated</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>PostUpdateByPrimaryKey</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<div class="code-header"><span class="language">Request</span></div><pre id="sbtonvwl" class="request-pre"><code><span style='color:#0000FF;'>POST</span><span style='color:#808080;'> https://localhost:5000/5</span>
+<span style='color:#808080;'></span>
+<span style='color:#808080;'>...</span>
+<span style='color:#808080;'></span></code></pre>
+<div class="code-header response-header"><span class="language">Response</span></div><pre id="valjucbd"><code><span style='color:black;'>1 Model(s) Updated</span>
+<span style='color:black;'></span></code></pre>
+<h4 id="choosing-a-result-writer-based-on-a-query-parameter">Choosing a result writer based on a query parameter</h4>
+<p>The <a class="xref" href="../../api/Seltzr.Results.QueryDependentResultWriter-2.html">QueryDependentResultWriter&lt;TModel, TUser&gt;</a> class supports using different result writers based on a query parameter.</p>
+<p>This example defines a <code>fmt</code> parameter which can either write <code>&quot;json&quot;</code> or <code>&quot;xml&quot;</code>. Since no value is provided for the <code>defaultIndex</code> parameter, if the parameter is not specified, an exception is thrown.</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'pfzhwcfr')">Copy</button></div><pre id="pfzhwcfr"><code><span style='color:#267F99;'>QueryDependentResultWriter</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>TModel</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#267F99;'>TUser</span><span style='color:#222222;'>&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>QueryDependentResultWriter</span><span style='color:black;'> </span><span style='color:#000000;'>=</span><span style='color:black;'> </span><span style='color:#0000FF;'>new</span><span style='color:black;'> </span><span style='color:#267F99;'>QueryDependentResultWriter</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>TModel</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#267F99;'>TUser</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span>
+<span style='color:black;'>	</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>fmt</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span>
+<span style='color:black;'>	</span><span style='color:#0000FF;'>new</span><span style='color:#222222;'>[</span><span style='color:#222222;'>]</span><span style='color:black;'> </span><span style='color:#222222;'>{</span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>json</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>xml</span><span style='color:#A31515;'>&quot;</span><span style='color:#222222;'>}</span><span style='color:#222222;'>,</span><span style='color:black;'> </span>
+<span style='color:black;'>	</span><span style='color:#0000FF;'>new</span><span style='color:black;'> </span><span style='color:#267F99;'>IResultWriter</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>TModel</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#267F99;'>TUser</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>[</span><span style='color:#222222;'>]</span><span style='color:black;'> </span><span style='color:#222222;'>{</span><span style='color:black;'> </span><span style='color:#0000FF;'>new</span><span style='color:black;'> </span><span style='color:#267F99;'>JsonResultWriter</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>TModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:#222222;'>,</span><span style='color:black;'> </span><span style='color:#0000FF;'>new</span><span style='color:black;'> </span><span style='color:#267F99;'>XmlResultWriter</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>TModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:black;'> </span><span style='color:#222222;'>}</span><span style='color:#222222;'>,</span>
+<span style='color:black;'>	</span><span style='color:#001080;'>caseSensitive</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#0000FF;'>true</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span>
+<span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>api</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>    </span><span style='color:#001080;'>api</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseResultWriter</span><span style='color:#222222;'>(</span><span style='color:#001080;'>QueryDependentResultWriter</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<div class="code-header"><span class="language">Request</span></div><pre id="twehgnsh" class="request-pre"><code><span style='color:#0000FF;'>GET</span><span style='color:#808080;'> https://localhost:5000/</span><span style='color:#098658;'>?</span><span style='color:#001080;'>fmt</span><span style='color:#808080;'>=</span><span style='color:#000000;'>json</span>
+<span style='color:#808080;'></span></code></pre>
+<div class="code-header response-header"><span class="language">Response</span></div><pre id="dwduemfn"><code><span style='color:#222222;'>[</span><span style='color:#222222;'>{</span>
+<span style='color:black;'>	</span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>]</span>
+<span style='color:black;'></span></code></pre>
+<div class="code-header"><span class="language">Request</span></div><pre id="tqehixld" class="request-pre"><code><span style='color:#0000FF;'>GET</span><span style='color:#808080;'> https://localhost:5000/</span><span style='color:#098658;'>?</span><span style='color:#001080;'>fmt</span><span style='color:#808080;'>=</span><span style='color:#000000;'>xml</span>
+<span style='color:#808080;'></span></code></pre>
+<div class="code-header response-header"><span class="language">Response</span></div><pre id="rqxzwfsd"><code><span style='color:#800000;'>&lt;</span><span style='color:#800000;'>ArrayOfMyModel</span><span style='color:#800000;'>&gt;</span>
+<span style='color:black;'>	...</span>
+<span style='color:#800000;'>&lt;/</span><span style='color:#800000;'>ArrayOfMyModel</span><span style='color:#800000;'>&gt;</span>
+<span style='color:black;'></span></code></pre>
+<div class="code-header"><span class="language">Request</span></div><pre id="zysuzymv" class="request-pre"><code><span style='color:#0000FF;'>GET</span><span style='color:#808080;'> https://localhost:5000/</span>
+<span style='color:#808080;'></span></code></pre>
+<div class="code-header response-header"><span class="language">Response</span></div><pre id="zgbdhwvf"><code><span style='color:black;'>Request aborted. Cannot serialize response to request</span>
+<span style='color:black;'></span></code></pre>
+<h3 id="modifying-formatting-options">Modifying Formatting Options</h3>
+<h4 id="omitting-properties-from-the-response-body">Omitting properties from the response body</h4>
+<p>Unless previous calls to <code>Include</code> have affected the formatting options, a call to <code>Omit</code> will include every property except for the omitted one.</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'abvmrnaf')">Copy</button></div><pre id="abvmrnaf"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>api</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>    </span><span style='color:#001080;'>api</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>WriteJson</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>Omit</span><span style='color:#222222;'>(</span><span style='color:#001080;'>m</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>m</span><span style='color:#222222;'>.</span><span style='color:#001080;'>Value</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>CanGet</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<div class="code-header"><span class="language">Request</span></div><pre id="hbeqjyfq" class="request-pre"><code><span style='color:#0000FF;'>GET</span><span style='color:#808080;'> https://localhost:5000/</span>
+<span style='color:#808080;'></span></code></pre>
+<div class="code-header response-header"><span class="language">Response</span></div><pre id="iajyxpzn"><code><span style='color:#222222;'>[</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>{</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>&quot;</span><span style='color:#0451A5;'>Id</span><span style='color:#222222;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#098658;'>4</span><span style='color:#222222;'>,</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>&quot;</span><span style='color:#0451A5;'>Token</span><span style='color:#222222;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>52d10081-8730-4a04-8725-f2aefb6dfac8</span><span style='color:#A31515;'>&quot;</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>}</span><span style='color:#222222;'>,</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>{</span><span style='color:black;'> </span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span><span style='color:black;'> </span><span style='color:#222222;'>}</span>
+<span style='color:#222222;'>]</span>
+<span style='color:black;'></span></code></pre>
+<h4 id="including-a-single-property-on-the-response-body">Including a single property on the response body</h4>
+<p>Unless previous calls to <code>Omit</code> have affected the formatting options, a call to <code>Include</code> will omit every property except for the included one.</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'wnukiuuv')">Copy</button></div><pre id="wnukiuuv"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>api</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>    </span><span style='color:#001080;'>api</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>WriteJson</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>Include</span><span style='color:#222222;'>(</span><span style='color:#001080;'>m</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>m</span><span style='color:#222222;'>.</span><span style='color:#001080;'>Id</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>Include</span><span style='color:#222222;'>(</span><span style='color:#001080;'>m</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>m</span><span style='color:#222222;'>.</span><span style='color:#001080;'>Value</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>CanGet</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<p>Now only two properties (<code>Id</code> and <code>Value</code>) will be included in the response.</p>
+<div class="code-header"><span class="language">Request</span></div><pre id="pcucwuey" class="request-pre"><code><span style='color:#0000FF;'>GET</span><span style='color:#808080;'> https://localhost:5000/</span>
+<span style='color:#808080;'></span></code></pre>
+<div class="code-header response-header"><span class="language">Response</span></div><pre id="kbddohhz"><code><span style='color:#222222;'>[</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>{</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>&quot;</span><span style='color:#0451A5;'>Id</span><span style='color:#222222;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#098658;'>4</span><span style='color:#222222;'>,</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>&quot;</span><span style='color:#0451A5;'>Value</span><span style='color:#222222;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#098658;'>8</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>}</span><span style='color:#222222;'>,</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>{</span><span style='color:black;'> </span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span><span style='color:#CD3131;'>.</span><span style='color:black;'> </span><span style='color:#222222;'>}</span>
+<span style='color:#222222;'>]</span>
+<span style='color:black;'></span></code></pre>
+<h4 id="returning-a-single-element-instead-of-an-array">Returning a single element instead of an array</h4>
+<p>The <a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_StripArrayIfSingleResult_System_Boolean_">StripArrayIfSingleResult(Boolean)</a> method can be used to strip the array from the response if the dataset only contains a single element. So, if a route will only ever logically return a single element, it makes sense to use this method.</p>
+<div class="code-header"><span class="language">C#</span><div class="spacer"></div><button class="copy-btn" onclick="copyCode(this,'gimmlrea')">Copy</button></div><pre id="gimmlrea"><code><span style='color:#001080;'>app</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>UseSeltzr</span><span style='color:#222222;'>&lt;</span><span style='color:#267F99;'>MyModel</span><span style='color:#222222;'>&gt;</span><span style='color:#222222;'>(</span><span style='color:#001080;'>api</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#222222;'>{</span>
+<span style='color:black;'>    </span><span style='color:#001080;'>api</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>WriteJson</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span>
+<span style='color:black;'>		</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>GetByPrimaryKey</span><span style='color:#222222;'>(</span><span style='color:#001080;'>getOptions</span><span style='color:black;'> </span><span style='color:#000000;'>=&gt;</span><span style='color:black;'> </span><span style='color:#001080;'>getOptions</span><span style='color:#222222;'>.</span><span style='color:#795E26;'>StripArrayIfSingleResult</span><span style='color:#222222;'>(</span><span style='color:#222222;'>)</span><span style='color:#222222;'>)</span>
+<span style='color:#222222;'>}</span><span style='color:#222222;'>)</span><span style='color:#222222;'>;</span>
+<span style='color:black;'></span></code></pre>
+<div class="code-header"><span class="language">Request</span></div><pre id="jgkhmbzs" class="request-pre"><code><span style='color:#0000FF;'>GET</span><span style='color:#808080;'> https://localhost:5000/4</span>
+<span style='color:#808080;'></span></code></pre>
+<div class="code-header response-header"><span class="language">Response</span></div><pre id="wloxmmmf"><code><span style='color:#222222;'>{</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>&quot;</span><span style='color:#0451A5;'>Id</span><span style='color:#222222;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#098658;'>4</span><span style='color:#222222;'>,</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>&quot;</span><span style='color:#0451A5;'>Value</span><span style='color:#222222;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#098658;'>8</span><span style='color:#222222;'>,</span>
+<span style='color:black;'>	</span><span style='color:#222222;'>&quot;</span><span style='color:#0451A5;'>Token</span><span style='color:#222222;'>&quot;</span><span style='color:#222222;'>:</span><span style='color:black;'> </span><span style='color:#A31515;'>&quot;</span><span style='color:#A31515;'>52d10081-8730-4a04-8725-f2aefb6dfac8</span><span style='color:#A31515;'>&quot;</span>
+<span style='color:#222222;'>}</span>
+<span style='color:black;'></span></code></pre>
+<div class="TIP">
+<h5>Tip</h5>
+<p>To throw an error when no elements are found, use the <a class="xref" href="../../api/Seltzr.Options.Builder.SeltzrOptionsBuilder-2.html#Seltzr_Options_Builder_SeltzrOptionsBuilder_2_RequireExactlyOne_System_String_">RequireExactlyOne(String)</a> method.</p>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Seltzr/Seltzr/blob/master/docs-src/docfx_project/articles/writing/writing.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>
